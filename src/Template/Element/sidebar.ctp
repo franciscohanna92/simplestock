@@ -1,0 +1,113 @@
+<aside class="aside">
+    <!-- START Sidebar (left)-->
+    <div class="aside-inner">
+        <nav class="sidebar" data-sidebar-anyclick-close="">
+            <!-- START sidebar nav-->
+            <ul class="sidebar-nav">
+                <!-- START user info-->
+                <li class="has-user-block">
+                    <div class="collapse" id="user-block">
+                        <div class="item user-block">
+                            <!-- User picture-->
+                            <div class="user-block-picture">
+                                <div class="user-block-status">
+                                    <img class="img-thumbnail rounded-circle" src="/img/user/02.jpg" alt="Avatar" width="60" height="60">
+                                    <div class="circle bg-success circle-lg"></div>
+                                </div>
+                            </div>
+                            <!-- Name and Job-->
+                            <div class="user-block-info">
+                                <span class="user-block-name">Hello, Mike</span>
+                                <span class="user-block-role">Designer</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!-- END user info-->
+
+                <!--INVENTARIO-->
+                <li class="nav-heading ">
+                    <span data-localize="sidebar.heading.HEADER">Inventario</span>
+                </li>
+                <li class="">
+                    <a href="singleview.html" title="Single View">
+                        <em class="fa fa-cubes"></em>
+                        <span data-localize="sidebar.nav.SINGLEVIEW">Stock</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="singleview.html" title="Single View">
+                        <em class="fa fa-sign-in"></em>
+                        <span data-localize="sidebar.nav.SINGLEVIEW">Entradas</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="singleview.html" title="Single View">
+                        <em class="fa fa-sign-out"></em>
+                        <span data-localize="sidebar.nav.SINGLEVIEW">Salidas</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="singleview.html" title="Single View">
+                        <em class="fa fa-list-ol"></em>
+                        <span data-localize="sidebar.nav.SINGLEVIEW">Pedidos</span>
+                    </a>
+                </li>
+
+                <!--RECURSOS-->
+                <li class="nav-heading ">
+                    <span data-localize="sidebar.heading.HEADER">Recursos</span>
+                </li>
+                <li class="">
+                    <a href="singleview.html" title="Single View">
+                        <em class="fa fa-cube"></em>
+                        <span data-localize="sidebar.nav.SINGLEVIEW">Artículos</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="singleview.html" title="Single View">
+                        <em class="fa fa-pie-chart"></em>
+                        <span data-localize="sidebar.nav.SINGLEVIEW">Categorías</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="singleview.html" title="Single View">
+                        <em class="fa fa-truck"></em>
+                        <span data-localize="sidebar.nav.SINGLEVIEW">Proveedores</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="singleview.html" title="Single View">
+                        <em class="fa fa-building-o"></em>
+                        <span data-localize="sidebar.nav.SINGLEVIEW">Obras</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="singleview.html" title="Single View">
+                        <em class="fa fa-male"></em>
+                        <span data-localize="sidebar.nav.SINGLEVIEW">Personal</span>
+                    </a>
+                </li>
+
+                <!--SISTEMA-->
+                <li class="nav-heading ">
+                    <span data-localize="sidebar.heading.HEADER">Sistema</span>
+                </li>
+                <li class="">
+                    <a href="singleview.html" title="Single View">
+                        <em class="fa fa-users"></em>
+                        <span data-localize="sidebar.nav.SINGLEVIEW">Usuarios</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="singleview.html" title="Single View">
+                        <em class="fa fa-certificate"></em>
+                        <span data-localize="sidebar.nav.SINGLEVIEW">Roles</span>
+                    </a>
+                </li>
+            </ul>
+            <!-- END sidebar nav-->
+        </nav>
+    </div>
+    <!-- END Sidebar (left)-->
+</aside>

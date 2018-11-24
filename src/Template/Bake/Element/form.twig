@@ -1,0 +1,43 @@
+{% set fields = Bake.filterFields(fields, schema, modelObject) %}
+
+<?= $this->BootsCakeForm->create(${{ singularVar }}) ?>
+
+<div class="card card-default">
+    <div class="card-body">
+            <?php
+{% for field in fields if field not in primaryKey %}
+    {%- if keyFields[field] %}
+        {%- set fieldData = Bake.columnData(field, schema) %}
+        {%- if fieldData.null %}
+            echo $this->BootsCakeForm->control('{{ field }}', ['options' => ${{ keyFields[field] }}, 'empty' => true,
+            'required' => false]);
+            {{- "\n" }}
+            {%- else %}
+                echo $this->BootsCakeForm->control('{{ field }}', ['options' => ${{ keyFields[field] }}, 'required' => false]);
+                {{- "\n" }}
+            {%- endif %}
+            {%- elseif field not in ['created_at', 'updated_at', 'created_by', 'updated_by'] %}
+                {%- set fieldData = Bake.columnData(field, schema) %}
+                {%- if fieldData.type in ['date', 'datetime', 'time'] and fieldData.null %}
+                    echo $this->BootsCakeForm->control('{{ field }}', ['empty' => true, 'required' => false]);
+                    {{- "\n" }}
+                {%- else %}
+                    echo $this->BootsCakeForm->control('{{ field }}', ['required' => false]);
+                    {{- "\n" }}
+                {%- endif %}
+            {%- endif %}
+            {%- endfor %}
+
+            {%- if associations.BelongsToMany %}
+                {%- for assocName, assocData in associations.BelongsToMany %}
+                    echo $this->BootsCakeBootsCakeForm->control('{{ assocData.property }}._ids', ['options' => ${{ assocData.variable }}, 'required' => false]);
+                    {{- "\n" }}
+                {%- endfor %}
+            {% endif %}
+            ?>
+    </div>
+    <div class="card-footer">
+        <?= $this->BootsCakeForm->control(__('Guardar'), ['type' => 'submit', 'size' => 'lg']) ?>
+    </div>
+</div>
+<?= $this->BootsCakeForm->end() ?>
