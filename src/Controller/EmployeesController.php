@@ -20,29 +20,32 @@ class EmployeesController extends AppController
      */
     public function index()
     {
+$searchQuery = $this->request->getQuery('searchQuery');
+        $pageTitle = 'Listado employees';
         $this->paginate = [
             'contain' => ['Companies']
         ];
         $employees = $this->paginate($this->Employees);
 
-        $this->set(compact('employees'));
+        $this->set(compact('employees', 'pageTitle', 'searchQuery'));
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Employee id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $employee = $this->Employees->get($id, [
-            'contain' => ['Companies', 'InventoryIssues']
-        ]);
+/**
+* View method
+*
+* @param string|null $id Employee id.
+* @return \Cake\Http\Response|void
+* @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+*/
+public function view($id = null)
+{
+$pageTitle = 'View employee';
+$employee = $this->Employees->get($id, [
+'contain' => ['Companies', 'InventoryIssues']
+]);
 
-        $this->set('employee', $employee);
-    }
+$this->set(compact('employee', 'pageTitle'));
+}
 
     /**
      * Add method
@@ -51,6 +54,7 @@ class EmployeesController extends AppController
      */
     public function add()
     {
+$pageTitle = 'Add employee';
         $employee = $this->Employees->newEntity();
         if ($this->request->is('post')) {
             $employee = $this->Employees->patchEntity($employee, $this->request->getData());
@@ -62,7 +66,7 @@ class EmployeesController extends AppController
             $this->Flash->error(__('The employee could not be saved. Please, try again.'));
         }
         $companies = $this->Employees->Companies->find('list', ['limit' => 200]);
-        $this->set(compact('employee', 'companies'));
+        $this->set(compact('employee', 'companies', 'pageTitle'));
     }
 
     /**
@@ -74,6 +78,7 @@ class EmployeesController extends AppController
      */
     public function edit($id = null)
     {
+$pageTitle = 'Edit employee';
         $employee = $this->Employees->get($id, [
             'contain' => []
         ]);
@@ -87,7 +92,7 @@ class EmployeesController extends AppController
             $this->Flash->error(__('The employee could not be saved. Please, try again.'));
         }
         $companies = $this->Employees->Companies->find('list', ['limit' => 200]);
-        $this->set(compact('employee', 'companies'));
+        $this->set(compact('employee', 'companies', 'pageTitle'));
     }
 
     /**

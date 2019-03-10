@@ -6,10 +6,47 @@
 ?>
 {% set fields = Bake.filterFields(fields, schema, modelObject, indexColumns, ['binary', 'text']) %}
 
+<style>
+    .form-control:focus {
+        border-color: #dde6e9;
+    }
+</style>
+
 <div class="card card-default">
     {#<h2><?= __('{{ pluralHumanName }}') ?></h2>#}
     <div class="card card-header m-0">
-        <input type="text" class="form-control" placeholder="Buscar...">
+        <div class="row">
+            <div class="col-12 col-md-4 col-lg-3">
+                <form class="m-0" action="/{{ pluralVar }}" method="get">
+                    <div class="input-group">
+                        <div class="border-right-0 input-group-prepend">
+                            <span class="input-group-text bg-white border-right-0 input-group-text pr-0 pl-2">
+                                <i class="fa fa-search text-muted"></i>
+                            </span>
+                        </div>
+                        <input class="form-control border-left-0 <?= $searchQuery != '' ? 'border-right-0' : '' ?>"
+                               type="text"
+                               name="searchQuery"
+                               placeholder="Buscar..."
+                               value="<?= $searchQuery; ?>"
+                               required>
+                        <?php if($searchQuery != ''): ?>
+                        <div class="input-group-append">
+                            <a href="/{{ pluralVar }}" class="bg-white input-group-text px-2 py-0">
+                                <span style="line-height: 33px;" class="text-primary">✕</span>
+                            </a>
+                        </div>
+                        <?php endif; ?>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-12 offset-md-4 col-md-4 offset-lg-6 col-lg-3">
+                <a href="/{{ pluralVar }}/add" class="btn btn-primary h-100 float-right">
+                    Agregar nuevo {{ singularVar }}
+                </a>
+            </div>
+        </div>
     </div>
     <div class="card-body p-0">
         <div class="table-responsive">
@@ -19,7 +56,7 @@
                     {% for field in fields %}
                         {%- if field == 'id' %}
                             <th scope="col"><?= $this->Paginator->sort('{{ field }}', '#') ?></th>
-                        {%- elseif field not in ['created_at', 'updated_at', 'created_by', 'updated_by', 'observations', 'description'] %}
+                        {%- elseif field not in ['created_at', 'updated_at', 'created_by', 'updated_by', 'observations', 'description', 'company_id'] %}
                             <th scope="col"><?= $this->Paginator->sort('{{ field }}') ?></th>
                         {%- endif %}
 
@@ -32,7 +69,7 @@
                 <?php foreach (${{ pluralVar }} as ${{ singularVar }}): ?>
                 <tr>
                     {% for field in fields %}
-                        {%- if field not in ['created_at', 'updated_at', 'created_by', 'updated_by', 'observations', 'description'] %}
+                        {%- if field not in ['created_at', 'updated_at', 'created_by', 'updated_by', 'observations', 'description', 'company_id'] %}
                             {% set isKey = false %}
                             {% if associations.BelongsTo %}
                                 {% for alias, details in associations.BelongsTo if field == details.foreignKey %}
@@ -65,12 +102,18 @@
                     </td>
                 </tr>
                 <?php endforeach; ?>
+                <?php if(count(${{ pluralVar }}) == 0): ?>
+                <tr>
+                    <td class="text-center text-muted" colspan="{{ fields|length }}">No hay registros para mostrar</td>
+                </tr>
+                <?php endif; ?>
                 </tbody>
             </table>
         </div>
     </div>
 
-    <div class="card-footer">
+    <?php if(count(${{ pluralVar }}) > 0): ?>
+    <div class="card-footer d-flex justify-content-between">
         <nav>
             <ul class="pagination">
                 <?php
@@ -82,5 +125,12 @@
                 ?>
             </ul>
         </nav>
+
+        <p style="line-height: 35px;">
+            <span>
+                <?php echo $this->Paginator->counter( 'Mostrando {{ '{{' }}current{{ '}}' }} filas de {{ '{{' }}count{{ '}}' }}' ); ?>
+            </span>
+        </p>
     </div>
+    <?php endif; ?>
 </div>

@@ -1,0 +1,27 @@
+select.form-control:not([size]):not([multiple]) {
+    height: calc(2.07857rem + 1.6px);
+}
+
+.wrapper > .aside {
+    transition: none;
+}
+
+.aside-inner, .navbar-header, .sidebar > .sidebar-nav > li {
+    transition: none;
+}
+
+.sidebar-nav > li {
+    transition: none;
+}
+
+.sidebar > .sidebar-nav > .nav-heading, .sidebar > .sidebar-nav > li > a > span, .navbar-brand .brand-logo {
+    animation: none;
+}
+
+.sidebar .sidebar-nav > li > a {
+    animation: none;
+}
+
+.card-footer .form-group {
+    margin: 0;
+}

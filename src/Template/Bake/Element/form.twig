@@ -3,41 +3,44 @@
 <?= $this->BootsCakeForm->create(${{ singularVar }}) ?>
 
 <div class="card card-default">
-    <div class="card-body">
-            <?php
-{% for field in fields if field not in primaryKey %}
-    {%- if keyFields[field] %}
-        {%- set fieldData = Bake.columnData(field, schema) %}
-        {%- if fieldData.null %}
-            echo $this->BootsCakeForm->control('{{ field }}', ['options' => ${{ keyFields[field] }}, 'empty' => true,
-            'required' => false]);
-            {{- "\n" }}
-            {%- else %}
-                echo $this->BootsCakeForm->control('{{ field }}', ['options' => ${{ keyFields[field] }}, 'required' => false]);
-                {{- "\n" }}
+    <div class="card-body row">
+        {#<?php#}
+        {% for field in fields if field not in primaryKey %}
+            {% if field not in ['company_id'] %}
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    {%- if keyFields[field] %}
+                        {%- set fieldData = Bake.columnData(field, schema) %}
+                        {%- if fieldData.null %}
+                            <?php echo $this->BootsCakeForm->control('{{ field }}', ['options' => ${{ keyFields[field] }}, 'empty' => true, 'required' => false, 'size' => 'sm']); ?>
+                            {{- "\n" }}
+                        {%- else %}
+                            <?php echo  $this->BootsCakeForm->control('{{ field }}', ['options' => ${{ keyFields[field] }}, 'required' => false]); ?>
+                            {{- "\n" }}
+                        {%- endif %}
+                    {%- elseif field not in ['created_at', 'updated_at', 'created_by', 'updated_by'] %}
+                        {%- set fieldData = Bake.columnData(field, schema) %}
+                        {%- if fieldData.type in ['date', 'datetime', 'time'] and fieldData.null %}
+                            <?php echo   $this->BootsCakeForm->control('{{ field }}', ['empty' => true, 'required' => false]); ?>
+                            {{- "\n" }}
+                        {%- else %}
+                            <?php echo   $this->BootsCakeForm->control('{{ field }}', ['required' => false]); ?>
+                            {{- "\n" }}
+                        {%- endif %}
+                    {%- endif %}
+                </div>
             {%- endif %}
-            {%- elseif field not in ['created_at', 'updated_at', 'created_by', 'updated_by'] %}
-                {%- set fieldData = Bake.columnData(field, schema) %}
-                {%- if fieldData.type in ['date', 'datetime', 'time'] and fieldData.null %}
-                    echo $this->BootsCakeForm->control('{{ field }}', ['empty' => true, 'required' => false]);
-                    {{- "\n" }}
-                {%- else %}
-                    echo $this->BootsCakeForm->control('{{ field }}', ['required' => false]);
-                    {{- "\n" }}
-                {%- endif %}
-            {%- endif %}
-            {%- endfor %}
+        {%- endfor %}
 
-            {%- if associations.BelongsToMany %}
-                {%- for assocName, assocData in associations.BelongsToMany %}
-                    echo $this->BootsCakeBootsCakeForm->control('{{ assocData.property }}._ids', ['options' => ${{ assocData.variable }}, 'required' => false]);
-                    {{- "\n" }}
-                {%- endfor %}
-            {% endif %}
-            ?>
+        {%- if associations.BelongsToMany %}
+            {%- for assocName, assocData in associations.BelongsToMany %}
+                <?php echo   $this->BootsCakeForm->control('{{ assocData.property }}._ids', ['options' => ${{ assocData.variable }}, 'required' => false]); ?>
+                {{- "\n" }}
+            {%- endfor %}
+        {% endif %}
+        {#?>#}
     </div>
     <div class="card-footer">
-        <?= $this->BootsCakeForm->control(__('Guardar'), ['type' => 'submit', 'size' => 'lg']) ?>
+        <?= $this->BootsCakeForm->control(__('Guardar'), ['type' => 'submit']) ?>
     </div>
 </div>
 <?= $this->BootsCakeForm->end() ?>

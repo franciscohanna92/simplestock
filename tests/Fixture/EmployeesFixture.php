@@ -60,10 +60,10 @@ class EmployeesFixture extends TestFixture
                 'position' => 'Lorem ipsum dolor sit amet',
                 'observations' => 'Lorem ipsum dolor sit amet',
                 'company_id' => 1,
-                'created_at' => 1543043346,
+                'created_at' => 1543296668,
                 'updated_by' => 1,
                 'created_by' => 1,
-                'updated_at' => 1543043346
+                'updated_at' => 1543296668
             ],
         ];
         parent::init();

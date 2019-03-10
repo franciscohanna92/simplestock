@@ -1,19 +1,5 @@
 <?php
-/**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link          https://cakephp.org CakePHP(tm) Project
- * @since         0.10.0
- * @license       https://opensource.org/licenses/mit-license.php MIT License
- */
-
-$cakeDescription = 'CakePHP: the rapid development php framework';
+$cakeDescription = 'SimpleStock · Gestión de tu inventario de manera sencilla';
 ?>
 <!DOCTYPE html>
 <html>
@@ -40,6 +26,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <link rel="stylesheet" href="/css/bootstrap.css" id="bscss">
     <!-- =============== APP STYLES ===============-->
     <link rel="stylesheet" href="/css/app.css" id="maincss">
+    <link rel="stylesheet" href="/css/theme-c.css" id="maincss">
 
     <?= $this->Html->css('custom.css') ?>
 
@@ -55,20 +42,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <section>
         <div class="content-wrapper">
             <div class="content-heading">
-                <!-- START Language list-->
-                <div class="float-right">
-                    <div class="btn-group">
-                        <button class="btn btn-secondary dropdown-toggle dropdown-toggle-nocaret" type="button"
-                                data-toggle="dropdown">English
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right-forced animated fadeInUpShort" role="menu"><a
-                                    class="dropdown-item" href="#" data-set-lang="en">English</a><a
-                                    class="dropdown-item" href="#" data-set-lang="es">Spanish</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- END Language list-->Single View
-                <small data-localize="dashboard.WELCOME"></small>
+                <?= $pageTitle ?>
             </div>
             <div class="row">
                 <div class="col-12">

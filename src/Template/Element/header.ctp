@@ -3,12 +3,13 @@
     <nav class="navbar topnavbar" role="navigation">
         <!-- START navbar header-->
         <div class="navbar-header">
-            <a class="navbar-brand" href="#/">
+            <a class="navbar-brand text-white" href="#/">
                 <div class="brand-logo">
-                    <img class="img-fluid" src="/img/logo.png" alt="App Logo">
+                    Simple <strong>Stock</strong>
+
                 </div>
                 <div class="brand-logo-collapsed">
-                    <img class="img-fluid" src="/img/logo-single.png" alt="App Logo">
+                    S<strong>S</strong>
                 </div>
             </a>
         </div>

@@ -1286,6 +1286,8 @@ fieldset {
   margin-bottom: 20px; }
   fieldset.last-child, fieldset:last-child {
     border-bottom: 0; }
+  fieldset .form-group {
+    margin-bottom: 0; }
 
 @media (max-width: 767.98px) {
   input[type="text"],
@@ -1892,9 +1894,6 @@ h3 > .breadcrumb,
     margin-right: 10px; }
 
 .card-footer .pagination {
-  margin: 0; }
-
-.card-footer .form-group {
   margin: 0; }
 
 .card-footer .radial-bar {

@@ -27,82 +27,82 @@
 
                 <!--INVENTARIO-->
                 <li class="nav-heading ">
-                    <span data-localize="sidebar.heading.HEADER">Inventario</span>
+                    <span>Inventario</span>
                 </li>
                 <li class="">
-                    <a href="singleview.html" title="Single View">
+                    <a href="/">
                         <em class="fa fa-cubes"></em>
-                        <span data-localize="sidebar.nav.SINGLEVIEW">Stock</span>
+                        <span>Stock</span>
                     </a>
                 </li>
                 <li class="">
-                    <a href="singleview.html" title="Single View">
+                    <a href="/inventory-receipts">
                         <em class="fa fa-sign-in"></em>
-                        <span data-localize="sidebar.nav.SINGLEVIEW">Entradas</span>
+                        <span>Entradas</span>
                     </a>
                 </li>
                 <li class="">
-                    <a href="singleview.html" title="Single View">
+                    <a href="/inventory-issues">
                         <em class="fa fa-sign-out"></em>
-                        <span data-localize="sidebar.nav.SINGLEVIEW">Salidas</span>
+                        <span>Salidas</span>
                     </a>
                 </li>
                 <li class="">
-                    <a href="singleview.html" title="Single View">
+                    <a href="/purchase-orders">
                         <em class="fa fa-list-ol"></em>
-                        <span data-localize="sidebar.nav.SINGLEVIEW">Pedidos</span>
+                        <span>Pedidos</span>
                     </a>
                 </li>
 
                 <!--RECURSOS-->
                 <li class="nav-heading ">
-                    <span data-localize="sidebar.heading.HEADER">Recursos</span>
+                    <span>Recursos</span>
                 </li>
                 <li class="">
-                    <a href="singleview.html" title="Single View">
+                    <a href="/articles">
                         <em class="fa fa-cube"></em>
-                        <span data-localize="sidebar.nav.SINGLEVIEW">Artículos</span>
+                        <span>Artículos</span>
                     </a>
                 </li>
                 <li class="">
-                    <a href="singleview.html" title="Single View">
+                    <a href="/categories">
                         <em class="fa fa-pie-chart"></em>
-                        <span data-localize="sidebar.nav.SINGLEVIEW">Categorías</span>
+                        <span>Categorías</span>
                     </a>
                 </li>
                 <li class="">
-                    <a href="singleview.html" title="Single View">
+                    <a href="/providers">
                         <em class="fa fa-truck"></em>
-                        <span data-localize="sidebar.nav.SINGLEVIEW">Proveedores</span>
+                        <span>Proveedores</span>
                     </a>
                 </li>
                 <li class="">
-                    <a href="singleview.html" title="Single View">
+                    <a href="/building-sites">
                         <em class="fa fa-building-o"></em>
-                        <span data-localize="sidebar.nav.SINGLEVIEW">Obras</span>
+                        <span>Obras</span>
                     </a>
                 </li>
                 <li class="">
-                    <a href="singleview.html" title="Single View">
+                    <a href="/employees">
                         <em class="fa fa-male"></em>
-                        <span data-localize="sidebar.nav.SINGLEVIEW">Personal</span>
+                        <span>Personal</span>
                     </a>
                 </li>
 
                 <!--SISTEMA-->
                 <li class="nav-heading ">
-                    <span data-localize="sidebar.heading.HEADER">Sistema</span>
+                    <span>Sistema</span>
                 </li>
                 <li class="">
-                    <a href="singleview.html" title="Single View">
+                    <a href="/users">
                         <em class="fa fa-users"></em>
-                        <span data-localize="sidebar.nav.SINGLEVIEW">Usuarios</span>
+                        <span>Usuarios</span>
                     </a>
                 </li>
                 <li class="">
-                    <a href="singleview.html" title="Single View">
+                    <a href="/roles">
                         <em class="fa fa-certificate"></em>
-                        <span data-localize="sidebar.nav.SINGLEVIEW">Roles</span>
+                        <span>Roles</span>
                     </a>
                 </li>
             </ul>
