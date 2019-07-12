@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -13,6 +14,12 @@ use App\Controller\AppController;
 class UsersController extends AppController
 {
 
+    public function initialize()
+    {
+        parent::initialize();
+        $this->Auth->allow(['logout', 'add']);
+    }
+
     /**
      * Index method
      *
@@ -20,7 +27,7 @@ class UsersController extends AppController
      */
     public function index()
     {
-$searchQuery = $this->request->getQuery('searchQuery');
+        $searchQuery = $this->request->getQuery('searchQuery');
         $pageTitle = 'Listado users';
         $this->paginate = [
             'contain' => ['Companies']
@@ -30,22 +37,22 @@ $searchQuery = $this->request->getQuery('searchQuery');
         $this->set(compact('users', 'pageTitle', 'searchQuery'));
     }
 
-/**
-* View method
-*
-* @param string|null $id User id.
-* @return \Cake\Http\Response|void
-* @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-*/
-public function view($id = null)
-{
-$pageTitle = 'View user';
-$user = $this->Users->get($id, [
-'contain' => ['Companies']
-]);
+    /**
+     * View method
+     *
+     * @param string|null $id User id.
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function view($id = null)
+    {
+        $pageTitle = 'View user';
+        $user = $this->Users->get($id, [
+            'contain' => ['Companies']
+        ]);
 
-$this->set(compact('user', 'pageTitle'));
-}
+        $this->set(compact('user', 'pageTitle'));
+    }
 
     /**
      * Add method
@@ -54,7 +61,7 @@ $this->set(compact('user', 'pageTitle'));
      */
     public function add()
     {
-$pageTitle = 'Add user';
+        $pageTitle = 'Add user';
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
@@ -78,7 +85,7 @@ $pageTitle = 'Add user';
      */
     public function edit($id = null)
     {
-$pageTitle = 'Edit user';
+        $pageTitle = 'Edit user';
         $user = $this->Users->get($id, [
             'contain' => []
         ]);
@@ -113,5 +120,34 @@ $pageTitle = 'Edit user';
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+
+    /**
+     * @return \Cake\Http\Response|null
+     */
+    public function login()
+    {
+        $pageTitle = 'Iniciar sesión';
+        $this->viewBuilder()->setLayout('auth');
+        if ($this->request->is('post')) {
+            echo "YES, we have posted information!<br />"; pr($this->request['data']);
+            $user = $this->Auth->identify();
+            if ($user) {
+                $this->Auth->setUser($user);
+                return $this->redirect($this->Auth->redirectUrl());
+            }
+            $this->Flash->error('Your username or password is incorrect.');
+        }
+        $this->set(compact('pageTitle'));
+    }
+
+    /**
+     * @return \Cake\Http\Response|null
+     */
+    public function logout()
+    {
+        $this->Flash->success('You are now logged out.');
+        return $this->redirect($this->Auth->logout());
     }
 }
