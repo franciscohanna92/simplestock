@@ -26,6 +26,8 @@ $pageTitle = 'Add {{ singularName }}';
         ${{ singularName }} = $this->{{ currentModelName }}->newEntity();
         if ($this->request->is('post')) {
             ${{ singularName }} = $this->{{ currentModelName }}->patchEntity(${{ singularName }}, $this->request->getData());
+            ${{ singularName }}['created_by'] = $this->Auth->user()['id'];
+            ${{ singularName }}['company_id'] = $this->Auth->user()['company_id'];
             if ($this->{{ currentModelName }}->save(${{ singularName }})) {
                 $this->Flash->success(__('The {{ singularHumanName|lower }} has been saved.'));
 

@@ -12,7 +12,7 @@
 </style>
 
 <div class="card card-default">
-        <div class="card card-header m-0">
+    <div class="card card-header m-0">
         <div class="row">
             <div class="col-12 col-md-4 col-lg-3">
                 <form class="m-0" action="/articles" method="get">
@@ -28,12 +28,12 @@
                                placeholder="Buscar..."
                                value="<?= $searchQuery; ?>"
                                required>
-                        <?php if($searchQuery != ''): ?>
-                        <div class="input-group-append">
-                            <a href="/articles" class="bg-white input-group-text px-2 py-0">
-                                <span style="line-height: 33px;" class="text-primary">✕</span>
-                            </a>
-                        </div>
+                        <?php if ($searchQuery != ''): ?>
+                            <div class="input-group-append">
+                                <a href="/articles" class="bg-white input-group-text px-2 py-0">
+                                    <span style="line-height: 33px;" class="text-primary">✕</span>
+                                </a>
+                            </div>
                         <?php endif; ?>
                     </div>
                 </form>
@@ -51,94 +51,75 @@
             <table class="table table-hover table-bordered table-striped">
                 <thead>
                 <tr>
-                                                <th scope="col"><?= $this->Paginator->sort('id', '#') ?></th>
-
-                                                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-
-                    
-
-                                                <th scope="col"><?= $this->Paginator->sort('security_stock') ?></th>
-
-                                                <th scope="col"><?= $this->Paginator->sort('internal_code') ?></th>
-
-                                                <th scope="col"><?= $this->Paginator->sort('provider_code') ?></th>
-
-                                                <th scope="col"><?= $this->Paginator->sort('cateogry_id') ?></th>
-
-                                                <th scope="col"><?= $this->Paginator->sort('provider_id') ?></th>
-
-                    
-
-                    
-
-                    
-
-                    
-
-                    
-
-                                        <th scope="col" class="actions"><?= __('Actions') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('id', '#') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('name') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('security_stock') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('internal_code') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('provider_code') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('cateogry_id') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('provider_id') ?></th>
+                    <th scope="col" class="actions"><?= __('Actions') ?></th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($articles as $article): ?>
-                <tr>
-                                                                                                                                                                                                                                                                        <td><?= $this->Number->format($article->id) ?></td>
-                                                                                                                                                                                                                                                                                                                                    <td><?= h($article->name) ?></td>
-                                                                                                                                                                                                                                                                                                                                                        <td><?= $this->Number->format($article->security_stock) ?></td>
-                                                                                                                                                                                                                                                                                                                                    <td><?= h($article->internal_code) ?></td>
-                                                                                                                                                                                                                                                                                                                                    <td><?= h($article->provider_code) ?></td>
-                                                                                                                                                                                                                                                <td><?= $article->has('category') ?
-                                        $this->Html->link($article
-                                        ->category->name, ['controller' =>
-                                        'Categories', 'action' => 'view', $article
-                                        ->category
-                                        ->id]) : '' ?>
-                                    </td>
-                                                                                                                                                                                                                                                                            <td><?= $article->has('provider') ?
-                                        $this->Html->link($article
-                                        ->provider->id, ['controller' =>
-                                        'Providers', 'action' => 'view', $article
-                                        ->provider
-                                        ->id]) : '' ?>
-                                    </td>
-                                                                                                                                                                                                                                                        <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $article->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $article->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $article->id], ['confirm' =>
-                        __('¿Seguro quieres eliminar este article?')]) ?>
-                    </td>
-                </tr>
+                    <tr>
+                        <td><?= $this->Number->format($article->id) ?></td>
+                        <td><?= h($article->name) ?></td>
+                        <td><?= $this->Number->format($article->security_stock) ?></td>
+                        <td><?= h($article->internal_code) ?></td>
+                        <td><?= h($article->provider_code) ?></td>
+                        <td><?= $article->has('category') ?
+                                $this->Html->link($article
+                                    ->category->name, ['controller' =>
+                                    'Categories', 'action' => 'view', $article
+                                    ->category
+                                    ->id]) : '' ?>
+                        </td>
+                        <td><?= $article->has('provider') ?
+                                $this->Html->link($article
+                                    ->provider->company_name, ['controller' =>
+                                    'Providers', 'action' => 'view', $article
+                                    ->provider
+                                    ->id]) : '' ?>
+                        </td>
+                        <td class="actions">
+                            <?= $this->Html->link(__('View'), ['action' => 'view', $article->id]) ?>
+                            <?= $this->Html->link(__('Edit'), ['action' => 'edit', $article->id]) ?>
+                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $article->id], ['confirm' =>
+                                __('¿Seguro quieres eliminar este article?')]) ?>
+                        </td>
+                    </tr>
                 <?php endforeach; ?>
-                <?php if(count($articles) == 0): ?>
-                <tr>
-                    <td class="text-center text-muted" colspan="13">No hay registros para mostrar</td>
-                </tr>
+                <?php if (count($articles) == 0): ?>
+                    <tr>
+                        <td class="text-center text-muted" colspan="13">No hay registros para mostrar</td>
+                    </tr>
                 <?php endif; ?>
                 </tbody>
             </table>
         </div>
     </div>
 
-    <?php if(count($articles) > 0): ?>
-    <div class="card-footer d-flex justify-content-between">
-        <nav>
-            <ul class="pagination">
-                <?php
-                echo $this->BootsCakePaginator->first();
-                echo $this->BootsCakePaginator->prev();
-                echo $this->BootsCakePaginator->numbers();
-                echo $this->BootsCakePaginator->next();
-                echo $this->BootsCakePaginator->last();
-                ?>
-            </ul>
-        </nav>
+    <?php if (count($articles) > 0): ?>
+        <div class="card-footer d-flex justify-content-between">
+            <nav>
+                <ul class="pagination">
+                    <?php
+                    echo $this->BootsCakePaginator->first();
+                    echo $this->BootsCakePaginator->prev();
+                    echo $this->BootsCakePaginator->numbers();
+                    echo $this->BootsCakePaginator->next();
+                    echo $this->BootsCakePaginator->last();
+                    ?>
+                </ul>
+            </nav>
 
-        <p style="line-height: 35px;">
+            <p style="line-height: 35px;">
             <span>
-                <?php echo $this->Paginator->counter( 'Mostrando {{current}} filas de {{count}}' ); ?>
+                <?php echo $this->Paginator->counter('Mostrando {{current}} filas de {{count}}'); ?>
             </span>
-        </p>
-    </div>
+            </p>
+        </div>
     <?php endif; ?>
 </div>

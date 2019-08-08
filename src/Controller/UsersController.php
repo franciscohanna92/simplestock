@@ -131,7 +131,6 @@ class UsersController extends AppController
         $pageTitle = 'Iniciar sesión';
         $this->viewBuilder()->setLayout('auth');
         if ($this->request->is('post')) {
-            echo "YES, we have posted information!<br />"; pr($this->request['data']);
             $user = $this->Auth->identify();
             if ($user) {
                 $this->Auth->setUser($user);

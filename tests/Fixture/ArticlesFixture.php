@@ -64,9 +64,9 @@ class ArticlesFixture extends TestFixture
                 'cateogry_id' => 1,
                 'provider_id' => 1,
                 'company_id' => 1,
-                'created_at' => 1543084202,
+                'created_at' => 1562987870,
                 'created_by' => 1,
-                'updated_at' => 1543084202,
+                'updated_at' => 1562987870,
                 'updated_by' => 1
             ],
         ];

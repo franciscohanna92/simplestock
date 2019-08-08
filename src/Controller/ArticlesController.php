@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -20,7 +21,7 @@ class ArticlesController extends AppController
      */
     public function index()
     {
-$searchQuery = $this->request->getQuery('searchQuery');
+        $searchQuery = $this->request->getQuery('searchQuery');
         $pageTitle = 'Listado articles';
         $this->paginate = [
             'contain' => ['Categories', 'Providers', 'Companies']
@@ -30,22 +31,22 @@ $searchQuery = $this->request->getQuery('searchQuery');
         $this->set(compact('articles', 'pageTitle', 'searchQuery'));
     }
 
-/**
-* View method
-*
-* @param string|null $id Article id.
-* @return \Cake\Http\Response|void
-* @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-*/
-public function view($id = null)
-{
-$pageTitle = 'View article';
-$article = $this->Articles->get($id, [
-'contain' => ['Categories', 'Providers', 'Companies', 'InventoryIssues', 'InventoryReceipts', 'PurchaseOrders']
-]);
+    /**
+     * View method
+     *
+     * @param string|null $id Article id.
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function view($id = null)
+    {
+        $pageTitle = 'View article';
+        $article = $this->Articles->get($id, [
+            'contain' => ['Categories', 'Providers', 'Companies', 'InventoryIssues', 'InventoryReceipts', 'PurchaseOrders']
+        ]);
 
-$this->set(compact('article', 'pageTitle'));
-}
+        $this->set(compact('article', 'pageTitle'));
+    }
 
     /**
      * Add method
@@ -54,10 +55,12 @@ $this->set(compact('article', 'pageTitle'));
      */
     public function add()
     {
-$pageTitle = 'Add article';
+        $pageTitle = 'Add article';
         $article = $this->Articles->newEntity();
         if ($this->request->is('post')) {
             $article = $this->Articles->patchEntity($article, $this->request->getData());
+            $article['created_by'] = $this->Auth->user()['id'];
+            $article['company_id'] = $this->Auth->user()['company_id'];
             if ($this->Articles->save($article)) {
                 $this->Flash->success(__('The article has been saved.'));
 
@@ -83,7 +86,7 @@ $pageTitle = 'Add article';
      */
     public function edit($id = null)
     {
-$pageTitle = 'Edit article';
+        $pageTitle = 'Edit article';
         $article = $this->Articles->get($id, [
             'contain' => ['InventoryIssues', 'InventoryReceipts', 'PurchaseOrders']
         ]);

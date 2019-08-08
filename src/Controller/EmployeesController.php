@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -20,7 +21,7 @@ class EmployeesController extends AppController
      */
     public function index()
     {
-$searchQuery = $this->request->getQuery('searchQuery');
+        $searchQuery = $this->request->getQuery('searchQuery');
         $pageTitle = 'Listado employees';
         $this->paginate = [
             'contain' => ['Companies']
@@ -30,22 +31,22 @@ $searchQuery = $this->request->getQuery('searchQuery');
         $this->set(compact('employees', 'pageTitle', 'searchQuery'));
     }
 
-/**
-* View method
-*
-* @param string|null $id Employee id.
-* @return \Cake\Http\Response|void
-* @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-*/
-public function view($id = null)
-{
-$pageTitle = 'View employee';
-$employee = $this->Employees->get($id, [
-'contain' => ['Companies', 'InventoryIssues']
-]);
+    /**
+     * View method
+     *
+     * @param string|null $id Employee id.
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function view($id = null)
+    {
+        $pageTitle = 'View employee';
+        $employee = $this->Employees->get($id, [
+            'contain' => ['Companies', 'InventoryIssues']
+        ]);
 
-$this->set(compact('employee', 'pageTitle'));
-}
+        $this->set(compact('employee', 'pageTitle'));
+    }
 
     /**
      * Add method
@@ -54,10 +55,12 @@ $this->set(compact('employee', 'pageTitle'));
      */
     public function add()
     {
-$pageTitle = 'Add employee';
+        $pageTitle = 'Add employee';
         $employee = $this->Employees->newEntity();
         if ($this->request->is('post')) {
             $employee = $this->Employees->patchEntity($employee, $this->request->getData());
+            $employee['created_by'] = $this->Auth->user()['id'];
+            $employee['company_id'] = $this->Auth->user()['company_id'];
             if ($this->Employees->save($employee)) {
                 $this->Flash->success(__('The employee has been saved.'));
 
@@ -78,7 +81,7 @@ $pageTitle = 'Add employee';
      */
     public function edit($id = null)
     {
-$pageTitle = 'Edit employee';
+        $pageTitle = 'Edit employee';
         $employee = $this->Employees->get($id, [
             'contain' => []
         ]);

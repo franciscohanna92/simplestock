@@ -26,7 +26,7 @@ $cakeDescription = 'SimpleStock · Gestión de tu inventario de manera sencilla'
     <link rel="stylesheet" href="/css/bootstrap.css" id="bscss">
     <!-- =============== APP STYLES ===============-->
     <link rel="stylesheet" href="/css/app.css" id="maincss">
-    <link rel="stylesheet" href="/css/theme-c.css" id="maincss">
+    <link rel="stylesheet" href="/css/theme-e.css" id="maincss">
 
     <?= $this->Html->css('custom.css') ?>
 

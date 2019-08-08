@@ -5,8 +5,7 @@
         <div class="navbar-header">
             <a class="navbar-brand text-white" href="#/">
                 <div class="brand-logo">
-                    Simple <strong>Stock</strong>
-
+                    Simple<strong>Stock</strong>
                 </div>
                 <div class="brand-logo-collapsed">
                     S<strong>S</strong>
