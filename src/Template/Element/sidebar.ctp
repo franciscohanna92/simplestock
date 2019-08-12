@@ -31,7 +31,7 @@
                     <span>Inventario</span>
                 </li>
                 <li class="">
-                    <a href="/">
+                    <a class="text-muted">
                         <em class="fa fa-cubes"></em>
                         <span>Stock</span>
                     </a>

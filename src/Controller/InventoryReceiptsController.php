@@ -22,7 +22,7 @@ class InventoryReceiptsController extends AppController
     public function index()
     {
         $searchQuery = $this->request->getQuery('searchQuery');
-        $pageTitle = 'Listado inventoryReceipts';
+        $pageTitle = 'Listado de entradas';
         $this->paginate = [
             'contain' => ['Providers', 'Companies']
         ];
@@ -55,7 +55,7 @@ class InventoryReceiptsController extends AppController
      */
     public function add()
     {
-        $pageTitle = 'Add inventoryReceipt';
+        $pageTitle = 'Registrar nueva entrada';
         $inventoryReceipt = $this->InventoryReceipts->newEntity();
         if ($this->request->is('post')) {
             $inventoryReceipt = $this->InventoryReceipts->patchEntity($inventoryReceipt, $this->request->getData());

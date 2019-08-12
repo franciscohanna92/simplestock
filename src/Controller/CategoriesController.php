@@ -21,7 +21,7 @@ class CategoriesController extends AppController
     public function index()
     {
 $searchQuery = $this->request->getQuery('searchQuery');
-        $pageTitle = 'Listado categories';
+        $pageTitle = 'Listado de categorías';
         $this->paginate = [
             'contain' => ['Companies']
         ];
@@ -54,7 +54,7 @@ $this->set(compact('category', 'pageTitle'));
      */
     public function add()
     {
-$pageTitle = 'Add category';
+$pageTitle = 'Agregar categoría';
         $category = $this->Categories->newEntity();
         if ($this->request->is('post')) {
             $category = $this->Categories->patchEntity($category, $this->request->getData());

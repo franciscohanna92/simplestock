@@ -28,48 +28,42 @@
                 </a>
             </li>
             <!-- START User avatar toggle-->
-            <li class="nav-item d-none d-md-block">
-                <!-- Button used to collapse the left sidebar. Only visible on tablet and desktops-->
+            <!--<li class="nav-item d-none d-md-block">
                 <a class="nav-link" id="user-block-toggle" href="#user-block" data-toggle="collapse">
                     <em class="icon-user"></em>
                 </a>
-            </li>
+            </li>-->
             <!-- END User avatar toggle-->
             <!-- START lock screen-->
-            <li class="nav-item d-none d-md-block">
+            <!--<li class="nav-item d-none d-md-block">
                 <a class="nav-link" href="#" title="Lock screen">
                     <em class="icon-lock"></em>
                 </a>
-            </li>
+            </li>-->
             <!-- END lock screen-->
         </ul>
         <!-- END Left navbar-->
         <!-- START Right Navbar-->
         <ul class="navbar-nav flex-row">
-            <!-- Search icon-->
-            <li class="nav-item">
+            <!--<li class="nav-item">
                 <a class="nav-link" href="#" data-search-open="">
                     <em class="icon-magnifier"></em>
                 </a>
             </li>
-            <!-- Fullscreen (only desktops)-->
             <li class="nav-item d-none d-md-block">
                 <a class="nav-link" href="#" data-toggle-fullscreen="">
                     <em class="fa fa-expand"></em>
                 </a>
-            </li>
-            <!-- START Alert menu-->
+            </li>-->
             <li class="nav-item dropdown dropdown-list">
-                <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-toggle="dropdown">
+                <!--<a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-toggle="dropdown">
                     <em class="icon-bell"></em>
                     <span class="badge badge-danger">11</span>
-                </a>
+                </a>-->
                 <!-- START Dropdown menu-->
-                <div class="dropdown-menu dropdown-menu-right animated flipInX">
+                <!--<div class="dropdown-menu dropdown-menu-right animated flipInX">
                     <div class="dropdown-item">
-                        <!-- START list group-->
                         <div class="list-group">
-                            <!-- list item-->
                             <div class="list-group-item list-group-item-action">
                                 <div class="media">
                                     <div class="align-self-start mr-2">
@@ -81,7 +75,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- list item-->
                             <div class="list-group-item list-group-item-action">
                                 <div class="media">
                                     <div class="align-self-start mr-2">
@@ -93,7 +86,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- list item-->
                             <div class="list-group-item list-group-item-action">
                                 <div class="media">
                                     <div class="align-self-start mr-2">
@@ -105,7 +97,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- last list item-->
                             <div class="list-group-item list-group-item-action">
                               <span class="d-flex align-items-center">
                                  <span class="text-sm">More notifications</span>
@@ -113,30 +104,22 @@
                               </span>
                             </div>
                         </div>
-                        <!-- END list group-->
                     </div>
-                </div>
-                <!-- END Dropdown menu-->
+                </div>-->
             </li>
-            <!-- END Alert menu-->
-            <!-- START Offsidebar button-->
-            <li class="nav-item">
+            <!--<li class="nav-item">
                 <a class="nav-link" href="#" data-toggle-state="offsidebar-open" data-no-persist="true">
                     <em class="icon-notebook"></em>
                 </a>
-            </li>
-            <!-- END Offsidebar menu-->
+            </li>-->
         </ul>
-        <!-- END Right Navbar-->
-        <!-- START Search form-->
-        <form class="navbar-form" role="search" action="search.html">
+        <!--<form class="navbar-form" role="search" action="search.html">
             <div class="form-group">
                 <input class="form-control" type="text" placeholder="Type and hit enter ...">
                 <div class="fa fa-times navbar-form-close" data-search-dismiss=""></div>
             </div>
             <button class="d-none" type="submit">Submit</button>
-        </form>
-        <!-- END Search form-->
+        </form>-->
     </nav>
     <!-- END Top Navbar-->
 </header>

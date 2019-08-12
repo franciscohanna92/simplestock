@@ -51,35 +51,20 @@
             <table class="table table-hover table-bordered table-striped">
                 <thead>
                 <tr>
-                    <th scope="col"><?= $this->Paginator->sort('id', '#') ?></th>
-
-                    <th scope="col"><?= $this->Paginator->sort('date') ?></th>
-
-                    <th scope="col"><?= $this->Paginator->sort('number') ?></th>
-
-                    <th scope="col"><?= $this->Paginator->sort('providers_id') ?></th>
-
-
-                    <th scope="col" class="actions"><?= __('Actions') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('number', 'Nº') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('date', 'Fecha de entrada') ?></th>
+                    <th scope="col" class="actions"><?= __('Acciones') ?></th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($inventoryReceipts as $inventoryReceipt): ?>
                     <tr>
-                        <td><?= $this->Number->format($inventoryReceipt->id) ?></td>
                         <td><?= h($inventoryReceipt->date) ?></td>
                         <td><?= h($inventoryReceipt->number) ?></td>
-                        <td><?= $inventoryReceipt->has('provider') ?
-                                $this->Html->link($inventoryReceipt
-                                    ->provider->id, ['controller' =>
-                                    'Providers', 'action' => 'view', $inventoryReceipt
-                                    ->provider
-                                    ->id]) : '' ?>
-                        </td>
+
                         <td class="actions">
-                            <?= $this->Html->link(__('View'), ['action' => 'view', $inventoryReceipt->id]) ?>
-                            <?= $this->Html->link(__('Edit'), ['action' => 'edit', $inventoryReceipt->id]) ?>
-                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $inventoryReceipt->id], ['confirm' =>
+
+                            <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $inventoryReceipt->id], ['confirm' =>
                                 __('¿Seguro quieres eliminar este inventoryReceipt?')]) ?>
                         </td>
                     </tr>

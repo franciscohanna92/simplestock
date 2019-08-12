@@ -1,4 +1,4 @@
-
+<br><br><br>
 <div class="card card-flat">
     <div class="card-header text-center bg-dark">
         <h2 class="mb-0 text-white font-weight-light">Simple<span class="font-weight-bold">Stock</span></h2>
@@ -25,9 +25,9 @@
                 </div>
             </div>
             <button class="btn btn-block btn-primary my-3" type="submit">Ingresar</button>
-            <a class="text-primary" href="recover.html">Olvidé mi contraseña</a>
+<!--            <a class="text-primary" href="recover.html">Olvidé mi contraseña</a>-->
         <?= $this->Form->end() ?>
-        <p class="pt-2 text-center">También puedes</p><a class="btn btn-block btn-secondary" href="register.html">Crear una cuenta</a>
+<!--        <p class="pt-2 text-center">También puedes</p><a class="btn btn-block btn-secondary" href="register.html">Crear una cuenta</a>-->
     </div>
 </div>
 

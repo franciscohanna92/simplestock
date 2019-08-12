@@ -8,21 +8,26 @@
 <?= $this->BootsCakeForm->create($inventoryReceipt) ?>
 <div class="card card-default">
     <div class="card-body row">
-        <div class="col-12">
-            <?php echo $this->BootsCakeForm->control('date', ['empty' => true, 'required' => false]); ?>
-        </div>
-        <div class="col-12">
-            <?php echo $this->BootsCakeForm->control('number', ['required' => false]); ?>
-        </div>
-        <div class="col-12">
-            <?php echo $this->BootsCakeForm->control('providers_id', ['options' => $providers, 'required' => false]); ?>
-        </div>
-        <div class="col-12">
-            <label>Artículos</label>
-            <button type="button" onclick="appendArticleInput(articlesInputCount - 1, articles)">Añadir artículo</button>
-                <div class="row" id="articles-input-list">
 
+        <div class="col">
+            <?php echo $this->BootsCakeForm->control('number', ['required' => false, 'label' => 'Nº entrada']); ?>
+        </div>
+        <div class="col">
+            <label for="date">Fecha (mes, día, año)</label>
+            <input type="date" class="form-control" name="date" id="date">
+<!--            --><?php //echo $this->BootsCakeForm->control('date', ['empty' => true, 'required' => false, 'label'=> false]); ?>
+        </div>
+        <!--<div class="col-12 col-md-4">
+            <?php /*echo $this->BootsCakeForm->control('providers_id', ['options' => $providers, 'required' => false]); */?>
+        </div>-->
+
+        <div class="col-12">
+            <hr>
+            <div class="mb-2">
+                <label class="mr-3">Artículos</label>
+                <button type="button" class="btn btn-primary btn-sm" onclick="appendArticleInput(articlesInputCount - 1, articles)">Añadir artículo</button>
             </div>
+                <div class="row" id="articles-input-list"></div>
         </div>
     </div>
     <div class="card-footer">
@@ -68,20 +73,12 @@
         inputNode.name = `articles[${index}][_joinData][quantity]`;
         inputNode.type = 'number';
         inputNode.min = '0';
+        inputNode.classList.add('form-control');
+        inputNode.placeholder = 'Cantidad que ingresa';
         containerDiv.append(inputNode);
         return containerDiv;
     }
 
-    function generateArticlesOptionsElements(arcitles) {
-        let optionsElements = '';
-
-        return optionsElements
-    }
-
-    function deleteArticleInput() {
-
-    }
-
-    console.log(generateArticlesOptionsElements(articles));
+    appendArticleInput(0, articles);
 
 </script>

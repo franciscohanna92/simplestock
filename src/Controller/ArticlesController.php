@@ -22,7 +22,7 @@ class ArticlesController extends AppController
     public function index()
     {
         $searchQuery = $this->request->getQuery('searchQuery');
-        $pageTitle = 'Listado articles';
+        $pageTitle = 'Listado de artículos';
         $this->paginate = [
             'contain' => ['Categories', 'Providers', 'Companies']
         ];
@@ -61,7 +61,7 @@ class ArticlesController extends AppController
      */
     public function add()
     {
-        $pageTitle = 'Add article';
+        $pageTitle = 'Agregar artículo';
         $article = $this->Articles->newEntity();
         if ($this->request->is('post')) {
             $article = $this->Articles->patchEntity($article, $this->request->getData());
@@ -92,7 +92,7 @@ class ArticlesController extends AppController
      */
     public function edit($id = null)
     {
-        $pageTitle = 'Edit article';
+        $pageTitle = 'Editar artículo';
         $article = $this->Articles->get($id, [
             'contain' => ['InventoryIssues', 'InventoryReceipts', 'PurchaseOrders']
         ]);

@@ -41,7 +41,7 @@
 
             <div class="col-12 offset-md-4 col-md-4 offset-lg-6 col-lg-3">
                 <a href="/articles/add" class="btn btn-primary h-100 float-right">
-                    Agregar nuevo article
+                    Agregar nuevo artículo
                 </a>
             </div>
         </div>
@@ -52,13 +52,13 @@
                 <thead>
                 <tr>
                     <th scope="col"><?= $this->Paginator->sort('id', '#') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('security_stock') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('stock') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('internal_code') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('provider_code') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('cateogry_id') ?></th>
-                    <th scope="col" class="actions"><?= __('Actions') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('name', 'Nombre') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('security_stock', 'Stock de seguridad') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('stock', 'Stock actual') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('internal_code', 'Cód. interno') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('provider_code', 'Cód. proveedor') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('cateogry_id', 'Categoría') ?></th>
+                    <th scope="col" class="actions"><?= __('Acciones') ?></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -79,9 +79,9 @@
                         </td>
 
                         <td class="actions">
-                            <?= $this->Html->link(__('View'), ['action' => 'view', $article->id]) ?>
-                            <?= $this->Html->link(__('Edit'), ['action' => 'edit', $article->id]) ?>
-                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $article->id], ['confirm' =>
+                            <?= $this->Html->link(__('Ver'), ['action' => 'view', $article->id]) ?>
+                            <?= $this->Html->link(__('Editar'), ['action' => 'edit', $article->id]) ?>
+                            <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $article->id], ['confirm' =>
                                 __('¿Seguro quieres eliminar este article?')]) ?>
                         </td>
                     </tr>

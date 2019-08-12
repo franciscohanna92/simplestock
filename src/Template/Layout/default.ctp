@@ -2,7 +2,7 @@
 $cakeDescription = 'SimpleStock · Gestión de tu inventario de manera sencilla';
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +26,7 @@ $cakeDescription = 'SimpleStock · Gestión de tu inventario de manera sencilla'
     <link rel="stylesheet" href="/css/bootstrap.css" id="bscss">
     <!-- =============== APP STYLES ===============-->
     <link rel="stylesheet" href="/css/app.css" id="maincss">
-    <link rel="stylesheet" href="/css/theme-e   .css" id="maincss">
+    <link rel="stylesheet" href="/css/theme-a.css" id="maincss">
 
     <?= $this->Html->css('custom.css') ?>
 
