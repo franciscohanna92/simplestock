@@ -26,7 +26,13 @@ class ArticlesController extends AppController
         $this->paginate = [
             'contain' => ['Categories', 'Providers', 'Companies']
         ];
-        $articles = $this->paginate($this->Articles);
+        $articles = $this->paginate($this->Articles->find()->where([
+            'OR' => [
+                'Articles.name LIKE' => '%'.$searchQuery.'%',
+                'Articles.internal_code LIKE' => '%'.$searchQuery.'%',
+                'Articles.provider_code LIKE' => '%'.$searchQuery.'%',
+            ]
+        ]));
 
         $this->set(compact('articles', 'pageTitle', 'searchQuery'));
     }

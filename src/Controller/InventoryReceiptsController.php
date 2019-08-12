@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -20,7 +21,7 @@ class InventoryReceiptsController extends AppController
      */
     public function index()
     {
-$searchQuery = $this->request->getQuery('searchQuery');
+        $searchQuery = $this->request->getQuery('searchQuery');
         $pageTitle = 'Listado inventoryReceipts';
         $this->paginate = [
             'contain' => ['Providers', 'Companies']
@@ -30,22 +31,22 @@ $searchQuery = $this->request->getQuery('searchQuery');
         $this->set(compact('inventoryReceipts', 'pageTitle', 'searchQuery'));
     }
 
-/**
-* View method
-*
-* @param string|null $id Inventory Receipt id.
-* @return \Cake\Http\Response|void
-* @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-*/
-public function view($id = null)
-{
-$pageTitle = 'View inventoryReceipt';
-$inventoryReceipt = $this->InventoryReceipts->get($id, [
-'contain' => ['Providers', 'Companies', 'Articles']
-]);
+    /**
+     * View method
+     *
+     * @param string|null $id Inventory Receipt id.
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function view($id = null)
+    {
+        $pageTitle = 'View inventoryReceipt';
+        $inventoryReceipt = $this->InventoryReceipts->get($id, [
+            'contain' => ['Providers', 'Companies', 'Articles']
+        ]);
 
-$this->set(compact('inventoryReceipt', 'pageTitle'));
-}
+        $this->set(compact('inventoryReceipt', 'pageTitle'));
+    }
 
     /**
      * Add method
@@ -54,14 +55,20 @@ $this->set(compact('inventoryReceipt', 'pageTitle'));
      */
     public function add()
     {
-$pageTitle = 'Add inventoryReceipt';
+        $pageTitle = 'Add inventoryReceipt';
         $inventoryReceipt = $this->InventoryReceipts->newEntity();
         if ($this->request->is('post')) {
             $inventoryReceipt = $this->InventoryReceipts->patchEntity($inventoryReceipt, $this->request->getData());
             $inventoryReceipt['created_by'] = $this->Auth->user()['id'];
             $inventoryReceipt['company_id'] = $this->Auth->user()['company_id'];
+
+            foreach ($inventoryReceipt['articles'] as $article) {
+                $article['stock'] += $article->_joinData['quantity'];
+            }
+
             if ($this->InventoryReceipts->save($inventoryReceipt)) {
                 $this->Flash->success(__('The inventory receipt has been saved.'));
+
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -82,7 +89,7 @@ $pageTitle = 'Add inventoryReceipt';
      */
     public function edit($id = null)
     {
-$pageTitle = 'Edit inventoryReceipt';
+        $pageTitle = 'Edit inventoryReceipt';
         $inventoryReceipt = $this->InventoryReceipts->get($id, [
             'contain' => ['Articles']
         ]);
@@ -111,7 +118,14 @@ $pageTitle = 'Edit inventoryReceipt';
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $inventoryReceipt = $this->InventoryReceipts->get($id);
+        $inventoryReceipt = $this->InventoryReceipts->get($id, [
+            'contain' => [
+                'Articles'
+            ]
+        ]);
+
+//        pr($inventoryReceipt); die();
+
         if ($this->InventoryReceipts->delete($inventoryReceipt)) {
             $this->Flash->success(__('The inventory receipt has been deleted.'));
         } else {

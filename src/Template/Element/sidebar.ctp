@@ -11,7 +11,8 @@
                             <!-- User picture-->
                             <div class="user-block-picture">
                                 <div class="user-block-status">
-                                    <img class="img-thumbnail rounded-circle" src="/img/user/02.jpg" alt="Avatar" width="60" height="60">
+                                    <img class="img-thumbnail rounded-circle" src="/img/user/02.jpg" alt="Avatar"
+                                         width="60" height="60">
                                     <div class="circle bg-success circle-lg"></div>
                                 </div>
                             </div>
@@ -42,13 +43,13 @@
                     </a>
                 </li>
                 <li class="">
-                    <a href="/inventory-issues">
+                    <a class="text-muted">
                         <em class="fa fa-sign-out"></em>
                         <span>Salidas</span>
                     </a>
                 </li>
                 <li class="">
-                    <a href="/purchase-orders">
+                    <a class="text-muted">
                         <em class="fa fa-list-ol"></em>
                         <span>Pedidos</span>
                     </a>
@@ -71,19 +72,19 @@
                     </a>
                 </li>
                 <li class="">
-                    <a href="/providers">
+                    <a class="text-muted">
                         <em class="fa fa-truck"></em>
                         <span>Proveedores</span>
                     </a>
                 </li>
                 <li class="">
-                    <a href="/building-sites">
+                    <a class="text-muted">
                         <em class="fa fa-building-o"></em>
                         <span>Obras</span>
                     </a>
                 </li>
                 <li class="">
-                    <a href="/employees">
+                    <a class="text-muted">
                         <em class="fa fa-male"></em>
                         <span>Personal</span>
                     </a>
@@ -94,13 +95,13 @@
                     <span>Sistema</span>
                 </li>
                 <li class="">
-                    <a href="/users">
+                    <a class="text-muted">
                         <em class="fa fa-users"></em>
                         <span>Usuarios</span>
                     </a>
                 </li>
                 <li class="">
-                    <a href="/roles">
+                    <a class="text-muted">
                         <em class="fa fa-certificate"></em>
                         <span>Roles</span>
                     </a>

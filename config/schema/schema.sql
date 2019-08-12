@@ -1,587 +1,277 @@
---
--- Current Database: `simplestock`
---
+create database if not exists simplestock default character set utf8;
 
-CREATE DATABASE /*!32312 IF NOT EXISTS */ `simplestock` /*!40100 DEFAULT CHARACTER SET utf8 */;
+use simplestock;
 
-USE `simplestock`;
-
-
---
--- Table structure for table `purchase_orders_statuses`
---
-
-DROP TABLE IF EXISTS `purchase_orders_statuses`;
-/*!40101 SET @saved_cs_client = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `purchase_orders_statuses`
+drop table if exists purchase_orders_statuses;
+create table purchase_orders_statuses
 (
-    `id`   int(11) NOT NULL,
-    `name` varchar(255) DEFAULT NULL,
-    PRIMARY KEY (`id`)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+    id   int(11) not null,
+    name varchar(255) default null,
+    primary key (id)
+) engine = innodb
+  default charset = utf8;
 
---
--- Dumping data for table `purchase_orders_statuses`
---
-
-LOCK TABLES `purchase_orders_statuses` WRITE;
-/*!40000 ALTER TABLE `purchase_orders_statuses`
-    DISABLE KEYS */;
-/*!40000 ALTER TABLE `purchase_orders_statuses`
-    ENABLE KEYS */;
-UNLOCK TABLES;
-
-
---
--- Table structure for table `provinces`
---
-
-DROP TABLE IF EXISTS `provinces`;
-/*!40101 SET @saved_cs_client = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `provinces`
+drop table if exists provinces;
+create table provinces
 (
-    `id`   int(11) NOT NULL AUTO_INCREMENT,
-    `name` varchar(255) DEFAULT NULL,
-    PRIMARY KEY (`id`)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+    id   int(11) not null auto_increment,
+    name varchar(255) default null,
+    primary key (id)
+) engine = innodb
+  default charset = utf8;
 
---
--- Dumping data for table `provinces`
---
-
-LOCK TABLES `provinces` WRITE;
-/*!40000 ALTER TABLE `provinces`
-    DISABLE KEYS */;
-/*!40000 ALTER TABLE `provinces`
-    ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `cities`
---
-
-DROP TABLE IF EXISTS `cities`;
-/*!40101 SET @saved_cs_client = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `cities`
+drop table if exists cities;
+create table cities
 (
-    `id`          int(11) NOT NULL AUTO_INCREMENT,
-    `name`        varchar(255) DEFAULT NULL,
-    `province_id` int(11) NOT NULL,
-    PRIMARY KEY (`id`),
-    KEY `fk_city_provinces1_idx` (`province_id`),
-    CONSTRAINT `fk_city_provinces1` FOREIGN KEY (`province_id`) REFERENCES `provinces` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+    id          int(11) not null auto_increment,
+    name        varchar(255) default null,
+    province_id int(11) not null,
+    primary key (id),
+    key fk_cities_provinces_idx (province_id),
+    constraint fk_cities_provinces foreign key (province_id) references provinces (id) on delete no action on update no action
+) engine = innodb
+  default charset = utf8;
 
---
--- Dumping data for table `cities`
---
-
-LOCK TABLES `cities` WRITE;
-/*!40000 ALTER TABLE `cities`
-    DISABLE KEYS */;
-/*!40000 ALTER TABLE `cities`
-    ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `providers`
---
-
-DROP TABLE IF EXISTS `providers`;
-/*!40101 SET @saved_cs_client = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `providers`
+drop table if exists providers;
+create table providers
 (
-    `id`               int(11)   NOT NULL AUTO_INCREMENT,
-    `employee_name`    varchar(255)   DEFAULT NULL,
-    `employee_surname` varchar(255)   DEFAULT NULL,
-    `company_name`     varchar(255)   DEFAULT NULL,
-    `address`          varchar(255)   DEFAULT NULL,
-    `website`          varchar(255)   DEFAULT NULL,
-    `email`            varchar(255)   DEFAULT NULL,
-    `phone`            varchar(255)   DEFAULT NULL,
-    `area`             varchar(255)   DEFAULT NULL,
-    `cuit`             varchar(255)   DEFAULT NULL,
-    `observations`     varchar(255)   DEFAULT NULL,
-    `city_id`          int(11)   NOT NULL,
-    `company_id`       int(11)        DEFAULT NULL,
-    `created_at`       timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-    `created_by`       int(11)        DEFAULT NULL,
-    `updated_at`       timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    `updated_by`       int(11)        DEFAULT NULL,
-    PRIMARY KEY (`id`),
-    KEY `fk_providers_cities1_idx` (`city_id`),
-    CONSTRAINT `fk_providers_cities1` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `providers`
---
-
-LOCK TABLES `providers` WRITE;
-/*!40000 ALTER TABLE `providers`
-    DISABLE KEYS */;
-/*!40000 ALTER TABLE `providers`
-    ENABLE KEYS */;
-UNLOCK TABLES;
+    id               int(11)   not null auto_increment,
+    employee_name    varchar(255)   default null,
+    employee_surname varchar(255)   default null,
+    company_name     varchar(255)   default null,
+    address          varchar(255)   default null,
+    website          varchar(255)   default null,
+    email            varchar(255)   default null,
+    phone            varchar(255)   default null,
+    area             varchar(255)   default null,
+    cuit             varchar(255)   default null,
+    observations     varchar(255)   default null,
+    city_id          int(11)   not null,
+    company_id       int(11)        default null,
+    created_at       timestamp null default current_timestamp,
+    created_by       int(11)        default null,
+    updated_at       timestamp null default current_timestamp on update current_timestamp,
+    updated_by       int(11)        default null,
+    primary key (id),
+    key fk_providers_cities_idx (city_id),
+    constraint fk_providers_cities foreign key (city_id) references cities (id) on delete no action on update no action
+) engine = innodb
+  default charset = utf8;
 
 
---
--- Table structure for table `categories`
---
-
-DROP TABLE IF EXISTS `categories`;
-/*!40101 SET @saved_cs_client = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `categories`
+drop table if exists companies;
+create table companies
 (
-    `id`         int(11)   NOT NULL AUTO_INCREMENT,
-    `name`       varchar(255)    DEFAULT NULL,
-    `company_id` int(11)        DEFAULT NULL,
-    `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-    `created_by` int(11)        DEFAULT NULL,
-    `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    `updated_by` int(11)        DEFAULT NULL,
-    PRIMARY KEY (`id`)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+    id         int(11)   not null auto_increment,
+    name       varchar(255)   default null,
+    website    varchar(255)   default null,
+    phone      varchar(255)   default null,
+    created_at timestamp null default current_timestamp,
+    updated_at timestamp null default current_timestamp on update current_timestamp,
+    address    varchar(255)   default null,
+    primary key (id)
+) engine = innodb
+  default charset = utf8;
 
---
--- Dumping data for table `categories`
---
+insert into companies (id, name) values (1, 'HEAL S.A.');
 
-LOCK TABLES `categories` WRITE;
-/*!40000 ALTER TABLE `categories`
-    DISABLE KEYS */;
-/*!40000 ALTER TABLE `categories`
-    ENABLE KEYS */;
-UNLOCK TABLES;
 
---
--- Table structure for table `articles`
---
-
-DROP TABLE IF EXISTS `articles`;
-/*!40101 SET @saved_cs_client = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `articles`
+drop table if exists categories;
+create table categories
 (
-    `id`             int(11)   NOT NULL AUTO_INCREMENT,
-    `name`           varchar(255)    DEFAULT NULL,
-    `description`    varchar(255)    DEFAULT NULL,
-    `security_stock` int(11)        DEFAULT NULL,
-    `internal_code`  varchar(255)    DEFAULT NULL,
-    `provider_code`  varchar(255)    DEFAULT NULL,
-    `cateogry_id`    int(11)   NOT NULL,
-    `provider_id`    int(11)   NOT NULL,
-    `company_id`     int(11)   NOT NULL,
-    `created_at`     timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-    `created_by`     int(11)        DEFAULT NULL,
-    `updated_at`     timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    `updated_by`     int(11)        DEFAULT NULL,
-    PRIMARY KEY (`id`),
-    KEY `fk_articles_categories_idx` (`cateogry_id`),
-    KEY `fk_articles_providers1_idx` (`provider_id`),
-    CONSTRAINT `fk_articles_categories` FOREIGN KEY (`cateogry_id`) REFERENCES `categories` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-    CONSTRAINT `fk_articles_providers1` FOREIGN KEY (`provider_id`) REFERENCES `providers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+    id                 int(11)   not null auto_increment,
+    name               varchar(255)   not null,
+    company_id         int(11)        default null,
+    created_at         timestamp null default current_timestamp,
+    created_by         int(11)        default null,
+    updated_at         timestamp null default current_timestamp on update current_timestamp,
+    updated_by         int(11)        default null,
+    primary key (id)
+) engine = innodb
+  default charset = utf8;
 
---
--- Dumping data for table `articles`
---
-
-LOCK TABLES `articles` WRITE;
-/*!40000 ALTER TABLE `articles`
-    DISABLE KEYS */;
-/*!40000 ALTER TABLE `articles`
-    ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `building_sites`
---
-
-DROP TABLE IF EXISTS `building_sites`;
-/*!40101 SET @saved_cs_client = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `building_sites`
+drop table if exists articles;
+create table articles
 (
-    `id`           int(11)   NOT NULL AUTO_INCREMENT,
-    `name`         varchar(255)   DEFAULT NULL,
-    `start_date`   date           DEFAULT NULL,
-    `address`      varchar(255)   DEFAULT NULL,
-    `observations` varchar(255)   DEFAULT NULL,
-    `company_id`   int(11)        DEFAULT NULL,
-    `created_at`   timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-    `created_by`   int(11)        DEFAULT NULL,
-    `updated_at`   timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    `updated_by`   int(11)        DEFAULT NULL,
-    PRIMARY KEY (`id`)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `building_sites`
---
-
-LOCK TABLES `building_sites` WRITE;
-/*!40000 ALTER TABLE `building_sites`
-    DISABLE KEYS */;
-/*!40000 ALTER TABLE `building_sites`
-    ENABLE KEYS */;
-UNLOCK TABLES;
+    id             int(11)   not null auto_increment,
+    name           varchar(255)   not null,
+    description    varchar(255)   not null,
+    security_stock int(11)        not null,
+    stock          int(11)        default 0,
+    internal_code  varchar(255)   default null,
+    provider_code  varchar(255)   default null,
+    cateogry_id    int(11)   not null,
+    provider_id    int(11)   default null,
+    company_id     int(11)   default null,
+    created_at     timestamp null default current_timestamp,
+    created_by     int(11)        default null,
+    updated_at     timestamp null default current_timestamp on update current_timestamp,
+    updated_by     int(11)        default null,
+    primary key (id),
+    key fk_articles_categories_idx (cateogry_id),
+    key fk_articles_providers_idx (provider_id),
+    constraint fk_articles_categories foreign key (cateogry_id) references categories (id) on delete no action on update no action,
+    constraint fk_articles_providers foreign key (provider_id) references providers (id) on delete no action on update no action
+) engine = innodb
+  default charset = utf8;
 
 
-
-
-
---
--- Table structure for table `companies`
---
-
-DROP TABLE IF EXISTS `companies`;
-/*!40101 SET @saved_cs_client = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `companies`
+drop table if exists building_sites;
+create table building_sites
 (
-    `id`         int(11)   NOT NULL AUTO_INCREMENT,
-    `name`       varchar(255)    DEFAULT NULL,
-    `website`    varchar(255)    DEFAULT NULL,
-    `phone`      varchar(255)    DEFAULT NULL,
-    `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-    `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    `address`    varchar(255)    DEFAULT NULL,
-    PRIMARY KEY (`id`)
-) ENGINE = InnoDB
-  AUTO_INCREMENT = 2
-  DEFAULT CHARSET = utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+    id           int(11)   not null auto_increment,
+    name         varchar(255)   default null,
+    start_date   date           default null,
+    address      varchar(255)   default null,
+    observations varchar(255)   default null,
+    company_id   int(11)        default null,
+    created_at   timestamp null default current_timestamp,
+    created_by   int(11)        default null,
+    updated_at   timestamp null default current_timestamp on update current_timestamp,
+    updated_by   int(11)        default null,
+    primary key (id)
+) engine = innodb
+  default charset = utf8;
 
---
--- Dumping data for table `companies`
---
-
-LOCK TABLES `companies` WRITE;
-/*!40000 ALTER TABLE `companies`
-    DISABLE KEYS */;
-INSERT INTO `companies`
-VALUES (1, 'HEAL S.A.', '', NULL, '2018-11-24 06:32:54', '2018-11-24 06:32:54', NULL);
-/*!40000 ALTER TABLE `companies`
-    ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `employees`
---
-
-DROP TABLE IF EXISTS `employees`;
-/*!40101 SET @saved_cs_client = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `employees`
+drop table if exists employees;
+create table employees
 (
-    `id`           int(11)   NOT NULL AUTO_INCREMENT,
-    `name`         varchar(255)   DEFAULT NULL,
-    `surname`      varchar(255)   DEFAULT NULL,
-    `cuil`         varchar(255)   DEFAULT NULL,
-    `phone`        varchar(255)   DEFAULT NULL,
-    `email`        varchar(255)   DEFAULT NULL,
-    `address`      varchar(255)   DEFAULT NULL,
-    `position`     varchar(255)   DEFAULT NULL,
-    `observations` varchar(255)   DEFAULT NULL,
-    `company_id`   int(11)   NOT NULL,
-    `created_at`   timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-    `updated_by`   int(11)        DEFAULT NULL,
-    `created_by`   int(11)        DEFAULT NULL,
-    `updated_at`   timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`)
-) ENGINE = InnoDB
-  AUTO_INCREMENT = 6
-  DEFAULT CHARSET = utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+    id           int(11)   not null auto_increment,
+    name         varchar(255)   not null,
+    surname      varchar(255)   not null,
+    cuil         varchar(255)   default null,
+    phone        varchar(255)   default null,
+    email        varchar(255)   default null,
+    address      varchar(255)   default null,
+    position     varchar(255)   default null,
+    observations varchar(255)   default null,
+    company_id   int(11)   default null,
+    created_at   timestamp null default current_timestamp,
+    updated_by   int(11)        default null,
+    created_by   int(11)        default null,
+    updated_at   timestamp null default current_timestamp on update current_timestamp,
+    primary key (id)
+) engine = innodb
+  default charset = utf8;
 
---
--- Dumping data for table `employees`
---
-
-LOCK TABLES `employees` WRITE;
-/*!40000 ALTER TABLE `employees`
-    DISABLE KEYS */;
-INSERT INTO `employees`
-VALUES (5, 'Francisco Emilio Miguel Hanna', 'Hanna', '12321312312', '3825554196', 'franciscohanna92@gmail.com',
-        'Pablo Ramela S/N, Bº Del Bono Green', 'Operario', '', 1, '2018-11-27 05:11:39', NULL, NULL,
-        '2018-11-27 05:11:39');
-/*!40000 ALTER TABLE `employees`
-    ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `inventory_issues`
---
-
-DROP TABLE IF EXISTS `inventory_issues`;
-/*!40101 SET @saved_cs_client = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `inventory_issues`
+drop table if exists inventory_issues;
+create table inventory_issues
 (
-    `id`               int(11)   NOT NULL AUTO_INCREMENT,
-    `date`             date           DEFAULT NULL,
-    `employee_id`      int(11)   NOT NULL,
-    `building_site_id` int(11)   NOT NULL,
-    `company_id`       int(11)        DEFAULT NULL,
-    `created_at`       timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-    `created_by`       int(11)        DEFAULT NULL,
-    `updated_at`       timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    `updated_by`       int(11)        DEFAULT NULL,
-    PRIMARY KEY (`id`),
-    KEY `fk_inventory_issues_building_sites1_idx` (`building_site_id`),
-    KEY `fk_inventory_issues_employees1_idx` (`employee_id`),
-    CONSTRAINT `fk_inventory_issues_building_sites1` FOREIGN KEY (`building_site_id`) REFERENCES `building_sites` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-    CONSTRAINT `fk_inventory_issues_employees1` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+    id               int(11)   not null auto_increment,
+    date             date      not null,
+    employee_id      int(11)   not null,
+    building_site_id int(11)   default null,
+    company_id       int(11)        default null,
+    created_at       timestamp null default current_timestamp,
+    created_by       int(11)        default null,
+    updated_at       timestamp null default current_timestamp on update current_timestamp,
+    updated_by       int(11)        default null,
+    primary key (id),
+    key fk_inventory_issues_building_sites_idx (building_site_id),
+    key fk_inventory_issues_employees_idx (employee_id),
+    constraint fk_inventory_issues_building_sites foreign key (building_site_id) references building_sites (id) on delete no action on update no action,
+    constraint fk_inventory_issues_employees foreign key (employee_id) references employees (id) on delete no action on update no action
+) engine = innodb
+  default charset = utf8;
 
---
--- Dumping data for table `inventory_issues`
---
-
-LOCK TABLES `inventory_issues` WRITE;
-/*!40000 ALTER TABLE `inventory_issues`
-    DISABLE KEYS */;
-/*!40000 ALTER TABLE `inventory_issues`
-    ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `inventory_issues_articles`
---
-
-DROP TABLE IF EXISTS `inventory_issues_articles`;
-/*!40101 SET @saved_cs_client = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `inventory_issues_articles`
+drop table if exists inventory_issues_articles;
+create table inventory_issues_articles
 (
-    `id`                 int(11) NOT NULL AUTO_INCREMENT,
-    `quantity`           varchar(255) DEFAULT NULL,
-    `inventory_issue_id` int(11) NOT NULL,
-    `article_id`         int(11) NOT NULL,
-    PRIMARY KEY (`id`),
-    KEY `fk_inventory_issues_has_articles_articles1_idx` (`article_id`),
-    KEY `fk_inventory_issues_has_articles_inventory_issues1_idx` (`inventory_issue_id`),
-    CONSTRAINT `fk_inventory_issues_has_articles_articles1` FOREIGN KEY (`article_id`) REFERENCES `articles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-    CONSTRAINT `fk_inventory_issues_has_articles_inventory_issues1` FOREIGN KEY (`inventory_issue_id`) REFERENCES `inventory_issues` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+    id                 int(11) not null auto_increment,
+    quantity           varchar(255) not null,
+    inventory_issue_id int(11) not null,
+    article_id         int(11) not null,
+    primary key (id),
+    key fk_inventory_issues_articles_articles_idx (article_id),
+    key fk_inventory_issues_articles_inventory_issues_idx (inventory_issue_id),
+    constraint fk_inventory_issues_articles_articles foreign key (article_id) references articles (id) on delete no action on update no action,
+    constraint fk_inventory_issues_articles_inventory_issues foreign key (inventory_issue_id) references inventory_issues (id) on delete no action on update no action
+) engine = innodb
+  default charset = utf8;
 
---
--- Dumping data for table `inventory_issues_articles`
---
-
-LOCK TABLES `inventory_issues_articles` WRITE;
-/*!40000 ALTER TABLE `inventory_issues_articles`
-    DISABLE KEYS */;
-/*!40000 ALTER TABLE `inventory_issues_articles`
-    ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `inventory_receipts`
---
-
-DROP TABLE IF EXISTS `inventory_receipts`;
-/*!40101 SET @saved_cs_client = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `inventory_receipts`
+drop table if exists inventory_receipts;
+create table inventory_receipts
 (
-    `id`           int(11)   NOT NULL AUTO_INCREMENT,
-    `date`         date           DEFAULT NULL,
-    `number`       varchar(255)   DEFAULT NULL,
-    `providers_id` int(11)   NOT NULL,
-    `company_id`   int(11)        DEFAULT NULL,
-    `created_at`   timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-    `created_by`   int(11)        DEFAULT NULL,
-    `updated_at`   timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    `updated_by`   int(11)        DEFAULT NULL,
-    PRIMARY KEY (`id`),
-    KEY `fk_inventory_receipts_providers1_idx` (`providers_id`),
-    CONSTRAINT `fk_inventory_receipts_providers1` FOREIGN KEY (`providers_id`) REFERENCES `providers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+    id           int(11)      not null auto_increment,
+    date         date         not null,
+    number       varchar(255) not null,
+    providers_id int(11)      null,
+    company_id   int(11)      default null,
+    created_at   timestamp    null default current_timestamp,
+    created_by   int(11)           default null,
+    updated_at   timestamp    null default current_timestamp on update current_timestamp,
+    updated_by   int(11)           default null,
+    primary key (id),
+    key fk_inventory_receipts_providers_idx (providers_id),
+    constraint fk_inventory_receipts_providers foreign key (providers_id) references providers (id) on delete no action on update no action
+) engine = innodb
+  default charset = utf8;
 
---
--- Dumping data for table `inventory_receipts`
---
 
-LOCK TABLES `inventory_receipts` WRITE;
-/*!40000 ALTER TABLE `inventory_receipts`
-    DISABLE KEYS */;
-/*!40000 ALTER TABLE `inventory_receipts`
-    ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `inventory_receipts_articles`
---
-
-DROP TABLE IF EXISTS `inventory_receipts_articles`;
-/*!40101 SET @saved_cs_client = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `inventory_receipts_articles`
+drop table if exists inventory_receipts_articles;
+create table inventory_receipts_articles
 (
-    `id`                   int(11) NOT NULL AUTO_INCREMENT,
-    `quantity`             int(11) DEFAULT NULL,
-    `article_id`           int(11) NOT NULL,
-    `inventory_receipt_id` int(11) NOT NULL,
-    PRIMARY KEY (`id`),
-    KEY `fk_inventory_receipts_has_articles_articles1_idx` (`article_id`),
-    KEY `fk_inventory_receipts_has_articles_inventory_receipts1_idx` (`inventory_receipt_id`),
-    CONSTRAINT `fk_inventory_receipts_has_articles_articles1` FOREIGN KEY (`article_id`) REFERENCES `articles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-    CONSTRAINT `fk_inventory_receipts_has_articles_inventory_receipts1` FOREIGN KEY (`inventory_receipt_id`) REFERENCES `inventory_receipts` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+    id                   int(11) not null auto_increment,
+    quantity             int(11) not null,
+    article_id           int(11) not null,
+    inventory_receipt_id int(11) not null,
+    primary key (id),
+    key fk_inventory_receipts_articles_articles_idx (article_id),
+    key fk_inventory_receipts_articles_inventory_receipts_idx (inventory_receipt_id),
+    constraint fk_inventory_receipts_articles_articles foreign key (article_id) references articles (id) on delete no action on update no action,
+    constraint fk_inventory_receipts_articles_inventory_receipts foreign key (inventory_receipt_id) references inventory_receipts (id) on delete no action on update no action
+) engine = innodb
+  default charset = utf8;
 
---
--- Dumping data for table `inventory_receipts_articles`
---
-
-LOCK TABLES `inventory_receipts_articles` WRITE;
-/*!40000 ALTER TABLE `inventory_receipts_articles`
-    DISABLE KEYS */;
-/*!40000 ALTER TABLE `inventory_receipts_articles`
-    ENABLE KEYS */;
-UNLOCK TABLES;
-
-
-
---
--- Table structure for table `purchase_orders`
---
-
-DROP TABLE IF EXISTS `purchase_orders`;
-/*!40101 SET @saved_cs_client = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `purchase_orders`
+drop table if exists purchase_orders;
+create table purchase_orders
 (
-    `id`           int(11)   NOT NULL AUTO_INCREMENT,
-    `date`         varchar(255)   DEFAULT NULL,
-    `observations` varchar(255)   DEFAULT NULL,
-    `provider_id`  int(11)   NOT NULL,
-    `status_id`    int(11)   NOT NULL,
-    `company_id`   int(11)        DEFAULT NULL,
-    `created_at`   timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-    `created_by`   int(11)        DEFAULT NULL,
-    `updated_at`   timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    `updated_by`   int(11)        DEFAULT NULL,
-    PRIMARY KEY (`id`),
-    KEY `fk_purchase_orders_providers1_idx` (`provider_id`),
-    KEY `fk_purchase_orders_purchase_orders_statuses1_idx` (`status_id`),
-    CONSTRAINT `fk_purchase_orders_providers1` FOREIGN KEY (`provider_id`) REFERENCES `providers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-    CONSTRAINT `fk_purchase_orders_purchase_orders_statuses1` FOREIGN KEY (`status_id`) REFERENCES `purchase_orders_statuses` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+    id           int(11)   not null auto_increment,
+    date         varchar(255)   not null,
+    observations varchar(255)   default null,
+    provider_id  int(11)   not null,
+    status_id    int(11)   not null,
+    company_id   int(11)        default null,
+    created_at   timestamp null default current_timestamp,
+    created_by   int(11)        default null,
+    updated_at   timestamp null default current_timestamp on update current_timestamp,
+    updated_by   int(11)        default null,
+    primary key (id),
+    key fk_purchase_orders_providers_idx (provider_id),
+    key fk_purchase_orders_purchase_orders_statuses_idx (status_id),
+    constraint fk_purchase_orders_providers foreign key (provider_id) references providers (id) on delete no action on update no action,
+    constraint fk_purchase_orders_purchase_orders_statuses foreign key (status_id) references purchase_orders_statuses (id) on delete no action on update no action
+) engine = innodb
+  default charset = utf8;
 
---
--- Dumping data for table `purchase_orders`
---
-
-LOCK TABLES `purchase_orders` WRITE;
-/*!40000 ALTER TABLE `purchase_orders`
-    DISABLE KEYS */;
-/*!40000 ALTER TABLE `purchase_orders`
-    ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `purchase_orders_articles`
---
-
-DROP TABLE IF EXISTS `purchase_orders_articles`;
-/*!40101 SET @saved_cs_client = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `purchase_orders_articles`
+drop table if exists purchase_orders_articles;
+create table purchase_orders_articles
 (
-    `id`                int(11) NOT NULL AUTO_INCREMENT,
-    `quantity`          int(11) DEFAULT NULL,
-    `purchase_order_id` int(11) NOT NULL,
-    `article_id`        int(11) NOT NULL,
-    PRIMARY KEY (`id`),
-    KEY `fk_purchase_orders_has_articles_articles1_idx` (`article_id`),
-    KEY `fk_purchase_orders_has_articles_purchase_orders1_idx` (`purchase_order_id`),
-    CONSTRAINT `fk_purchase_orders_has_articles_articles1` FOREIGN KEY (`article_id`) REFERENCES `articles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-    CONSTRAINT `fk_purchase_orders_has_articles_purchase_orders1` FOREIGN KEY (`purchase_order_id`) REFERENCES `purchase_orders` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+    id                int(11) not null auto_increment,
+    quantity          int(11) not null,
+    purchase_order_id int(11) not null,
+    article_id        int(11) not null,
+    primary key (id),
+    key fk_purchase_orders_ticles_articles_idx (article_id),
+    key fk_purchase_orders_articles_purchase_orders_idx (purchase_order_id),
+    constraint fk_purchase_orders_articles_articles foreign key (article_id) references articles (id) on delete no action on update no action,
+    constraint fk_purchase_orders_articles_purchase_orders foreign key (purchase_order_id) references purchase_orders (id) on delete no action on update no action
+) engine = innodb
+  default charset = utf8;
 
---
--- Dumping data for table `purchase_orders_articles`
---
-
-LOCK TABLES `purchase_orders_articles` WRITE;
-/*!40000 ALTER TABLE `purchase_orders_articles`
-    DISABLE KEYS */;
-/*!40000 ALTER TABLE `purchase_orders_articles`
-    ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `users`
---
-
-DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users`
+drop table if exists users;
+create table users
 (
-    `id`         int(11)   NOT NULL AUTO_INCREMENT,
-    `email`      varchar(255)    DEFAULT NULL,
-    `password`   varchar(255)    DEFAULT NULL,
-    `company_id` int(11)   NOT NULL,
-    `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-    `created_by` int(11)        DEFAULT NULL,
-    `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    `updated_by` int(11)        DEFAULT NULL,
-    PRIMARY KEY (`id`),
-    KEY `fk_users_tenants1_idx` (`company_id`),
-    CONSTRAINT `fk_users_tenants1` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `users`
---
-
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users`
-    DISABLE KEYS */;
-/*!40000 ALTER TABLE `users`
-    ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Dumping events for database 'simplestock'
---
-
---
--- Dumping routines for database 'simplestock'
---
+    id         int(11)   not null auto_increment,
+    email      varchar(255)   not null,
+    password   varchar(255)   not null,
+    company_id int(11)   default null,
+    created_at timestamp null default current_timestamp,
+    created_by int(11)        default null,
+    updated_at timestamp null default current_timestamp on update current_timestamp,
+    updated_by int(11)        default null,
+    primary key (id),
+    key fk_users_tenants_idx (company_id),
+    constraint fk_users_tenants foreign key (company_id) references companies (id) on delete no action on update no action
+) engine = innodb
+  default charset = utf8;

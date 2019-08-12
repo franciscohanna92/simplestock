@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Table;
 
 use Cake\ORM\Query;
@@ -40,8 +41,7 @@ class InventoryReceiptsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Providers', [
-            'foreignKey' => 'providers_id',
-            'joinType' => 'INNER'
+            'foreignKey' => 'providers_id'
         ]);
         $this->belongsTo('Companies', [
             'foreignKey' => 'company_id'

@@ -47,12 +47,10 @@ class ArticlesTable extends Table
             'joinType' => 'INNER'
         ]);
         $this->belongsTo('Providers', [
-            'foreignKey' => 'provider_id',
-            'joinType' => 'INNER'
+            'foreignKey' => 'provider_id'
         ]);
         $this->belongsTo('Companies', [
-            'foreignKey' => 'company_id',
-            'joinType' => 'INNER'
+            'foreignKey' => 'company_id'
         ]);
         $this->belongsToMany('InventoryIssues', [
             'foreignKey' => 'article_id',
@@ -85,26 +83,33 @@ class ArticlesTable extends Table
 
         $validator
             ->scalar('name')
-            ->maxLength('name', 45)
-            ->allowEmpty('name');
+            ->maxLength('name', 255)
+            ->requirePresence('name', 'create')
+            ->notEmpty('name');
 
         $validator
             ->scalar('description')
-            ->maxLength('description', 45)
-            ->allowEmpty('description');
+            ->maxLength('description', 255)
+            ->requirePresence('description', 'create')
+            ->notEmpty('description');
 
         $validator
             ->integer('security_stock')
-            ->allowEmpty('security_stock');
+            ->requirePresence('security_stock', 'create')
+            ->notEmpty('security_stock');
+
+        $validator
+            ->integer('stock')
+            ->allowEmpty('stock');
 
         $validator
             ->scalar('internal_code')
-            ->maxLength('internal_code', 45)
+            ->maxLength('internal_code', 255)
             ->allowEmpty('internal_code');
 
         $validator
             ->scalar('provider_code')
-            ->maxLength('provider_code', 45)
+            ->maxLength('provider_code', 255)
             ->allowEmpty('provider_code');
 
         $validator

@@ -56,8 +56,9 @@ class CategoriesTable extends Table
 
         $validator
             ->scalar('name')
-            ->maxLength('name', 45)
-            ->allowEmpty('name');
+            ->maxLength('name', 255)
+            ->requirePresence('name', 'create')
+            ->notEmpty('name');
 
         $validator
             ->dateTime('created_at')

@@ -26,7 +26,7 @@ $cakeDescription = 'SimpleStock · Gestión de tu inventario de manera sencilla'
     <link rel="stylesheet" href="/css/bootstrap.css" id="bscss">
     <!-- =============== APP STYLES ===============-->
     <link rel="stylesheet" href="/css/app.css" id="maincss">
-    <link rel="stylesheet" href="/css/theme-e.css" id="maincss">
+    <link rel="stylesheet" href="/css/theme-e   .css" id="maincss">
 
     <?= $this->Html->css('custom.css') ?>
 
@@ -35,7 +35,6 @@ $cakeDescription = 'SimpleStock · Gestión de tu inventario de manera sencilla'
     <?= $this->fetch('script') ?>
 </head>
 <body class="layout-fixed">
-<?= $this->Flash->render() ?>
 <div class="wrapper">
     <?= $this->element('header'); ?>
     <?= $this->element('sidebar'); ?>
@@ -44,6 +43,7 @@ $cakeDescription = 'SimpleStock · Gestión de tu inventario de manera sencilla'
             <div class="content-heading">
                 <?= $pageTitle ?>
             </div>
+            <?= $this->Flash->render() ?>
             <div class="row">
                 <div class="col-12">
                     <?= $this->fetch('content') ?>

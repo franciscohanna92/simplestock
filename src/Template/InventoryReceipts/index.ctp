@@ -12,7 +12,7 @@
 </style>
 
 <div class="card card-default">
-        <div class="card card-header m-0">
+    <div class="card card-header m-0">
         <div class="row">
             <div class="col-12 col-md-4 col-lg-3">
                 <form class="m-0" action="/inventoryReceipts" method="get">
@@ -28,12 +28,12 @@
                                placeholder="Buscar..."
                                value="<?= $searchQuery; ?>"
                                required>
-                        <?php if($searchQuery != ''): ?>
-                        <div class="input-group-append">
-                            <a href="/inventoryReceipts" class="bg-white input-group-text px-2 py-0">
-                                <span style="line-height: 33px;" class="text-primary">✕</span>
-                            </a>
-                        </div>
+                        <?php if ($searchQuery != ''): ?>
+                            <div class="input-group-append">
+                                <a href="/inventoryReceipts" class="bg-white input-group-text px-2 py-0">
+                                    <span style="line-height: 33px;" class="text-primary">✕</span>
+                                </a>
+                            </div>
                         <?php endif; ?>
                     </div>
                 </form>
@@ -41,7 +41,7 @@
 
             <div class="col-12 offset-md-4 col-md-4 offset-lg-6 col-lg-3">
                 <a href="/inventoryReceipts/add" class="btn btn-primary h-100 float-right">
-                    Agregar nuevo inventoryReceipt
+                    Registrar nueva entrada
                 </a>
             </div>
         </div>
@@ -51,77 +51,68 @@
             <table class="table table-hover table-bordered table-striped">
                 <thead>
                 <tr>
-                                                <th scope="col"><?= $this->Paginator->sort('id', '#') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('id', '#') ?></th>
 
-                                                <th scope="col"><?= $this->Paginator->sort('date') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('date') ?></th>
 
-                                                <th scope="col"><?= $this->Paginator->sort('number') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('number') ?></th>
 
-                                                <th scope="col"><?= $this->Paginator->sort('providers_id') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('providers_id') ?></th>
 
-                    
 
-                    
-
-                    
-
-                    
-
-                    
-
-                                        <th scope="col" class="actions"><?= __('Actions') ?></th>
+                    <th scope="col" class="actions"><?= __('Actions') ?></th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($inventoryReceipts as $inventoryReceipt): ?>
-                <tr>
-                                                                                                                                                                                                                                                                        <td><?= $this->Number->format($inventoryReceipt->id) ?></td>
-                                                                                                                                                                                                                                                                                                                                    <td><?= h($inventoryReceipt->date) ?></td>
-                                                                                                                                                                                                                                                                                                                                    <td><?= h($inventoryReceipt->number) ?></td>
-                                                                                                                                                                                                                                                <td><?= $inventoryReceipt->has('provider') ?
-                                        $this->Html->link($inventoryReceipt
-                                        ->provider->id, ['controller' =>
-                                        'Providers', 'action' => 'view', $inventoryReceipt
-                                        ->provider
-                                        ->id]) : '' ?>
-                                    </td>
-                                                                                                                                                                                                                                                        <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $inventoryReceipt->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $inventoryReceipt->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $inventoryReceipt->id], ['confirm' =>
-                        __('¿Seguro quieres eliminar este inventoryReceipt?')]) ?>
-                    </td>
-                </tr>
+                    <tr>
+                        <td><?= $this->Number->format($inventoryReceipt->id) ?></td>
+                        <td><?= h($inventoryReceipt->date) ?></td>
+                        <td><?= h($inventoryReceipt->number) ?></td>
+                        <td><?= $inventoryReceipt->has('provider') ?
+                                $this->Html->link($inventoryReceipt
+                                    ->provider->id, ['controller' =>
+                                    'Providers', 'action' => 'view', $inventoryReceipt
+                                    ->provider
+                                    ->id]) : '' ?>
+                        </td>
+                        <td class="actions">
+                            <?= $this->Html->link(__('View'), ['action' => 'view', $inventoryReceipt->id]) ?>
+                            <?= $this->Html->link(__('Edit'), ['action' => 'edit', $inventoryReceipt->id]) ?>
+                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $inventoryReceipt->id], ['confirm' =>
+                                __('¿Seguro quieres eliminar este inventoryReceipt?')]) ?>
+                        </td>
+                    </tr>
                 <?php endforeach; ?>
-                <?php if(count($inventoryReceipts) == 0): ?>
-                <tr>
-                    <td class="text-center text-muted" colspan="9">No hay registros para mostrar</td>
-                </tr>
+                <?php if (count($inventoryReceipts) == 0): ?>
+                    <tr>
+                        <td class="text-center text-muted" colspan="9">No hay registros para mostrar</td>
+                    </tr>
                 <?php endif; ?>
                 </tbody>
             </table>
         </div>
     </div>
 
-    <?php if(count($inventoryReceipts) > 0): ?>
-    <div class="card-footer d-flex justify-content-between">
-        <nav>
-            <ul class="pagination">
-                <?php
-                echo $this->BootsCakePaginator->first();
-                echo $this->BootsCakePaginator->prev();
-                echo $this->BootsCakePaginator->numbers();
-                echo $this->BootsCakePaginator->next();
-                echo $this->BootsCakePaginator->last();
-                ?>
-            </ul>
-        </nav>
+    <?php if (count($inventoryReceipts) > 0): ?>
+        <div class="card-footer d-flex justify-content-between">
+            <nav>
+                <ul class="pagination">
+                    <?php
+                    echo $this->BootsCakePaginator->first();
+                    echo $this->BootsCakePaginator->prev();
+                    echo $this->BootsCakePaginator->numbers();
+                    echo $this->BootsCakePaginator->next();
+                    echo $this->BootsCakePaginator->last();
+                    ?>
+                </ul>
+            </nav>
 
-        <p style="line-height: 35px;">
+            <p style="line-height: 35px;">
             <span>
-                <?php echo $this->Paginator->counter( 'Mostrando {{current}} filas de {{count}}' ); ?>
+                <?php echo $this->Paginator->counter('Mostrando {{current}} filas de {{count}}'); ?>
             </span>
-        </p>
-    </div>
+            </p>
+        </div>
     <?php endif; ?>
 </div>

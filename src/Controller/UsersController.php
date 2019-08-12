@@ -63,6 +63,7 @@ class UsersController extends AppController
     {
         $pageTitle = 'Add user';
         $user = $this->Users->newEntity();
+        $user->company_id = 1;
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {

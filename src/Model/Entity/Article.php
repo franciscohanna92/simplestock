@@ -7,14 +7,15 @@ use Cake\ORM\Entity;
  * Article Entity
  *
  * @property int $id
- * @property string|null $name
- * @property string|null $description
- * @property int|null $security_stock
+ * @property string $name
+ * @property string $description
+ * @property int $security_stock
+ * @property int|null $stock
  * @property string|null $internal_code
  * @property string|null $provider_code
  * @property int $cateogry_id
- * @property int $provider_id
- * @property int $company_id
+ * @property int|null $provider_id
+ * @property int|null $company_id
  * @property \Cake\I18n\FrozenTime|null $created_at
  * @property int|null $created_by
  * @property \Cake\I18n\FrozenTime|null $updated_at
@@ -43,6 +44,7 @@ class Article extends Entity
         'name' => true,
         'description' => true,
         'security_stock' => true,
+        'stock' => true,
         'internal_code' => true,
         'provider_code' => true,
         'cateogry_id' => true,

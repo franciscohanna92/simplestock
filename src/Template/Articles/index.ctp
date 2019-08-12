@@ -54,10 +54,10 @@
                     <th scope="col"><?= $this->Paginator->sort('id', '#') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('name') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('security_stock') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('stock') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('internal_code') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('provider_code') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('cateogry_id') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('provider_id') ?></th>
                     <th scope="col" class="actions"><?= __('Actions') ?></th>
                 </tr>
                 </thead>
@@ -67,6 +67,7 @@
                         <td><?= $this->Number->format($article->id) ?></td>
                         <td><?= h($article->name) ?></td>
                         <td><?= $this->Number->format($article->security_stock) ?></td>
+                        <td><?= $this->Number->format($article->stock) ?></td>
                         <td><?= h($article->internal_code) ?></td>
                         <td><?= h($article->provider_code) ?></td>
                         <td><?= $article->has('category') ?
@@ -76,13 +77,7 @@
                                     ->category
                                     ->id]) : '' ?>
                         </td>
-                        <td><?= $article->has('provider') ?
-                                $this->Html->link($article
-                                    ->provider->company_name, ['controller' =>
-                                    'Providers', 'action' => 'view', $article
-                                    ->provider
-                                    ->id]) : '' ?>
-                        </td>
+
                         <td class="actions">
                             <?= $this->Html->link(__('View'), ['action' => 'view', $article->id]) ?>
                             <?= $this->Html->link(__('Edit'), ['action' => 'edit', $article->id]) ?>
@@ -93,7 +88,7 @@
                 <?php endforeach; ?>
                 <?php if (count($articles) == 0): ?>
                     <tr>
-                        <td class="text-center text-muted" colspan="13">No hay registros para mostrar</td>
+                        <td class="text-center text-muted" colspan="14">No hay registros para mostrar</td>
                     </tr>
                 <?php endif; ?>
                 </tbody>

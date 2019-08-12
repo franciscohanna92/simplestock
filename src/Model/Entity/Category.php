@@ -7,7 +7,7 @@ use Cake\ORM\Entity;
  * Category Entity
  *
  * @property int $id
- * @property string|null $name
+ * @property string $name
  * @property int|null $company_id
  * @property \Cake\I18n\FrozenTime|null $created_at
  * @property int|null $created_by
