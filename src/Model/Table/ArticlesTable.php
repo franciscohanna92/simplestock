@@ -10,6 +10,7 @@ use Cake\Validation\Validator;
  * Articles Model
  *
  * @property \App\Model\Table\CategoriesTable|\Cake\ORM\Association\BelongsTo $Categories
+ * @property \App\Model\Table\UnitsTable|\Cake\ORM\Association\BelongsTo $Units
  * @property \App\Model\Table\ProvidersTable|\Cake\ORM\Association\BelongsTo $Providers
  * @property \App\Model\Table\CompaniesTable|\Cake\ORM\Association\BelongsTo $Companies
  * @property \App\Model\Table\InventoryIssuesTable|\Cake\ORM\Association\BelongsToMany $InventoryIssues
@@ -45,6 +46,10 @@ class ArticlesTable extends Table
         $this->belongsTo('Categories', [
             'foreignKey' => 'cateogry_id',
             'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('Units', [
+            'foreignKey' => 'unit_id',
+            'joinType' => 'LEFT'
         ]);
         $this->belongsTo('Providers', [
             'foreignKey' => 'provider_id'
@@ -143,6 +148,7 @@ class ArticlesTable extends Table
         $rules->add($rules->existsIn(['cateogry_id'], 'Categories'));
         $rules->add($rules->existsIn(['provider_id'], 'Providers'));
         $rules->add($rules->existsIn(['company_id'], 'Companies'));
+        $rules->add($rules->existsIn(['unit_id'], 'Units'));
 
         return $rules;
     }

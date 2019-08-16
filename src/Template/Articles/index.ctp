@@ -57,6 +57,7 @@
                     <th scope="col"><?= $this->Paginator->sort('stock', 'Stock actual') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('internal_code', 'Cód. interno') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('provider_code', 'Cód. proveedor') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('unit_id', 'Uniddad de medida') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('cateogry_id', 'Categoría') ?></th>
                     <th scope="col" class="actions"><?= __('Acciones') ?></th>
                 </tr>
@@ -70,6 +71,8 @@
                         <td><?= $this->Number->format($article->stock) ?></td>
                         <td><?= h($article->internal_code) ?></td>
                         <td><?= h($article->provider_code) ?></td>
+                        <td><?= $article->has('category') ? $article->unit['name'] : ''?>
+                        </td>
                         <td><?= $article->has('category') ?
                                 $this->Html->link($article
                                     ->category->name, ['controller' =>
@@ -79,7 +82,6 @@
                         </td>
 
                         <td class="actions">
-                            <?= $this->Html->link(__('Ver'), ['action' => 'view', $article->id]) ?>
                             <?= $this->Html->link(__('Editar'), ['action' => 'edit', $article->id]) ?>
                             <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $article->id], ['confirm' =>
                                 __('¿Seguro quieres eliminar este article?')]) ?>

@@ -14,6 +14,7 @@ use Cake\ORM\Entity;
  * @property string|null $internal_code
  * @property string|null $provider_code
  * @property int $cateogry_id
+ * @property int $unit_id
  * @property int|null $provider_id
  * @property int|null $company_id
  * @property \Cake\I18n\FrozenTime|null $created_at
@@ -24,6 +25,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Category $category
  * @property \App\Model\Entity\Provider $provider
  * @property \App\Model\Entity\Company $company
+ * @property \App\Model\Entity\Unit $unit
  * @property \App\Model\Entity\InventoryIssue[] $inventory_issues
  * @property \App\Model\Entity\InventoryReceipt[] $inventory_receipts
  * @property \App\Model\Entity\PurchaseOrder[] $purchase_orders
@@ -49,6 +51,7 @@ class Article extends Entity
         'provider_code' => true,
         'cateogry_id' => true,
         'provider_id' => true,
+        'unit_id' => true,
         'company_id' => true,
         'created_at' => true,
         'created_by' => true,
