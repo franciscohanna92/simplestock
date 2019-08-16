@@ -32,10 +32,6 @@ class InsertDefaultUnits extends AbstractMigration
                 "abbreviation" => "caj"
             ],
             [
-                "name" => "metros",
-                "abbreviation" => "m"
-            ],
-            [
                 "name" => "unidades",
                 "abbreviation" => "uds"
             ],

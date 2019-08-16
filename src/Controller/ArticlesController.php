@@ -24,7 +24,7 @@ class ArticlesController extends AppController
         $searchQuery = $this->request->getQuery('searchQuery');
         $pageTitle = 'Listado de artículos';
         $this->paginate = [
-            'contain' => ['Categories', 'Providers', 'Companies']
+            'contain' => ['Categories', 'Providers', 'Companies', 'Units']
         ];
         $articles = $this->paginate($this->Articles->find()->where([
             'OR' => [
@@ -74,13 +74,11 @@ class ArticlesController extends AppController
             }
             $this->Flash->error(__('The article could not be saved. Please, try again.'));
         }
-        $categories = $this->Articles->Categories->find('list', ['limit' => 200]);
-        $providers = $this->Articles->Providers->find('list', ['limit' => 200]);
-        $companies = $this->Articles->Companies->find('list', ['limit' => 200]);
-        $inventoryIssues = $this->Articles->InventoryIssues->find('list', ['limit' => 200]);
-        $inventoryReceipts = $this->Articles->InventoryReceipts->find('list', ['limit' => 200]);
-        $purchaseOrders = $this->Articles->PurchaseOrders->find('list', ['limit' => 200]);
-        $this->set(compact('article', 'categories', 'providers', 'companies', 'inventoryIssues', 'inventoryReceipts', 'purchaseOrders', 'pageTitle'));
+        $categories = $this->Articles->Categories->find('list');
+        $units  = $this->Articles->Units->find('list');
+        $providers = $this->Articles->Providers->find('list');
+        $companies = $this->Articles->Companies->find('list');
+        $this->set(compact('article', 'categories', 'providers', 'companies','units', 'pageTitle'));
     }
 
     /**
@@ -105,13 +103,11 @@ class ArticlesController extends AppController
             }
             $this->Flash->error(__('The article could not be saved. Please, try again.'));
         }
-        $categories = $this->Articles->Categories->find('list', ['limit' => 200]);
-        $providers = $this->Articles->Providers->find('list', ['limit' => 200]);
-        $companies = $this->Articles->Companies->find('list', ['limit' => 200]);
-        $inventoryIssues = $this->Articles->InventoryIssues->find('list', ['limit' => 200]);
-        $inventoryReceipts = $this->Articles->InventoryReceipts->find('list', ['limit' => 200]);
-        $purchaseOrders = $this->Articles->PurchaseOrders->find('list', ['limit' => 200]);
-        $this->set(compact('article', 'categories', 'providers', 'companies', 'inventoryIssues', 'inventoryReceipts', 'purchaseOrders', 'pageTitle'));
+        $categories = $this->Articles->Categories->find('list');
+        $providers = $this->Articles->Providers->find('list');
+        $companies = $this->Articles->Companies->find('list');
+        $units  = $this->Articles->Units->find('list');
+        $this->set(compact('article', 'categories', 'providers', 'companies', 'units', 'pageTitle'));
     }
 
     /**
