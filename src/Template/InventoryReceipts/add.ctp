@@ -15,24 +15,23 @@
         <div class="col">
             <label for="date">Fecha (mes, día, año)</label>
             <input type="date" class="form-control" name="date" id="date">
-<!--            --><?php //echo $this->BootsCakeForm->control('date', ['empty' => true, 'required' => false, 'label'=> false]); ?>
         </div>
-        <!--<div class="col-12 col-md-4">
-            <?php /*echo $this->BootsCakeForm->control('providers_id', ['options' => $providers, 'required' => false]); */?>
-        </div>-->
 
         <div class="col-12">
             <hr>
             <div class="mb-2">
                 <label class="mr-3">Artículos</label>
-                <button type="button" class="btn btn-primary btn-sm" onclick="appendArticleInput(articlesInputCount - 1, articles)">Añadir artículo</button>
+                <button type="button" class="btn btn-primary btn-sm"
+                        onclick="appendArticleInput(articlesInputCount - 1, articles)">Añadir artículo
+                </button>
             </div>
-                <div class="row" id="articles-input-list"></div>
+            <div class="row" id="articles-input-list"></div>
         </div>
     </div>
     <div class="card-footer">
         <?= $this->BootsCakeForm->control(__('Guardar'), ['type' => 'submit']) ?>
     </div>
+
 </div>
 <?= $this->BootsCakeForm->end() ?>
 
@@ -49,21 +48,22 @@
     }
 
     function generateArticleSelectInput(index, articles) {
-        let containerDiv = document.createElement('div');
-        containerDiv.classList.add('col-6');
+        let columnDiv = document.createElement('div');
+        columnDiv.classList.add('col-6');
 
         let selectNode = document.createElement('select');
         selectNode.classList.add('form-control');
         selectNode.name = `articles[${index}][id]`;
-        for (let id in articles) {
+        for (let i = 0; i < articles.length; i++) {
+            let article = articles[i];
             let optionNode = document.createElement('option');
-            optionNode.value = id;
-            optionNode.innerHTML = articles[id];
+            optionNode.value = article.id;
+            optionNode.innerHTML = `${article.name} (${article.unit.name})`;
             selectNode.options.add(optionNode);
         }
 
-        containerDiv.append(selectNode);
-        return containerDiv;
+        columnDiv.append(selectNode);
+        return columnDiv;
     }
 
     function generateArticleQuantityInput(index) {
