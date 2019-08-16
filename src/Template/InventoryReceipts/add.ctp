@@ -58,7 +58,7 @@
             let article = articles[i];
             let optionNode = document.createElement('option');
             optionNode.value = article.id;
-            optionNode.innerHTML = `${article.name} (${article.unit.hasOwnProperty('name') ? article.unit.name : 'N/A'})`;
+            optionNode.innerHTML = `${article.name} (${article.unit ? article.unit.name : 'N/A'})`;
             selectNode.options.add(optionNode);
         }
 
