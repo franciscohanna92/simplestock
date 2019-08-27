@@ -59,8 +59,8 @@
                 <tbody>
                 <?php foreach ($inventoryReceipts as $inventoryReceipt): ?>
                     <tr>
-                        <td><?= h($inventoryReceipt->date) ?></td>
                         <td><?= h($inventoryReceipt->number) ?></td>
+                        <td><?= h($inventoryReceipt->date) ?></td>
 
                         <td class="actions">
 

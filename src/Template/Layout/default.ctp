@@ -28,13 +28,22 @@ $cakeDescription = 'SimpleStock · Gestión de tu inventario de manera sencilla'
     <link rel="stylesheet" href="/css/app.css" id="maincss">
     <link rel="stylesheet" href="/css/theme-a.css" id="maincss">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"
+            integrity="sha256-23hi0Ag650tclABdGCdMNSjxvikytyQ44vYGo9HyOrU=" crossorigin="anonymous"></script>
+
+    <script>
+        (function() {
+            angular.module('simplestock', [])
+        })();
+    </script>
+
     <?= $this->Html->css('custom.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 </head>
-<body class="layout-fixed">
+<body class="layout-fixed" ng-app="simplestock">
 <div class="wrapper">
     <?= $this->element('header'); ?>
     <?= $this->element('sidebar'); ?>
