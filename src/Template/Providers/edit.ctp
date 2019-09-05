@@ -9,16 +9,32 @@
 
 <div class="card card-default">
     <div class="card-body row">
-                                            <div class="col-12 col-md-6 col-lg-4">                            <?php echo   $this->BootsCakeForm->control('name', ['required' => false]); ?>
-                </div>                            <div class="col-12 col-md-6 col-lg-4">                            <?php echo   $this->BootsCakeForm->control('address', ['required' => false]); ?>
-                </div>                            <div class="col-12 col-md-6 col-lg-4">                            <?php echo   $this->BootsCakeForm->control('website', ['required' => false]); ?>
-                </div>                            <div class="col-12 col-md-6 col-lg-4">                            <?php echo   $this->BootsCakeForm->control('email', ['required' => false]); ?>
-                </div>                            <div class="col-12 col-md-6 col-lg-4">                            <?php echo   $this->BootsCakeForm->control('phone', ['required' => false]); ?>
-                </div>                            <div class="col-12 col-md-6 col-lg-4">                            <?php echo   $this->BootsCakeForm->control('cuit', ['required' => false]); ?>
-                </div>                            <div class="col-12 col-md-6 col-lg-4">                            <?php echo   $this->BootsCakeForm->control('observations', ['required' => false]); ?>
-                </div>                            <div class="col-12 col-md-6 col-lg-4">                            <?php echo  $this->BootsCakeForm->control('city_id', ['options' => $cities, 'required' => false]); ?>
-                </div>                                        <div class="col-12 col-md-6 col-lg-4">                </div>                            <div class="col-12 col-md-6 col-lg-4">                </div>                            <div class="col-12 col-md-6 col-lg-4">                </div>                            <div class="col-12 col-md-6 col-lg-4">                </div>                            <div class="col-12 col-md-6 col-lg-4">                            <?php echo $this->BootsCakeForm->control('province_id', ['options' => $provinces, 'empty' => true, 'required' => false, 'size' => 'sm']); ?>
-                </div>            </div>
+        <div class="col-12">
+            <?php echo $this->BootsCakeForm->control('name', ['required' => false, 'label' => 'Nombre']); ?>
+        </div>
+        <div class="col-12">
+            <?php echo $this->BootsCakeForm->control('address', ['required' => false, 'label' => 'Dirección']); ?>
+        </div>
+        <div class="col-12">
+            <?php echo $this->BootsCakeForm->control('website', ['required' => false, 'label' => 'Sitio web']); ?>
+        </div>
+        <div class="col-12">
+            <?php echo $this->BootsCakeForm->control('email', ['required' => false, 'label' => 'Email']); ?>
+        </div>
+        <div class="col-12">
+            <?php echo $this->BootsCakeForm->control('phone', ['required' => false, 'label' => 'Teléfono']); ?>
+        </div>
+        <div class="col-12">
+            <?php echo $this->BootsCakeForm->control('cuit', ['required' => false, 'label' => 'CUIT']); ?>
+        </div>
+        <div class="col-12">
+            <?php echo $this->BootsCakeForm->control('observations', ['required' => false, 'label' => 'Observaciones']); ?>
+        </div>
+        <!--<div class="col-12">
+            <?php /*echo $this->BootsCakeForm->control('city_id', ['options' => $cities, 'required' => false, 'label' => 'Nombre']); */?>
+        </div>-->
+
+    </div>
     <div class="card-footer">
         <?= $this->BootsCakeForm->control(__('Guardar'), ['type' => 'submit']) ?>
     </div>

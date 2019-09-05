@@ -12,7 +12,7 @@
 </style>
 
 <div class="card card-default">
-        <div class="card card-header m-0">
+    <div class="card card-header m-0">
         <div class="row">
             <div class="col-12 col-md-4 col-lg-3">
                 <form class="m-0" action="/providers" method="get">
@@ -28,12 +28,12 @@
                                placeholder="Buscar..."
                                value="<?= $searchQuery; ?>"
                                required>
-                        <?php if($searchQuery != ''): ?>
-                        <div class="input-group-append">
-                            <a href="/providers" class="bg-white input-group-text px-2 py-0">
-                                <span style="line-height: 33px;" class="text-primary">✕</span>
-                            </a>
-                        </div>
+                        <?php if ($searchQuery != ''): ?>
+                            <div class="input-group-append">
+                                <a href="/providers" class="bg-white input-group-text px-2 py-0">
+                                    <span style="line-height: 33px;" class="text-primary">✕</span>
+                                </a>
+                            </div>
                         <?php endif; ?>
                     </div>
                 </form>
@@ -41,7 +41,7 @@
 
             <div class="col-12 offset-md-4 col-md-4 offset-lg-6 col-lg-3">
                 <a href="/providers/add" class="btn btn-primary h-100 float-right">
-                    Agregar nuevo provider
+                    Agregar nuevo proveedor
                 </a>
             </div>
         </div>
@@ -51,98 +51,70 @@
             <table class="table table-hover table-bordered table-striped">
                 <thead>
                 <tr>
-                                                <th scope="col"><?= $this->Paginator->sort('id', '#') ?></th>
-
-                                                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-
-                                                <th scope="col"><?= $this->Paginator->sort('address') ?></th>
-
-                                                <th scope="col"><?= $this->Paginator->sort('website') ?></th>
-
-                                                <th scope="col"><?= $this->Paginator->sort('email') ?></th>
-
-                                                <th scope="col"><?= $this->Paginator->sort('phone') ?></th>
-
-                                                <th scope="col"><?= $this->Paginator->sort('cuit') ?></th>
-
-                                                <th scope="col"><?= $this->Paginator->sort('city_id') ?></th>
-
-                    
-
-                    
-
-                    
-
-                    
-
-                    
-
-                                                <th scope="col"><?= $this->Paginator->sort('province_id') ?></th>
-
-                                        <th scope="col" class="actions"><?= __('Actions') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('name', 'Nombre') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('email', 'E-mail') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('phone', 'Teléfono') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('cuit', 'CUIT') ?></th>
+                    <th scope="col" class="actions" width="150px"><?= __('Acciones') ?></th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($providers as $provider): ?>
-                <tr>
-                                                                                                                                                                                                                                                                        <td><?= $this->Number->format($provider->id) ?></td>
-                                                                                                                                                                                                                                                                                                                                    <td><?= h($provider->name) ?></td>
-                                                                                                                                                                                                                                                                                                                                    <td><?= h($provider->address) ?></td>
-                                                                                                                                                                                                                                                                                                                                    <td><?= h($provider->website) ?></td>
-                                                                                                                                                                                                                                                                                                                                    <td><?= h($provider->email) ?></td>
-                                                                                                                                                                                                                                                                                                                                    <td><?= h($provider->phone) ?></td>
-                                                                                                                                                                                                                                                                                                                                    <td><?= h($provider->cuit) ?></td>
-                                                                                                                                                                                                                                                <td><?= $provider->has('city') ?
-                                        $this->Html->link($provider
-                                        ->city->name, ['controller' =>
-                                        'Cities', 'action' => 'view', $provider
-                                        ->city
-                                        ->id]) : '' ?>
-                                    </td>
-                                                                                                                                                                                                                                                                                                                                                                                <td><?= $provider->has('province') ?
-                                        $this->Html->link($provider
-                                        ->province->name, ['controller' =>
-                                        'Provinces', 'action' => 'view', $provider
-                                        ->province
-                                        ->id]) : '' ?>
-                                    </td>
-                                                                                                                                                    <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $provider->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $provider->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $provider->id], ['confirm' =>
-                        __('¿Seguro quieres eliminar este provider?')]) ?>
-                    </td>
-                </tr>
+                    <tr>
+                        <td><?= h($provider->name) ?></td>
+                        <td><?= h($provider->email) ?></td>
+                        <td><?= h($provider->phone) ?></td>
+                        <td><?= h($provider->cuit) ?></td>
+                        <!--<td><? /*= $provider->has('city') ?
+                                $this->Html->link($provider
+                                    ->city->name, ['controller' =>
+                                    'Cities', 'action' => 'view', $provider
+                                    ->city
+                                    ->id]) : '' */ ?>
+                        </td>-->
+                        <td class="actions d-flex justify-content-between">
+                            <div>
+                                <?= $this->Html->link(__('Ver'), ['action' => 'view', $provider->id]) ?>
+                            </div>
+                            <div>
+                                <?= $this->Html->link(__('Editar'), ['action' => 'edit', $provider->id]) ?>
+                            </div>
+                            <div>
+                                <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $provider->id], ['confirm' =>
+                                    __('¿Seguro quieres eliminar este provider?')]) ?>
+                            </div>
+                        </td>
+                    </tr>
                 <?php endforeach; ?>
-                <?php if(count($providers) == 0): ?>
-                <tr>
-                    <td class="text-center text-muted" colspan="14">No hay registros para mostrar</td>
-                </tr>
+                <?php if (count($providers) == 0): ?>
+                    <tr>
+                        <td class="text-center text-muted" colspan="14">No hay registros para mostrar</td>
+                    </tr>
                 <?php endif; ?>
                 </tbody>
             </table>
         </div>
     </div>
 
-    <?php if(count($providers) > 0): ?>
-    <div class="card-footer d-flex justify-content-between">
-        <nav>
-            <ul class="pagination">
-                <?php
-                echo $this->BootsCakePaginator->first();
-                echo $this->BootsCakePaginator->prev();
-                echo $this->BootsCakePaginator->numbers();
-                echo $this->BootsCakePaginator->next();
-                echo $this->BootsCakePaginator->last();
-                ?>
-            </ul>
-        </nav>
+    <?php if (count($providers) > 0): ?>
+        <div class="card-footer d-flex justify-content-between">
+            <nav>
+                <ul class="pagination">
+                    <?php
+                    echo $this->BootsCakePaginator->first();
+                    echo $this->BootsCakePaginator->prev();
+                    echo $this->BootsCakePaginator->numbers();
+                    echo $this->BootsCakePaginator->next();
+                    echo $this->BootsCakePaginator->last();
+                    ?>
+                </ul>
+            </nav>
 
-        <p style="line-height: 35px;">
+            <p style="line-height: 35px;">
             <span>
-                <?php echo $this->Paginator->counter( 'Mostrando {{current}} filas de {{count}}' ); ?>
+                <?php echo $this->Paginator->counter('Mostrando {{current}} filas de {{count}}'); ?>
             </span>
-        </p>
-    </div>
+            </p>
+        </div>
     <?php endif; ?>
 </div>
