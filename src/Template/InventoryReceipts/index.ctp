@@ -48,12 +48,12 @@
     </div>
     <div class="card-body p-0">
         <div class="table-responsive">
-            <table class="table table-hover table-bordered table-striped">
+            <table class="table table-hover table-striped">
                 <thead>
                 <tr>
                     <th scope="col"><?= $this->Paginator->sort('number', 'Nº') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('date', 'Fecha de entrada') ?></th>
-                    <th scope="col" class="actions"><?= __('Acciones') ?></th>
+                    <th scope="col" class="actions" width="150px"><?= __('Acciones') ?></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -62,10 +62,14 @@
                         <td><?= h($inventoryReceipt->number) ?></td>
                         <td><?= h($inventoryReceipt->date) ?></td>
 
-                        <td class="actions">
-
-                            <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $inventoryReceipt->id], ['confirm' =>
-                                __('¿Seguro quieres eliminar este inventoryReceipt?')]) ?>
+                        <td class="actions d-flex justify-content-between">
+                            <div>
+                                <?= $this->Html->link(__('Ver'), ['action' => 'view', $inventoryReceipt->id]) ?>
+                            </div>
+                            <div>
+                                <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $inventoryReceipt->id], ['confirm' =>
+                                    __('¿Seguro quieres eliminar este inventoryReceipt?')]) ?>
+                            </div>
                         </td>
                     </tr>
                 <?php endforeach; ?>

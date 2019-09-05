@@ -17,8 +17,7 @@
                 <input type="date" class="form-control" name="date" id="date" required>
             </div>
 
-            <div class="col-12">
-                <hr>
+            <div class="col-12 mt-4">
                 <div class="mb-2">
                     <label class="mr-3">Artículos</label>
                     <button type="button"
@@ -51,7 +50,6 @@
                             <span class="input-group-text py-0">{{vm.selectedArticles[$index].unit.abbreviation}}</span>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

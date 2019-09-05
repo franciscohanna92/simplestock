@@ -40,10 +40,11 @@ class InventoryReceiptsController extends AppController
      */
     public function view($id = null)
     {
-        $pageTitle = 'View inventoryReceipt';
+        $pageTitle = 'Detalle de entrada';
         $inventoryReceipt = $this->InventoryReceipts->get($id, [
             'contain' => ['Providers', 'Companies', 'Articles']
         ]);
+
 
         $this->set(compact('inventoryReceipt', 'pageTitle'));
     }
@@ -124,7 +125,11 @@ class InventoryReceiptsController extends AppController
             ]
         ]);
 
-//        pr($inventoryReceipt); die();
+        foreach ($inventoryReceipt->articles as $article) {
+            $existingArticle = $this->InventoryReceipts->Articles->get($article['id']);
+            $existingArticle->stock = $existingArticle->stock - $article['_joinData']['quantity'];
+            $this->InventoryReceipts->Articles->save($existingArticle);
+        }
 
         if ($this->InventoryReceipts->delete($inventoryReceipt)) {
             $this->Flash->success(__('The inventory receipt has been deleted.'));
