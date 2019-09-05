@@ -7,9 +7,9 @@ use Cake\ORM\Entity;
  * InventoryReceipt Entity
  *
  * @property int $id
- * @property \Cake\I18n\FrozenDate|null $date
- * @property string|null $number
- * @property int $providers_id
+ * @property \Cake\I18n\FrozenDate $date
+ * @property string $descriptive_name
+ * @property int|null $providers_id
  * @property int|null $company_id
  * @property \Cake\I18n\FrozenTime|null $created_at
  * @property int|null $created_by
@@ -34,7 +34,7 @@ class InventoryReceipt extends Entity
      */
     protected $_accessible = [
         'date' => true,
-        'number' => true,
+        'descriptive_name' => true,
         'providers_id' => true,
         'company_id' => true,
         'created_at' => true,

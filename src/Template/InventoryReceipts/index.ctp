@@ -51,7 +51,8 @@
             <table class="table table-hover table-striped">
                 <thead>
                 <tr>
-                    <th scope="col"><?= $this->Paginator->sort('number', 'Nº') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('id', '#') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('descriptive_name', 'Nombre descriptivo') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('date', 'Fecha de entrada') ?></th>
                     <th scope="col" class="actions" width="150px"><?= __('Acciones') ?></th>
                 </tr>
@@ -59,7 +60,8 @@
                 <tbody>
                 <?php foreach ($inventoryReceipts as $inventoryReceipt): ?>
                     <tr>
-                        <td><?= h($inventoryReceipt->number) ?></td>
+                        <td><?= h($inventoryReceipt->id) ?></td>
+                        <td><?= h($inventoryReceipt->descriptive_name) ?></td>
                         <td><?= h($inventoryReceipt->date) ?></td>
 
                         <td class="actions d-flex justify-content-between">
