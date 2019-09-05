@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\InventoryIssue[]|\Cake\Collection\CollectionInterface $inventoryIssues
+ * @var \App\Model\Entity\InventoryIssues[]|\Cake\Collection\CollectionInterface $inventoryIssues
  */
 ?>
 
@@ -12,7 +12,7 @@
 </style>
 
 <div class="card card-default">
-        <div class="card card-header m-0">
+    <div class="card card-header m-0">
         <div class="row">
             <div class="col-12 col-md-4 col-lg-3">
                 <form class="m-0" action="/inventoryIssues" method="get">
@@ -28,106 +28,80 @@
                                placeholder="Buscar..."
                                value="<?= $searchQuery; ?>"
                                required>
-                        <?php if($searchQuery != ''): ?>
-                        <div class="input-group-append">
-                            <a href="/inventoryIssues" class="bg-white input-group-text px-2 py-0">
-                                <span style="line-height: 33px;" class="text-primary">✕</span>
-                            </a>
-                        </div>
+                        <?php if ($searchQuery != ''): ?>
+                            <div class="input-group-append">
+                                <a href="/inventoryIssues" class="bg-white input-group-text px-2 py-0">
+                                    <span style="line-height: 33px;" class="text-primary">✕</span>
+                                </a>
+                            </div>
                         <?php endif; ?>
                     </div>
                 </form>
             </div>
 
             <div class="col-12 offset-md-4 col-md-4 offset-lg-6 col-lg-3">
-                <a href="/inventoryIssues/add" class="btn btn-primary h-100 float-right">
-                    Agregar nuevo inventoryIssue
+                <a href="/inventory-issues/add" class="btn btn-primary h-100 float-right">
+                    Registrar nueva salida
                 </a>
             </div>
         </div>
     </div>
     <div class="card-body p-0">
         <div class="table-responsive">
-            <table class="table table-hover table-bordered table-striped">
+            <table class="table table-hover table-striped">
                 <thead>
                 <tr>
-                                                <th scope="col"><?= $this->Paginator->sort('id', '#') ?></th>
-
-                                                <th scope="col"><?= $this->Paginator->sort('date') ?></th>
-
-                                                <th scope="col"><?= $this->Paginator->sort('employee_id') ?></th>
-
-                                                <th scope="col"><?= $this->Paginator->sort('building_site_id') ?></th>
-
-                    
-
-                    
-
-                    
-
-                    
-
-                    
-
-                                        <th scope="col" class="actions"><?= __('Actions') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('number', 'Nombre descriptivo') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('date', 'Fecha de salida') ?></th>
+                    <th scope="col" class="actions" width="150px"><?= __('Acciones') ?></th>
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($inventoryIssues as $inventoryIssue): ?>
-                <tr>
-                                                                                                                                                                                                                                                                        <td><?= $this->Number->format($inventoryIssue->id) ?></td>
-                                                                                                                                                                                                                                                                                                                                    <td><?= h($inventoryIssue->date) ?></td>
-                                                                                                                                                                                                                                                <td><?= $inventoryIssue->has('employee') ?
-                                        $this->Html->link($inventoryIssue
-                                        ->employee->name, ['controller' =>
-                                        'Employees', 'action' => 'view', $inventoryIssue
-                                        ->employee
-                                        ->id]) : '' ?>
-                                    </td>
-                                                                                                                                                                                                                                                                            <td><?= $inventoryIssue->has('building_site') ?
-                                        $this->Html->link($inventoryIssue
-                                        ->building_site->name, ['controller' =>
-                                        'BuildingSites', 'action' => 'view', $inventoryIssue
-                                        ->building_site
-                                        ->id]) : '' ?>
-                                    </td>
-                                                                                                                                                                                                                                                        <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $inventoryIssue->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $inventoryIssue->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $inventoryIssue->id], ['confirm' =>
-                        __('¿Seguro quieres eliminar este inventoryIssue?')]) ?>
-                    </td>
-                </tr>
+                <?php foreach ($inventoryIssues as $inventoryReceipt): ?>
+                    <tr>
+                        <td><?= h($inventoryReceipt->descriptive_name) ?></td>
+                        <td><?= h($inventoryReceipt->date) ?></td>
+
+                        <td class="actions d-flex justify-content-between">
+                            <div>
+                                <?= $this->Html->link(__('Ver'), ['action' => 'view', $inventoryReceipt->id]) ?>
+                            </div>
+                            <div>
+                                <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $inventoryReceipt->id], ['confirm' =>
+                                    __('¿Seguro quieres eliminar este inventoryReceipt?')]) ?>
+                            </div>
+                        </td>
+                    </tr>
                 <?php endforeach; ?>
-                <?php if(count($inventoryIssues) == 0): ?>
-                <tr>
-                    <td class="text-center text-muted" colspan="9">No hay registros para mostrar</td>
-                </tr>
+                <?php if (count($inventoryIssues) == 0): ?>
+                    <tr>
+                        <td class="text-center text-muted" colspan="9">No hay registros para mostrar</td>
+                    </tr>
                 <?php endif; ?>
                 </tbody>
             </table>
         </div>
     </div>
 
-    <?php if(count($inventoryIssues) > 0): ?>
-    <div class="card-footer d-flex justify-content-between">
-        <nav>
-            <ul class="pagination">
-                <?php
-                echo $this->BootsCakePaginator->first();
-                echo $this->BootsCakePaginator->prev();
-                echo $this->BootsCakePaginator->numbers();
-                echo $this->BootsCakePaginator->next();
-                echo $this->BootsCakePaginator->last();
-                ?>
-            </ul>
-        </nav>
+    <?php if (count($inventoryIssues) > 0): ?>
+        <div class="card-footer d-flex justify-content-between">
+            <nav>
+                <ul class="pagination">
+                    <?php
+                    echo $this->BootsCakePaginator->first();
+                    echo $this->BootsCakePaginator->prev();
+                    echo $this->BootsCakePaginator->numbers();
+                    echo $this->BootsCakePaginator->next();
+                    echo $this->BootsCakePaginator->last();
+                    ?>
+                </ul>
+            </nav>
 
-        <p style="line-height: 35px;">
+            <p style="line-height: 35px;">
             <span>
-                <?php echo $this->Paginator->counter( 'Mostrando {{current}} filas de {{count}}' ); ?>
+                <?php echo $this->Paginator->counter('Mostrando {{current}} filas de {{count}}'); ?>
             </span>
-        </p>
-    </div>
+            </p>
+        </div>
     <?php endif; ?>
 </div>
