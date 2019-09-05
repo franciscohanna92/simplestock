@@ -9,10 +9,12 @@
     <div class="card-body row">
 
         <div class="col mb-3 pl-4">
-            <h2 class="font-weight-light">Entrada Nº <?= h($inventoryReceipt->number) ?></h2>
-            <div class="lead">Fecha de ingreso <?= h($inventoryReceipt->date) ?></div>
+            <div class="d-flex justify-content-between">
+                <h3 class="font-weight-light">Entrada # <?= h($inventoryReceipt->id) ?></h3>
+                <div class="font-italic"><?= h($inventoryReceipt->date) ?></div>
+            </div>
+            <div class="font-weight-light"><?= h($inventoryReceipt->descriptive_name) ?></div>
         </div>
-
         <div class="col-12">
             <table class="table table-hover">
                 <thead>

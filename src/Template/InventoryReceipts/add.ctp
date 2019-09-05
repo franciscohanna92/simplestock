@@ -10,7 +10,7 @@
     <div class="card card-default">
         <div class="card-body row">
             <div class="col">
-                <?php echo $this->BootsCakeForm->control('number', ['required' => true, 'label' => 'Nº entrada']); ?>
+                <?php echo $this->BootsCakeForm->control('descriptive_name', ['required' => true, 'label' => 'Nombre descriptivo']); ?>
             </div>
             <div class="col">
                 <label for="date">Fecha (mes, día, año)</label>
