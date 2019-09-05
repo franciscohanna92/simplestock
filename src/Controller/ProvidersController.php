@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -20,32 +21,33 @@ class ProvidersController extends AppController
      */
     public function index()
     {
-$searchQuery = $this->request->getQuery('searchQuery');
-        $pageTitle = 'Listado providers';
+        $searchQuery = $this->request->getQuery('searchQuery');
+        $pageTitle = 'Proveedores';
         $this->paginate = [
-            'contain' => ['Cities', 'Companies', 'Provinces']
+            'contain' => ['Cities', 'Companies']
         ];
         $providers = $this->paginate($this->Providers);
 
         $this->set(compact('providers', 'pageTitle', 'searchQuery'));
     }
 
-/**
-* View method
-*
-* @param string|null $id Provider id.
-* @return \Cake\Http\Response|void
-* @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-*/
-public function view($id = null)
-{
-$pageTitle = 'View provider';
-$provider = $this->Providers->get($id, [
-'contain' => ['Cities', 'Companies', 'Provinces', 'Articles', 'PurchaseOrders']
-]);
+    /**
+     * View method
+     *
+     * @param string|null $id Provider id.
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function view($id = null)
+    {
+        $provider = $this->Providers->get($id, [
+            'contain' => ['Cities', 'Companies']
+        ]);
 
-$this->set(compact('provider', 'pageTitle'));
-}
+        $pageTitle = $provider['name'];
+
+        $this->set(compact('provider', 'pageTitle'));
+    }
 
     /**
      * Add method
@@ -54,7 +56,7 @@ $this->set(compact('provider', 'pageTitle'));
      */
     public function add()
     {
-$pageTitle = 'Add provider';
+        $pageTitle = 'Agregar proveedor';
         $provider = $this->Providers->newEntity();
         if ($this->request->is('post')) {
             $provider = $this->Providers->patchEntity($provider, $this->request->getData());
@@ -68,8 +70,6 @@ $pageTitle = 'Add provider';
             $this->Flash->error(__('The provider could not be saved. Please, try again.'));
         }
         $cities = $this->Providers->Cities->find('list', ['limit' => 200]);
-        $companies = $this->Providers->Companies->find('list', ['limit' => 200]);
-        $provinces = $this->Providers->Provinces->find('list', ['limit' => 200]);
         $this->set(compact('provider', 'cities', 'companies', 'provinces', 'pageTitle'));
     }
 
@@ -82,7 +82,7 @@ $pageTitle = 'Add provider';
      */
     public function edit($id = null)
     {
-$pageTitle = 'Edit provider';
+        $pageTitle = 'Editar proveedor';
         $provider = $this->Providers->get($id, [
             'contain' => []
         ]);
@@ -96,8 +96,6 @@ $pageTitle = 'Edit provider';
             $this->Flash->error(__('The provider could not be saved. Please, try again.'));
         }
         $cities = $this->Providers->Cities->find('list', ['limit' => 200]);
-        $companies = $this->Providers->Companies->find('list', ['limit' => 200]);
-        $provinces = $this->Providers->Provinces->find('list', ['limit' => 200]);
         $this->set(compact('provider', 'cities', 'companies', 'provinces', 'pageTitle'));
     }
 

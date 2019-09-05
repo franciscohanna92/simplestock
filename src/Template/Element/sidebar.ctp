@@ -30,30 +30,30 @@
                 <li class="nav-heading ">
                     <span>Inventario</span>
                 </li>
-                <li class="">
+                <!--<li class="">
                     <a class="text-muted">
                         <em class="fa fa-cubes"></em>
                         <span>Stock</span>
                     </a>
-                </li>
-                <li class="">
+                </li>-->
+                <li>
                     <a href="/inventory-receipts">
                         <em class="fa fa-sign-in"></em>
                         <span>Entradas</span>
                     </a>
                 </li>
-                <li class="">
+                <li>
                     <a href="/inventory-issues">
                         <em class="fa fa-sign-out"></em>
                         <span>Salidas</span>
                     </a>
                 </li>
-                <li class="">
+                <!--<li class="">
                     <a class="text-muted">
                         <em class="fa fa-list-ol"></em>
                         <span>Pedidos</span>
                     </a>
-                </li>
+                </li>-->
 
                 <!--RECURSOS-->
                 <li class="nav-heading ">
@@ -72,40 +72,40 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="text-muted">
+                    <a href="/providers">
                         <em class="fa fa-truck"></em>
                         <span>Proveedores</span>
                     </a>
                 </li>
-                <li class="">
+                <!--<li class="">
                     <a class="text-muted">
                         <em class="fa fa-building-o"></em>
                         <span>Obras</span>
                     </a>
-                </li>
-                <li class="">
+                </li>-->
+                <!--<li class="">
                     <a class="text-muted">
                         <em class="fa fa-male"></em>
                         <span>Personal</span>
                     </a>
-                </li>
+                </li>-->
 
                 <!--SISTEMA-->
-                <li class="nav-heading ">
+                <!--<li class="nav-heading ">
                     <span>Sistema</span>
-                </li>
-                <li class="">
+                </li>-->
+                <!--<li class="">
                     <a class="text-muted">
                         <em class="fa fa-users"></em>
                         <span>Usuarios</span>
                     </a>
-                </li>
-                <li class="">
+                </li>-->
+                <!--<li class="">
                     <a class="text-muted">
                         <em class="fa fa-certificate"></em>
                         <span>Roles</span>
                     </a>
-                </li>
+                </li>-->
             </ul>
             <!-- END sidebar nav-->
         </nav>

@@ -11,7 +11,6 @@ use Cake\Validation\Validator;
  *
  * @property \App\Model\Table\CitiesTable|\Cake\ORM\Association\BelongsTo $Cities
  * @property \App\Model\Table\CompaniesTable|\Cake\ORM\Association\BelongsTo $Companies
- * @property \App\Model\Table\ProvincesTable|\Cake\ORM\Association\BelongsTo $Provinces
  * @property \App\Model\Table\ArticlesTable|\Cake\ORM\Association\HasMany $Articles
  * @property \App\Model\Table\PurchaseOrdersTable|\Cake\ORM\Association\HasMany $PurchaseOrders
  *
@@ -42,14 +41,10 @@ class ProvidersTable extends Table
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Cities', [
-            'foreignKey' => 'city_id',
-            'joinType' => 'INNER'
+            'foreignKey' => 'city_id'
         ]);
         $this->belongsTo('Companies', [
             'foreignKey' => 'company_id'
-        ]);
-        $this->belongsTo('Provinces', [
-            'foreignKey' => 'province_id'
         ]);
         $this->hasMany('Articles', [
             'foreignKey' => 'provider_id'
@@ -74,8 +69,7 @@ class ProvidersTable extends Table
         $validator
             ->scalar('name')
             ->maxLength('name', 255)
-            ->requirePresence('name', 'create')
-            ->notEmpty('name');
+            ->allowEmpty('name');
 
         $validator
             ->scalar('address')
@@ -97,13 +91,19 @@ class ProvidersTable extends Table
             ->allowEmpty('phone');
 
         $validator
+            ->scalar('area')
+            ->maxLength('area', 255)
+            ->allowEmpty('area');
+
+        $validator
             ->scalar('cuit')
             ->maxLength('cuit', 255)
             ->allowEmpty('cuit');
 
         $validator
             ->scalar('observations')
-            ->allowEmpty('observations');
+            ->requirePresence('observations', 'create')
+            ->notEmpty('observations');
 
         $validator
             ->dateTime('created_at')
@@ -136,7 +136,6 @@ class ProvidersTable extends Table
         $rules->add($rules->isUnique(['email']));
         $rules->add($rules->existsIn(['city_id'], 'Cities'));
         $rules->add($rules->existsIn(['company_id'], 'Companies'));
-        $rules->add($rules->existsIn(['province_id'], 'Provinces'));
 
         return $rules;
     }
