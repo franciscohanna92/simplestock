@@ -10,15 +10,14 @@
     <div class="card card-default">
         <div class="card-body row">
             <div class="col">
-                <?php echo $this->BootsCakeForm->control('number', ['required' => true, 'label' => 'Nº entrada']); ?>
+                <?php echo $this->BootsCakeForm->control('descriptive_name', ['required' => true, 'label' => 'Nombre descriptivo']); ?>
             </div>
             <div class="col">
                 <label for="date">Fecha (mes, día, año)</label>
                 <input type="date" class="form-control" name="date" id="date" required>
             </div>
 
-            <div class="col-12">
-                <hr>
+            <div class="col-12 mt-4">
                 <div class="mb-2">
                     <label class="mr-3">Artículos</label>
                     <button type="button"
@@ -51,7 +50,6 @@
                             <span class="input-group-text py-0">{{vm.selectedArticles[$index].unit.abbreviation}}</span>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

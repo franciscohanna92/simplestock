@@ -7,9 +7,10 @@ use Cake\ORM\Entity;
  * InventoryIssue Entity
  *
  * @property int $id
- * @property \Cake\I18n\FrozenDate|null $date
- * @property int $employee_id
- * @property int $building_site_id
+ * @property string|null $descriptive_name
+ * @property \Cake\I18n\FrozenDate $date
+ * @property int|null $employee_id
+ * @property int|null $building_site_id
  * @property int|null $company_id
  * @property \Cake\I18n\FrozenTime|null $created_at
  * @property int|null $created_by
@@ -34,6 +35,7 @@ class InventoryIssue extends Entity
      * @var array
      */
     protected $_accessible = [
+        'descriptive_name' => true,
         'date' => true,
         'employee_id' => true,
         'building_site_id' => true,

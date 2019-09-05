@@ -43,7 +43,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="text-muted">
+                    <a href="/inventory-issues">
                         <em class="fa fa-sign-out"></em>
                         <span>Salidas</span>
                     </a>

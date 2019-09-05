@@ -89,15 +89,9 @@ body {
         margin: -20px; } }
   .content-wrapper > h3,
   .content-wrapper > .content-heading {
-    font-size: 1.5rem;
-    line-height: 1.1;
     color: #929292;
-    margin: -15px;
-    margin-bottom: 20px;
     padding: 15px;
-    font-weight: normal;
-    background-color: #fafbfc;
-    border-bottom: 1px solid #cfdbe2; }
+    font-weight: normal;}
     .content-wrapper > h3 > small,
     .content-wrapper > .content-heading > small {
       display: block;
@@ -1081,7 +1075,7 @@ _:-ms-lang(x),
      Component: typo
  ========================================================================== */
 body {
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   color: #656565;
   font-size: 0.875rem; }
 

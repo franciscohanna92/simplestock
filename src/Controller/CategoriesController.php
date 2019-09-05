@@ -21,7 +21,7 @@ class CategoriesController extends AppController
     public function index()
     {
 $searchQuery = $this->request->getQuery('searchQuery');
-        $pageTitle = 'Listado de categorías';
+        $pageTitle = 'Categorías';
         $this->paginate = [
             'contain' => ['Companies']
         ];

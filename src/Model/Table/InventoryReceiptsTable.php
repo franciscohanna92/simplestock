@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Model\Table;
 
 use Cake\ORM\Query;
@@ -67,12 +66,14 @@ class InventoryReceiptsTable extends Table
 
         $validator
             ->date('date')
-            ->allowEmpty('date');
+            ->requirePresence('date', 'create')
+            ->notEmpty('date');
 
         $validator
-            ->scalar('number')
-            ->maxLength('number', 255)
-            ->allowEmpty('number');
+            ->scalar('descriptive_name')
+            ->maxLength('descriptive_name', 255)
+            ->requirePresence('descriptive_name', 'create')
+            ->notEmpty('descriptive_name');
 
         $validator
             ->dateTime('created_at')
