@@ -22,7 +22,7 @@ class ArticlesController extends AppController
     public function index()
     {
         $searchQuery = $this->request->getQuery('searchQuery');
-        $pageTitle = 'Listado de artículos';
+        $pageTitle = 'Artículos';
         $this->paginate = [
             'contain' => ['Categories', 'Providers', 'Companies', 'Units']
         ];

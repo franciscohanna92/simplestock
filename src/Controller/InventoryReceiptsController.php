@@ -22,7 +22,7 @@ class InventoryReceiptsController extends AppController
     public function index()
     {
         $searchQuery = $this->request->getQuery('searchQuery');
-        $pageTitle = 'Listado de entradas';
+        $pageTitle = 'Entradas';
         $this->paginate = [
             'contain' => ['Providers', 'Companies']
         ];

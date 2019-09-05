@@ -22,7 +22,7 @@ class InventoryIssuesController extends AppController
     public function index()
     {
         $searchQuery = $this->request->getQuery('searchQuery');
-        $pageTitle = 'Listado de salidas';
+        $pageTitle = 'Salidas';
         $this->paginate = [
             'contain' => ['Companies']
         ];
