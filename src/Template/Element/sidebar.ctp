@@ -72,7 +72,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="text-muted">
+                    <a href="/providers">
                         <em class="fa fa-truck"></em>
                         <span>Proveedores</span>
                     </a>
