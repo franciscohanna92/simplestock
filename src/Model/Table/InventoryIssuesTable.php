@@ -41,12 +41,10 @@ class InventoryIssuesTable extends Table
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Employees', [
-            'foreignKey' => 'employee_id',
-            'joinType' => 'INNER'
+            'foreignKey' => 'employee_id'
         ]);
         $this->belongsTo('BuildingSites', [
-            'foreignKey' => 'building_site_id',
-            'joinType' => 'INNER'
+            'foreignKey' => 'building_site_id'
         ]);
         $this->belongsTo('Companies', [
             'foreignKey' => 'company_id'
@@ -71,8 +69,14 @@ class InventoryIssuesTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
+            ->scalar('descriptive_name')
+            ->maxLength('descriptive_name', 255)
+            ->allowEmpty('descriptive_name');
+
+        $validator
             ->date('date')
-            ->allowEmpty('date');
+            ->requirePresence('date', 'create')
+            ->notEmpty('date');
 
         $validator
             ->dateTime('created_at')
