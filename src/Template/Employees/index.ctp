@@ -12,7 +12,7 @@
 </style>
 
 <div class="card card-default">
-        <div class="card card-header m-0">
+    <div class="card card-header m-0">
         <div class="row">
             <div class="col-12 col-md-4 col-lg-3">
                 <form class="m-0" action="/employees" method="get">
@@ -28,12 +28,12 @@
                                placeholder="Buscar..."
                                value="<?= $searchQuery; ?>"
                                required>
-                        <?php if($searchQuery != ''): ?>
-                        <div class="input-group-append">
-                            <a href="/employees" class="bg-white input-group-text px-2 py-0">
-                                <span style="line-height: 33px;" class="text-primary">✕</span>
-                            </a>
-                        </div>
+                        <?php if ($searchQuery != ''): ?>
+                            <div class="input-group-append">
+                                <a href="/employees" class="bg-white input-group-text px-2 py-0">
+                                    <span style="line-height: 33px;" class="text-primary">✕</span>
+                                </a>
+                            </div>
                         <?php endif; ?>
                     </div>
                 </form>
@@ -41,7 +41,7 @@
 
             <div class="col-12 offset-md-4 col-md-4 offset-lg-6 col-lg-3">
                 <a href="/employees/add" class="btn btn-primary h-100 float-right">
-                    Agregar nuevo employee
+                    Agregar personal
                 </a>
             </div>
         </div>
@@ -51,85 +51,61 @@
             <table class="table table-hover table-bordered table-striped">
                 <thead>
                 <tr>
-                                                <th scope="col"><?= $this->Paginator->sort('id', '#') ?></th>
-
-                                                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-
-                                                <th scope="col"><?= $this->Paginator->sort('surname') ?></th>
-
-                                                <th scope="col"><?= $this->Paginator->sort('cuil') ?></th>
-
-                                                <th scope="col"><?= $this->Paginator->sort('phone') ?></th>
-
-                                                <th scope="col"><?= $this->Paginator->sort('email') ?></th>
-
-                                                <th scope="col"><?= $this->Paginator->sort('address') ?></th>
-
-                                                <th scope="col"><?= $this->Paginator->sort('position') ?></th>
-
-                    
-
-                    
-
-                    
-
-                    
-
-                    
-
-                    
-
-                                        <th scope="col" class="actions"><?= __('Actions') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('name', 'Nombre') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('surname', 'Apellido') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('cuil', 'CUIL') ?></th>
+                    <th scope="col" class="actions" width="150px"><?= __('Acciones') ?></th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($employees as $employee): ?>
-                <tr>
-                                                                                                                                                                                                                                                                        <td><?= $this->Number->format($employee->id) ?></td>
-                                                                                                                                                                                                                                                                                                                                    <td><?= h($employee->name) ?></td>
-                                                                                                                                                                                                                                                                                                                                    <td><?= h($employee->surname) ?></td>
-                                                                                                                                                                                                                                                                                                                                    <td><?= h($employee->cuil) ?></td>
-                                                                                                                                                                                                                                                                                                                                    <td><?= h($employee->phone) ?></td>
-                                                                                                                                                                                                                                                                                                                                    <td><?= h($employee->email) ?></td>
-                                                                                                                                                                                                                                                                                                                                    <td><?= h($employee->address) ?></td>
-                                                                                                                                                                                                                                                                                                                                    <td><?= h($employee->position) ?></td>
-                                                                                                                                                                                                                                                <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $employee->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $employee->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $employee->id], ['confirm' =>
-                        __('¿Seguro quieres eliminar este employee?')]) ?>
-                    </td>
-                </tr>
+                    <tr>
+                        <td><?= h($employee->name) ?></td>
+                        <td><?= h($employee->surname) ?></td>
+                        <td><?= h($employee->cuil) ?></td>
+                        <td class="actions d-flex justify-content-between">
+                            <div>
+                                <?= $this->Html->link(__('Ver'), ['action' => 'view', $employee->id]) ?>
+                            </div>
+                            <div>
+                                <?= $this->Html->link(__('Editar'), ['action' => 'edit', $employee->id]) ?>
+                            </div>
+                            <div>
+                                <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $employee->id], ['confirm' =>
+                                    __('¿Seguro quieres eliminar este personal?')]) ?>
+                            </div>
+                        </td>
+                    </tr>
                 <?php endforeach; ?>
-                <?php if(count($employees) == 0): ?>
-                <tr>
-                    <td class="text-center text-muted" colspan="14">No hay registros para mostrar</td>
-                </tr>
+                <?php if (count($employees) == 0): ?>
+                    <tr>
+                        <td class="text-center text-muted" colspan="14">No hay registros para mostrar</td>
+                    </tr>
                 <?php endif; ?>
                 </tbody>
             </table>
         </div>
     </div>
 
-    <?php if(count($employees) > 0): ?>
-    <div class="card-footer d-flex justify-content-between">
-        <nav>
-            <ul class="pagination">
-                <?php
-                echo $this->BootsCakePaginator->first();
-                echo $this->BootsCakePaginator->prev();
-                echo $this->BootsCakePaginator->numbers();
-                echo $this->BootsCakePaginator->next();
-                echo $this->BootsCakePaginator->last();
-                ?>
-            </ul>
-        </nav>
+    <?php if (count($employees) > 0): ?>
+        <div class="card-footer d-flex justify-content-between">
+            <nav>
+                <ul class="pagination">
+                    <?php
+                    echo $this->BootsCakePaginator->first();
+                    echo $this->BootsCakePaginator->prev();
+                    echo $this->BootsCakePaginator->numbers();
+                    echo $this->BootsCakePaginator->next();
+                    echo $this->BootsCakePaginator->last();
+                    ?>
+                </ul>
+            </nav>
 
-        <p style="line-height: 35px;">
+            <p style="line-height: 35px;">
             <span>
-                <?php echo $this->Paginator->counter( 'Mostrando {{current}} filas de {{count}}' ); ?>
+                <?php echo $this->Paginator->counter('Mostrando {{current}} filas de {{count}}'); ?>
             </span>
-        </p>
-    </div>
+            </p>
+        </div>
     <?php endif; ?>
 </div>

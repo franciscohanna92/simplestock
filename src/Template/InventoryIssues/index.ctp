@@ -54,6 +54,7 @@
                     <th scope="col"><?= $this->Paginator->sort('id', '#') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('descriptive_name', 'Nombre descriptivo') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('date', 'Fecha de salida') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('building_site_id', 'Obra destino') ?></th>
                     <th scope="col" class="actions" width="150px"><?= __('Acciones') ?></th>
                 </tr>
                 </thead>
@@ -63,6 +64,13 @@
                         <td><?= h($inventoryReceipt->id) ?></td>
                         <td><?= h($inventoryReceipt->descriptive_name) ?></td>
                         <td><?= h($inventoryReceipt->date) ?></td>
+                        <td><?= $inventoryReceipt->has('building_site_id') ?
+                                $this->Html->link($inventoryReceipt->building_site->name, [
+                                    'controller' => 'BuildingSites',
+                                    'action' => 'view',
+                                    $inventoryReceipt->building_site->id
+                                ]) : '' ?>
+                        </td>
 
                         <td class="actions d-flex justify-content-between">
                             <div>

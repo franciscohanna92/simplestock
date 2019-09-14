@@ -39,6 +39,7 @@ use Cake\Database\Type;
 use Cake\Datasource\ConnectionManager;
 use Cake\Error\ErrorHandler;
 use Cake\Http\ServerRequest;
+use Cake\I18n\I18n;
 use Cake\Log\Log;
 use Cake\Mailer\Email;
 use Cake\Utility\Inflector;
@@ -170,6 +171,11 @@ ServerRequest::addDetector('tablet', function ($request) {
 
     return $detector->isTablet();
 });
+
+Cake\I18n\Date::setToStringFormat('dd/MM/yyyy');
+Cake\I18n\FrozenDate::setToStringFormat('dd/MM/yyyy');
+
+I18n::setLocale('es_AR');
 
 /*
  * Enable immutable time objects in the ORM.

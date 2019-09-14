@@ -6,15 +6,14 @@
 ?>
 
 <section ng-controller="InventoryReceiptsController as vm">
-    <?= $this->BootsCakeForm->create($inventoryReceipt) ?>
+    <?= $this->BootsCakeForm->create($inventoryReceipt, [ 'autocomplete' => 'off' ]) ?>
     <div class="card card-default">
         <div class="card-body row">
             <div class="col">
                 <?php echo $this->BootsCakeForm->control('descriptive_name', ['required' => true, 'label' => 'Nombre descriptivo']); ?>
             </div>
             <div class="col">
-                <label for="date">Fecha (mes, día, año)</label>
-                <input type="date" class="form-control" name="date" id="date" required>
+                <?php echo $this->BootsCakeForm->control('date', ['required' => true, 'label' => 'Fecha de entrada']); ?>
             </div>
 
             <div class="col-12 mt-4">
