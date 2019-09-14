@@ -6,7 +6,7 @@
 ?>
 
 <section ng-controller="InventoryReceiptsController as vm">
-    <?= $this->BootsCakeForm->create($inventoryReceipt) ?>
+    <?= $this->BootsCakeForm->create($inventoryReceipt, [ 'autocomplete' => 'off' ]) ?>
     <div class="card card-default">
         <div class="card-body row">
             <div class="col">
