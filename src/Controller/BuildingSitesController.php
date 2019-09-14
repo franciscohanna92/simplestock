@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -20,8 +21,8 @@ class BuildingSitesController extends AppController
      */
     public function index()
     {
-$searchQuery = $this->request->getQuery('searchQuery');
-        $pageTitle = 'Listado buildingSites';
+        $searchQuery = $this->request->getQuery('searchQuery');
+        $pageTitle = 'Obras';
         $this->paginate = [
             'contain' => ['Companies']
         ];
@@ -30,22 +31,22 @@ $searchQuery = $this->request->getQuery('searchQuery');
         $this->set(compact('buildingSites', 'pageTitle', 'searchQuery'));
     }
 
-/**
-* View method
-*
-* @param string|null $id Building Site id.
-* @return \Cake\Http\Response|void
-* @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-*/
-public function view($id = null)
-{
-$pageTitle = 'View buildingSite';
-$buildingSite = $this->BuildingSites->get($id, [
-'contain' => ['Companies', 'InventoryIssues']
-]);
+    /**
+     * View method
+     *
+     * @param string|null $id Building Site id.
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function view($id = null)
+    {
+        $pageTitle = 'Detalle de obra';
+        $buildingSite = $this->BuildingSites->get($id, [
+            'contain' => ['Companies', 'InventoryIssues']
+        ]);
 
-$this->set(compact('buildingSite', 'pageTitle'));
-}
+        $this->set(compact('buildingSite', 'pageTitle'));
+    }
 
     /**
      * Add method
@@ -54,18 +55,18 @@ $this->set(compact('buildingSite', 'pageTitle'));
      */
     public function add()
     {
-$pageTitle = 'Add buildingSite';
+        $pageTitle = 'Agregar obra';
         $buildingSite = $this->BuildingSites->newEntity();
         if ($this->request->is('post')) {
             $buildingSite = $this->BuildingSites->patchEntity($buildingSite, $this->request->getData());
             $buildingSite['created_by'] = $this->Auth->user()['id'];
             $buildingSite['company_id'] = $this->Auth->user()['company_id'];
             if ($this->BuildingSites->save($buildingSite)) {
-                $this->Flash->success(__('The building site has been saved.'));
+                $this->Flash->success(__('La obra ha sido guardada.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The building site could not be saved. Please, try again.'));
+            $this->Flash->error(__('La obra no pudo ser guardad. Intentá nuevamente.'));
         }
         $companies = $this->BuildingSites->Companies->find('list', ['limit' => 200]);
         $this->set(compact('buildingSite', 'companies', 'pageTitle'));
@@ -80,18 +81,18 @@ $pageTitle = 'Add buildingSite';
      */
     public function edit($id = null)
     {
-$pageTitle = 'Edit buildingSite';
+        $pageTitle = 'Editar obra';
         $buildingSite = $this->BuildingSites->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $buildingSite = $this->BuildingSites->patchEntity($buildingSite, $this->request->getData());
             if ($this->BuildingSites->save($buildingSite)) {
-                $this->Flash->success(__('The building site has been saved.'));
+                $this->Flash->success(__('La obra ha sido guardada.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The building site could not be saved. Please, try again.'));
+            $this->Flash->error(__('La obra no pudo ser guardad. Intentá nuevamente.'));
         }
         $companies = $this->BuildingSites->Companies->find('list', ['limit' => 200]);
         $this->set(compact('buildingSite', 'companies', 'pageTitle'));
@@ -109,9 +110,9 @@ $pageTitle = 'Edit buildingSite';
         $this->request->allowMethod(['post', 'delete']);
         $buildingSite = $this->BuildingSites->get($id);
         if ($this->BuildingSites->delete($buildingSite)) {
-            $this->Flash->success(__('The building site has been deleted.'));
+            $this->Flash->success(__('La obra ha sido eliminada.'));
         } else {
-            $this->Flash->error(__('The building site could not be deleted. Please, try again.'));
+            $this->Flash->error(__('La obra no pudo ser eliminada. Intentá nuevamente.'));
         }
 
         return $this->redirect(['action' => 'index']);

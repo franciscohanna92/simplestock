@@ -77,18 +77,18 @@
                         <span>Proveedores</span>
                     </a>
                 </li>
-                <!--<li class="">
-                    <a class="text-muted">
+                <li class="">
+                    <a href="/building-sites">
                         <em class="fa fa-building-o"></em>
                         <span>Obras</span>
                     </a>
-                </li>-->
-                <!--<li class="">
-                    <a class="text-muted">
+                </li>
+                <li class="">
+                    <a href="/employees">
                         <em class="fa fa-male"></em>
                         <span>Personal</span>
                     </a>
-                </li>-->
+                </li>
 
                 <!--SISTEMA-->
                 <!--<li class="nav-heading ">
