@@ -13,8 +13,7 @@
                 <?php echo $this->BootsCakeForm->control('descriptive_name', ['required' => true, 'label' => 'Nombre descriptivo']); ?>
             </div>
             <div class="col">
-                <label for="date">Fecha (mes, día, año)</label>
-                <input type="date" class="form-control" name="date" id="date" required>
+                <?php echo $this->BootsCakeForm->control('date', ['required' => true, 'label' => 'Fecha de entrada']); ?>
             </div>
 
             <div class="col-12 mt-4">
