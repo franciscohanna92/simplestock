@@ -24,10 +24,9 @@ class InventoryIssuesController extends AppController
         $searchQuery = $this->request->getQuery('searchQuery');
         $pageTitle = 'Salidas';
         $this->paginate = [
-            'contain' => ['Companies']
+            'contain' => ['Companies', 'BuildingSites']
         ];
         $inventoryIssues = $this->paginate($this->InventoryIssues);
-
         $this->set(compact('inventoryIssues', 'pageTitle', 'searchQuery'));
     }
 
@@ -76,7 +75,8 @@ class InventoryIssuesController extends AppController
             $this->Flash->error(__('The inventory receipt could not be saved. Please, try again.'));
         }
         $articles = $this->InventoryIssues->Articles->find('all')->contain(['Units'])->toArray();
-        $this->set(compact('inventoryIssue', 'companies', 'articles', 'pageTitle'));
+        $buildingSites = $this->InventoryIssues->BuildingSites->find('list');
+        $this->set(compact('inventoryIssue', 'companies', 'buildingSites', 'articles', 'pageTitle'));
     }
 
     /**
@@ -101,7 +101,7 @@ class InventoryIssuesController extends AppController
             }
             $this->Flash->error(__('The inventory receipt could not be saved. Please, try again.'));
         }
-        $articles = $this->InventoryIssues->Articles->find('list', ['limit' => 200]);
+        $articles = $this->InventoryIssues->Articles->find('list');
         $this->set(compact('inventoryIssue', 'companies', 'articles', 'pageTitle'));
     }
 

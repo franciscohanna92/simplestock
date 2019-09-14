@@ -15,6 +15,9 @@
             <div class="col">
                 <?php echo $this->BootsCakeForm->control('date', ['required' => true, 'label' => 'Fecha de salida']); ?>
             </div>
+            <div class="col">
+                <?php echo $this->BootsCakeForm->control('building_site_id', ['options' => $buildingSites, 'required' => false, 'empty' => true]); ?>
+            </div>
 
             <div class="col-12 mt-4">
                 <div class="mb-2">
