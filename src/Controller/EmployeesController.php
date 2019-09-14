@@ -22,7 +22,7 @@ class EmployeesController extends AppController
     public function index()
     {
         $searchQuery = $this->request->getQuery('searchQuery');
-        $pageTitle = 'Listado employees';
+        $pageTitle = 'Personal';
         $this->paginate = [
             'contain' => ['Companies']
         ];
@@ -40,7 +40,7 @@ class EmployeesController extends AppController
      */
     public function view($id = null)
     {
-        $pageTitle = 'View employee';
+        $pageTitle = 'Detalle de personal';
         $employee = $this->Employees->get($id, [
             'contain' => ['Companies', 'InventoryIssues']
         ]);
@@ -55,7 +55,7 @@ class EmployeesController extends AppController
      */
     public function add()
     {
-        $pageTitle = 'Add employee';
+        $pageTitle = 'Agregar personal';
         $employee = $this->Employees->newEntity();
         if ($this->request->is('post')) {
             $employee = $this->Employees->patchEntity($employee, $this->request->getData());
@@ -81,7 +81,7 @@ class EmployeesController extends AppController
      */
     public function edit($id = null)
     {
-        $pageTitle = 'Edit employee';
+        $pageTitle = 'Editar personal';
         $employee = $this->Employees->get($id, [
             'contain' => []
         ]);
