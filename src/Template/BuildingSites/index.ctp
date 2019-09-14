@@ -67,11 +67,14 @@
                         <td><?= h($buildingSite->address) ?></td>
                         <td class="actions d-flex justify-content-between">
                             <div>
+                                <?= $this->Html->link(__('Ver'), ['action' => 'view', $buildingSite->id]) ?>
+                            </div>
+                            <div>
                                 <?= $this->Html->link(__('Editar'), ['action' => 'edit', $buildingSite->id]) ?>
                             </div>
                             <div>
                                 <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $buildingSite->id], ['confirm' =>
-                                    __('¿Seguro quieres eliminar este buildingSite?')]) ?>
+                                    __('¿Seguro quieres eliminar esta obra?')]) ?>
                             </div>
                         </td>
                     </tr>
