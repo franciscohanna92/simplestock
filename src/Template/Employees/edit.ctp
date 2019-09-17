@@ -12,10 +12,10 @@
             <?php echo $this->BootsCakeForm->control('name', ['required' => true, 'label' => 'Nombre']); ?>
         </div>
         <div class="col-12">
-            <?php echo $this->BootsCakeForm->control('surname', ['required' => true, 'label' => 'Apellido']); ?>
+            <?php echo $this->BootsCakeForm->control('lastname', ['required' => true, 'label' => 'Apellido']); ?>
         </div>
         <div class="col-12">
-            <?php echo $this->BootsCakeForm->control('cuil', ['required' => false, 'label' => 'CUIL']); ?>
+            <?php echo $this->BootsCakeForm->control('dni', ['required' => false, 'label' => 'DNI']); ?>
         </div>
         <div class="col-12">
             <?php echo $this->BootsCakeForm->control('phone', ['required' => false, 'label' => 'Teléfono']); ?>
@@ -28,6 +28,9 @@
         </div>
         <div class="col-12">
             <?php echo $this->BootsCakeForm->control('position', ['required' => false, 'label' => 'Cargo']); ?>
+        </div>
+        <div class="col-12">
+            <?php echo $this->BootsCakeForm->control('building_site_id', ['options' => $buildingSites, 'required' => false, 'label' => 'Obra actual']); ?>
         </div>
         <div class="col-12">
             <?php echo $this->BootsCakeForm->control('observations', ['required' => false, 'label' => 'Observaciones']); ?>

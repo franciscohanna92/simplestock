@@ -10,11 +10,11 @@
         <table class="table table-bordered">
             <tr>
                 <th scope="row"><?= __('Nombre completo') ?></th>
-                <td><?= h($employee->surname) ?>, <?= h($employee->name) ?></td>
+                <td><?= h($employee->lastname) ?>, <?= h($employee->name) ?></td>
             </tr>
             <tr>
-                <th scope="row"><?= __('CUIL') ?></th>
-                <td><?= h($employee->cuil) ?></td>
+                <th scope="row"><?= __('DNI') ?></th>
+                <td><?= h($employee->dni) ?></td>
             </tr>
             <tr>
                 <th scope="row"><?= __('Teleéfono') ?></th>
@@ -31,6 +31,10 @@
             <tr>
                 <th scope="row"><?= __('Cargo') ?></th>
                 <td><?= h($employee->position) ?></td>
+            </tr>
+            <tr>
+                <th scope="row"><?= __('Obra actual') ?></th>
+                <td><?= h($employee->building_site->name) ?></td>
             </tr>
             <tr>
                 <th scope="row"><?= __('Observaciones') ?></th>

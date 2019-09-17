@@ -10,6 +10,7 @@ use Cake\Validation\Validator;
  * Employees Model
  *
  * @property \App\Model\Table\CompaniesTable|\Cake\ORM\Association\BelongsTo $Companies
+ * @property \App\Model\Table\BuildingSitesTable|\Cake\ORM\Association\BelongsTo $BuildingSites
  * @property \App\Model\Table\InventoryIssuesTable|\Cake\ORM\Association\HasMany $InventoryIssues
  *
  * @method \App\Model\Entity\Employee get($primaryKey, $options = [])
@@ -39,8 +40,10 @@ class EmployeesTable extends Table
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Companies', [
-            'foreignKey' => 'company_id',
-            'joinType' => 'INNER'
+            'foreignKey' => 'company_id'
+        ]);
+        $this->belongsTo('BuildingSites', [
+            'foreignKey' => 'building_site_id'
         ]);
         $this->hasMany('InventoryIssues', [
             'foreignKey' => 'employee_id'
@@ -62,17 +65,19 @@ class EmployeesTable extends Table
         $validator
             ->scalar('name')
             ->maxLength('name', 255)
-            ->allowEmpty('name');
+            ->requirePresence('name', 'create')
+            ->notEmpty('name');
 
         $validator
-            ->scalar('surname')
-            ->maxLength('surname', 255)
-            ->allowEmpty('surname');
+            ->scalar('lastname')
+            ->maxLength('lastname', 255)
+            ->requirePresence('lastname', 'create')
+            ->notEmpty('lastname');
 
         $validator
-            ->scalar('cuil')
-            ->maxLength('cuil', 255)
-            ->allowEmpty('cuil');
+            ->scalar('dni')
+            ->maxLength('dni', 255)
+            ->allowEmpty('dni');
 
         $validator
             ->scalar('phone')
@@ -126,8 +131,8 @@ class EmployeesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['email']));
         $rules->add($rules->existsIn(['company_id'], 'Companies'));
+        $rules->add($rules->existsIn(['building_site_id'], 'BuildingSites'));
 
         return $rules;
     }
