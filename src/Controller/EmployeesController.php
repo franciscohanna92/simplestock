@@ -24,7 +24,7 @@ class EmployeesController extends AppController
         $searchQuery = $this->request->getQuery('searchQuery');
         $pageTitle = 'Personal';
         $this->paginate = [
-            'contain' => ['Companies']
+            'contain' => ['Companies', 'BuildingSites']
         ];
         $employees = $this->paginate($this->Employees);
 
@@ -42,7 +42,7 @@ class EmployeesController extends AppController
     {
         $pageTitle = 'Detalle de personal';
         $employee = $this->Employees->get($id, [
-            'contain' => ['Companies', 'InventoryIssues']
+            'contain' => ['Companies', 'BuildingSites']
         ]);
 
         $this->set(compact('employee', 'pageTitle'));
@@ -68,8 +68,8 @@ class EmployeesController extends AppController
             }
             $this->Flash->error(__('The employee could not be saved. Please, try again.'));
         }
-        $companies = $this->Employees->Companies->find('list', ['limit' => 200]);
-        $this->set(compact('employee', 'companies', 'pageTitle'));
+        $buildingSites = $this->Employees->BuildingSites->find('list');
+        $this->set(compact('employee', 'buildingSites', 'pageTitle'));
     }
 
     /**
@@ -94,8 +94,8 @@ class EmployeesController extends AppController
             }
             $this->Flash->error(__('The employee could not be saved. Please, try again.'));
         }
-        $companies = $this->Employees->Companies->find('list', ['limit' => 200]);
-        $this->set(compact('employee', 'companies', 'pageTitle'));
+        $buildingSites = $this->Employees->BuildingSites->find('list');
+        $this->set(compact('employee', 'buildingSites', 'pageTitle'));
     }
 
     /**

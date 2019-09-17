@@ -52,8 +52,9 @@
                 <thead>
                 <tr>
                     <th scope="col"><?= $this->Paginator->sort('name', 'Nombre') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('surname', 'Apellido') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('cuil', 'CUIL') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('lastname', 'Apellido') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('dni', 'DNI') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('building_site_id', 'Obra actual') ?></th>
                     <th scope="col" class="actions" width="150px"><?= __('Acciones') ?></th>
                 </tr>
                 </thead>
@@ -61,8 +62,15 @@
                 <?php foreach ($employees as $employee): ?>
                     <tr>
                         <td><?= h($employee->name) ?></td>
-                        <td><?= h($employee->surname) ?></td>
-                        <td><?= h($employee->cuil) ?></td>
+                        <td><?= h($employee->lastname) ?></td>
+                        <td><?= h($employee->dni) ?></td>
+                        <td>
+                            <?= $employee->has('building_site') ?
+                                $this->Html->link($employee
+                                    ->building_site->name, ['controller' =>
+                                    'BuildingSites', 'action' => 'view', $employee
+                                    ->building_site_id]) : '' ?>
+                        </td>
                         <td class="actions d-flex justify-content-between">
                             <div>
                                 <?= $this->Html->link(__('Ver'), ['action' => 'view', $employee->id]) ?>
