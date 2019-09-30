@@ -62,7 +62,7 @@ class EmployeesController extends AppController
             $employee['created_by'] = $this->Auth->user()['id'];
             $employee['company_id'] = $this->Auth->user()['company_id'];
             if ($this->Employees->save($employee)) {
-                $this->Flash->success(__('The employee has been saved.'));
+                $this->Flash->success(__('El personal ha sido guardado.'));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -88,7 +88,7 @@ class EmployeesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $employee = $this->Employees->patchEntity($employee, $this->request->getData());
             if ($this->Employees->save($employee)) {
-                $this->Flash->success(__('The employee has been saved.'));
+                $this->Flash->success(__('El personal ha sido guardado.'));
 
                 return $this->redirect(['action' => 'index']);
             }

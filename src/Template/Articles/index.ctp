@@ -54,7 +54,6 @@
                     <th scope="col"><?= $this->Paginator->sort('id', '#') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('name', 'Nombre') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('security_stock', 'Stock de seguridad') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('stock', 'Stock actual') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('internal_code', 'Cód. interno') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('provider_code', 'Cód. proveedor') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('unit_id', 'Uniddad de medida') ?></th>
@@ -68,7 +67,6 @@
                         <td><?= $this->Number->format($article->id) ?></td>
                         <td><?= h($article->name) ?></td>
                         <td><?= $this->Number->format($article->security_stock) ?></td>
-                        <td><?= $this->Number->format($article->stock) ?></td>
                         <td><?= h($article->internal_code) ?></td>
                         <td><?= h($article->provider_code) ?></td>
                         <td><?= $article->has('category') ? $article->unit['name'] : ''?>

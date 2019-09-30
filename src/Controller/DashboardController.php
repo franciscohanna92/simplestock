@@ -7,6 +7,7 @@ use App\Controller\AppController;
 /**
  * Dashboard Controller
  *
+ * @property \App\Model\Table\ArticlesTable $Articles
  *
  * @method \App\Model\Entity\Dashboard[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
@@ -20,9 +21,14 @@ class DashboardController extends AppController
      */
     public function index()
     {
+        $this->loadModel('Articles');
         $searchQuery = $this->request->getQuery('searchQuery');
-        $pageTitle = 'Dashboard';
+        $pageTitle = 'Stock';
 
-        $this->set(compact('pageTitle', 'searchQuery'));
+        $articles = $this->paginate($this->Articles->find('all', [
+            'contain' => ['Categories', 'Providers', 'Companies', 'Units']
+        ]));
+
+        $this->set(compact('pageTitle', 'articles', 'searchQuery'));
     }
 }

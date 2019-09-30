@@ -6,8 +6,10 @@
 ?>
 
 <div class="card card-default">
+    <div class="card-header d-print-none border-bottom">
+        <button onclick="print()" class="btn btn-warning float-right"><i class="fa fa-print"></i> Imprimir</button>
+    </div>
     <div class="card-body row">
-
         <div class="col mb-3 pl-4">
             <div class="d-flex justify-content-between">
                 <h3 class="font-weight-light">Entrada # <?= h($inventoryReceipt->id) ?></h3>

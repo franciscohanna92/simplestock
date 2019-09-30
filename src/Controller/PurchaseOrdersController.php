@@ -61,7 +61,7 @@ $pageTitle = 'Add purchaseOrder';
             $purchaseOrder['created_by'] = $this->Auth->user()['id'];
             $purchaseOrder['company_id'] = $this->Auth->user()['company_id'];
             if ($this->PurchaseOrders->save($purchaseOrder)) {
-                $this->Flash->success(__('The purchase order has been saved.'));
+                $this->Flash->success(__('El pedido ha sido guardado.'));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -90,7 +90,7 @@ $pageTitle = 'Edit purchaseOrder';
         if ($this->request->is(['patch', 'post', 'put'])) {
             $purchaseOrder = $this->PurchaseOrders->patchEntity($purchaseOrder, $this->request->getData());
             if ($this->PurchaseOrders->save($purchaseOrder)) {
-                $this->Flash->success(__('The purchase order has been saved.'));
+                $this->Flash->success(__('El pedido ha sido guardado.'));
 
                 return $this->redirect(['action' => 'index']);
             }

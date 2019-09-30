@@ -49,7 +49,7 @@ $cakeDescription = 'SimpleStock · Gestión de tu inventario de manera sencilla'
     <?= $this->element('sidebar'); ?>
     <section>
         <div class="container content-wrapper pt-3 pt-md-5">
-            <h1 class="font-weight-light mb-2 content-heading">
+            <h1 class="font-weight-light mb-2 content-heading d-print-none">
                 <?= $pageTitle ?>
             </h1>
             <?= $this->Flash->render() ?>

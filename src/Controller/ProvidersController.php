@@ -63,7 +63,7 @@ class ProvidersController extends AppController
             $provider['created_by'] = $this->Auth->user()['id'];
             $provider['company_id'] = $this->Auth->user()['company_id'];
             if ($this->Providers->save($provider)) {
-                $this->Flash->success(__('The provider has been saved.'));
+                $this->Flash->success(__('El proveedor ha sido guardado.'));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -89,7 +89,7 @@ class ProvidersController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $provider = $this->Providers->patchEntity($provider, $this->request->getData());
             if ($this->Providers->save($provider)) {
-                $this->Flash->success(__('The provider has been saved.'));
+                $this->Flash->success(__('El proveedor ha sido guardado.'));
 
                 return $this->redirect(['action' => 'index']);
             }
