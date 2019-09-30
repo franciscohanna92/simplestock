@@ -67,7 +67,7 @@ class InventoryIssuesController extends AppController
             }
 
             if ($this->InventoryIssues->save($inventoryIssue)) {
-                $this->Flash->success(__('The inventory receipt has been saved.'));
+                $this->Flash->success(__('La salida ha sido guardada.'));
 
 
                 return $this->redirect(['action' => 'index']);
@@ -95,7 +95,7 @@ class InventoryIssuesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $inventoryIssue = $this->InventoryIssues->patchEntity($inventoryIssue, $this->request->getData());
             if ($this->InventoryIssues->save($inventoryIssue)) {
-                $this->Flash->success(__('The inventory receipt has been saved.'));
+                $this->Flash->success(__('La salida ha sido guardada.'));
 
                 return $this->redirect(['action' => 'index']);
             }

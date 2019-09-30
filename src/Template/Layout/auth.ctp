@@ -35,9 +35,10 @@ $cakeDescription = 'SimpleStock · Gestión de tu inventario de manera sencilla'
     <?= $this->fetch('script') ?>
 </head>
 <body class="layout-fixed">
-<?= $this->Flash->render() ?>
 <div class="wrapper">
     <div class="block-center mt-4 wd-xxl">
+        <?= $this->Flash->render() ?>
+
         <?= $this->fetch('content') ?>
     </div>
     <div class="p-3 text-center">

@@ -1,4 +1,4 @@
-<header class="topnavbar-wrapper">
+<header class="topnavbar-wrapper d-print-none">
     <!-- START Top Navbar-->
     <nav class="navbar topnavbar" role="navigation">
         <!-- START navbar header-->
@@ -45,16 +45,11 @@
         <!-- END Left navbar-->
         <!-- START Right Navbar-->
         <ul class="navbar-nav flex-row">
-            <!--<li class="nav-item">
-                <a class="nav-link" href="#" data-search-open="">
-                    <em class="icon-magnifier"></em>
+            <li class="nav-item">
+                <a class="nav-link" href="/users/logout">
+                    Cerrar sesión
                 </a>
             </li>
-            <li class="nav-item d-none d-md-block">
-                <a class="nav-link" href="#" data-toggle-fullscreen="">
-                    <em class="fa fa-expand"></em>
-                </a>
-            </li>-->
             <li class="nav-item dropdown dropdown-list">
                 <!--<a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-toggle="dropdown">
                     <em class="icon-bell"></em>

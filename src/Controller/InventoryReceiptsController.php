@@ -68,7 +68,7 @@ class InventoryReceiptsController extends AppController
             }
 
             if ($this->InventoryReceipts->save($inventoryReceipt)) {
-                $this->Flash->success(__('The inventory receipt has been saved.'));
+                $this->Flash->success(__('La entrada ha sido guardada.'));
 
 
                 return $this->redirect(['action' => 'index']);
@@ -97,7 +97,7 @@ class InventoryReceiptsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $inventoryReceipt = $this->InventoryReceipts->patchEntity($inventoryReceipt, $this->request->getData());
             if ($this->InventoryReceipts->save($inventoryReceipt)) {
-                $this->Flash->success(__('The inventory receipt has been saved.'));
+                $this->Flash->success(__('La entrada ha sido guardada.'));
 
                 return $this->redirect(['action' => 'index']);
             }

@@ -1,4 +1,4 @@
-<aside class="aside">
+<aside class="aside d-print-none">
     <!-- START Sidebar (left)-->
     <div class="aside-inner">
         <nav class="sidebar" data-sidebar-anyclick-close="">
@@ -26,16 +26,17 @@
                 </li>
                 <!-- END user info-->
 
+                <li class="mt-2">
+                    <a href="/dashboard">
+                        <em class="fa fa-cubes"></em>
+                        <span>Stock</span>
+                    </a>
+                </li>
+
                 <!--INVENTARIO-->
                 <li class="nav-heading ">
                     <span>Inventario</span>
                 </li>
-                <!--<li class="">
-                    <a class="text-muted">
-                        <em class="fa fa-cubes"></em>
-                        <span>Stock</span>
-                    </a>
-                </li>-->
                 <li>
                     <a href="/inventory-receipts">
                         <em class="fa fa-sign-in"></em>
@@ -91,17 +92,17 @@
                 </li>
 
                 <!--SISTEMA-->
-                <!--<li class="nav-heading ">
+                <li class="nav-heading ">
                     <span>Sistema</span>
-                </li>-->
-                <!--<li class="">
-                    <a class="text-muted">
+                </li>
+                <li>
+                    <a href="/users">
                         <em class="fa fa-users"></em>
                         <span>Usuarios</span>
                     </a>
-                </li>-->
-                <!--<li class="">
-                    <a class="text-muted">
+                </li>
+                <!--<li>
+                    <a href="/roles">
                         <em class="fa fa-certificate"></em>
                         <span>Roles</span>
                     </a>

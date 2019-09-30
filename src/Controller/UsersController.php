@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Auth\DefaultPasswordHasher;
 
 /**
  * Users Controller
@@ -17,7 +18,7 @@ class UsersController extends AppController
     public function initialize()
     {
         parent::initialize();
-        $this->Auth->allow(['logout', 'add']);
+        $this->Auth->allow(['logout']);
     }
 
     /**
@@ -28,7 +29,7 @@ class UsersController extends AppController
     public function index()
     {
         $searchQuery = $this->request->getQuery('searchQuery');
-        $pageTitle = 'Listado users';
+        $pageTitle = 'Usuarios';
         $this->paginate = [
             'contain' => ['Companies']
         ];
@@ -66,8 +67,9 @@ class UsersController extends AppController
         $user->company_id = 1;
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
+            $user['company_id'] = $this->Auth->user()['company_id'];
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('El usuario ha sido guardado.'));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -86,21 +88,23 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
-        $pageTitle = 'Edit user';
+        $pageTitle = 'Editar usuario';
         $user = $this->Users->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
+            $data = $this->request->getData();
+            if(empty($data['password'])){
+                unset($data['password']);
+            }
+            $user = $this->Users->patchEntity($user, $data);
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
-
+                $this->Flash->success(__('El usuario ha sido guardado.'));
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            $this->Flash->error(__('El usuario no pudo ser guardado. Intentá de nuevo.'));
         }
-        $companies = $this->Users->Companies->find('list', ['limit' => 200]);
-        $this->set(compact('user', 'companies', 'pageTitle'));
+        $this->set(compact('user', 'pageTitle'));
     }
 
     /**
@@ -147,7 +151,6 @@ class UsersController extends AppController
      */
     public function logout()
     {
-        $this->Flash->success('You are now logged out.');
         return $this->redirect($this->Auth->logout());
     }
 }

@@ -28,9 +28,9 @@ class ArticlesController extends AppController
         ];
         $articles = $this->paginate($this->Articles->find()->where([
             'OR' => [
-                'Articles.name LIKE' => '%'.$searchQuery.'%',
-                'Articles.internal_code LIKE' => '%'.$searchQuery.'%',
-                'Articles.provider_code LIKE' => '%'.$searchQuery.'%',
+                'Articles.name LIKE' => '%' . $searchQuery . '%',
+                'Articles.internal_code LIKE' => '%' . $searchQuery . '%',
+                'Articles.provider_code LIKE' => '%' . $searchQuery . '%',
             ]
         ]));
 
@@ -68,17 +68,17 @@ class ArticlesController extends AppController
             $article['created_by'] = $this->Auth->user()['id'];
             $article['company_id'] = $this->Auth->user()['company_id'];
             if ($this->Articles->save($article)) {
-                $this->Flash->success(__('The article has been saved.'));
+                $this->Flash->success(__('El artículo ha sido guardado.'));
 
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The article could not be saved. Please, try again.'));
         }
         $categories = $this->Articles->Categories->find('list');
-        $units  = $this->Articles->Units->find('list');
+        $units = $this->Articles->Units->find('list');
         $providers = $this->Articles->Providers->find('list');
         $companies = $this->Articles->Companies->find('list');
-        $this->set(compact('article', 'categories', 'providers', 'companies','units', 'pageTitle'));
+        $this->set(compact('article', 'categories', 'providers', 'companies', 'units', 'pageTitle'));
     }
 
     /**
@@ -97,7 +97,7 @@ class ArticlesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $article = $this->Articles->patchEntity($article, $this->request->getData());
             if ($this->Articles->save($article)) {
-                $this->Flash->success(__('The article has been saved.'));
+                $this->Flash->success(__('El artículo ha sido guardado.'));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -106,7 +106,7 @@ class ArticlesController extends AppController
         $categories = $this->Articles->Categories->find('list');
         $providers = $this->Articles->Providers->find('list');
         $companies = $this->Articles->Companies->find('list');
-        $units  = $this->Articles->Units->find('list');
+        $units = $this->Articles->Units->find('list');
         $this->set(compact('article', 'categories', 'providers', 'companies', 'units', 'pageTitle'));
     }
 
