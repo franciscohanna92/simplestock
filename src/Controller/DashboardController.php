@@ -25,9 +25,18 @@ class DashboardController extends AppController
         $searchQuery = $this->request->getQuery('searchQuery');
         $pageTitle = 'Stock';
 
+        $lowStockOnly = $this->request->getQuery('lowStockOnly');
+
+
         $articles = $this->paginate($this->Articles->find('all', [
             'contain' => ['Categories', 'Providers', 'Companies', 'Units']
-        ]));
+        ]))->toArray();
+
+        if($lowStockOnly) {
+            $articles = array_filter($articles, function($elem) {
+               return $elem['low_stock'];
+            });
+        }
 
         $this->set(compact('pageTitle', 'articles', 'searchQuery'));
     }

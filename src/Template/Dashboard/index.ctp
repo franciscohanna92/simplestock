@@ -9,7 +9,7 @@
     <div class="card card-header m-0">
         <div class="row">
             <div class="col-12 col-md-4 col-lg-3">
-                <form class="m-0" action="/articles" method="get">
+                <form class="m-0" action="/dashboard" method="get">
                     <div class="input-group">
                         <div class="border-right-0 input-group-prepend">
                             <span class="input-group-text bg-white border-right-0 input-group-text pr-0 pl-2">

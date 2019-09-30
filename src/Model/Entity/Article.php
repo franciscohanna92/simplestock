@@ -33,6 +33,8 @@ use Cake\ORM\Entity;
 class Article extends Entity
 {
 
+    protected $_virtual = ['low_stock'];
+
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
      *
@@ -64,4 +66,9 @@ class Article extends Entity
         'inventory_receipts' => true,
         'purchase_orders' => true
     ];
+
+    protected function _getLowStock()
+    {
+        return $this->stock < $this->security_stock;
+    }
 }
