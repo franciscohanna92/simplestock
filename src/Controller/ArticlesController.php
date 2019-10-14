@@ -78,6 +78,7 @@ class ArticlesController extends AppController
         $units = $this->Articles->Units->find('list');
         $providers = $this->Articles->Providers->find('list');
         $companies = $this->Articles->Companies->find('list');
+
         $this->set(compact('article', 'categories', 'providers', 'companies', 'units', 'pageTitle'));
     }
 

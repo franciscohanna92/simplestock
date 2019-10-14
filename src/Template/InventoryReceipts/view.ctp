@@ -15,7 +15,9 @@
                 <h3 class="font-weight-light">Entrada # <?= h($inventoryReceipt->id) ?></h3>
                 <div class="font-italic"><?= h($inventoryReceipt->date) ?></div>
             </div>
-            <div class="font-weight-light"><?= h($inventoryReceipt->descriptive_name) ?></div>
+            <div class="font-weight-light">Descripción: <?= h($inventoryReceipt->descriptive_name) ?></div>
+            <div class="font-weight-light">Proveedor: <?= h($inventoryReceipt->provider['name']) ?></div>
+            <div class="font-weight-light">Recibió: <?= h($inventoryReceipt->employee['full_name']) ?></div>
         </div>
         <div class="col-12">
             <table class="table table-hover">

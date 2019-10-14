@@ -15,7 +15,9 @@
                 <h3 class="font-weight-light">Salida # <?= h($inventoryIssue->id) ?></h3>
                 <div class="font-italic"><?= h($inventoryIssue->date) ?></div>
             </div>
-            <div class="font-weight-light"><?= h($inventoryIssue->descriptive_name) ?></div>
+            <div class="font-weight-light">Descripción: <?= h($inventoryIssue->descriptive_name) ?></div>
+            <div class="font-weight-light">Obra destino: <?= h($inventoryIssue->building_site['name']) ?></div>
+            <div class="font-weight-light">Se entregó a: <?= h($inventoryIssue->employee['full_name']) ?></div>
         </div>
 
         <div class="col-12">

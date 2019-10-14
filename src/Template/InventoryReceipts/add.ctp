@@ -6,7 +6,7 @@
 ?>
 
 <section ng-controller="InventoryReceiptsController as vm">
-    <?= $this->BootsCakeForm->create($inventoryReceipt, [ 'autocomplete' => 'off' ]) ?>
+    <?= $this->BootsCakeForm->create($inventoryReceipt, ['autocomplete' => 'off']) ?>
     <div class="card card-default">
         <div class="card-body row">
             <div class="col">
@@ -14,6 +14,14 @@
             </div>
             <div class="col">
                 <?php echo $this->BootsCakeForm->control('date', ['required' => true, 'label' => 'Fecha de entrada']); ?>
+            </div>
+
+            <div class="col">
+                <?php echo $this->BootsCakeForm->control('provider_id', ['options' => $providers, 'required' => false, 'label' => 'Proveedor', 'empty' => true]); ?>
+            </div>
+
+            <div class="col">
+                <?php echo $this->BootsCakeForm->control('employee_id', ['options' => $employees, 'required' => false, 'label' => 'Recibe', 'empty' => true]); ?>
             </div>
 
             <div class="col-12 mt-4">

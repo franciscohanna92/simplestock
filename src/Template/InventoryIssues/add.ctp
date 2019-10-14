@@ -16,7 +16,10 @@
                 <?php echo $this->BootsCakeForm->control('date', ['required' => true, 'label' => 'Fecha de salida']); ?>
             </div>
             <div class="col">
-                <?php echo $this->BootsCakeForm->control('building_site_id', ['options' => $buildingSites, 'required' => false, 'empty' => true]); ?>
+                <?php echo $this->BootsCakeForm->control('building_site_id', ['options' => $buildingSites, 'required' => false, 'empty' => true, 'label' => 'Obra destino']); ?>
+            </div>
+            <div class="col">
+                <?php echo $this->BootsCakeForm->control('employee_id', ['options' => $employees, 'required' => false, 'label' => 'Se entrega a', 'empty' => true]); ?>
             </div>
 
             <div class="col-12 mt-4">

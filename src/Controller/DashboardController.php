@@ -39,6 +39,6 @@ class DashboardController extends AppController
             ]));
         }
 
-        $this->set(compact('pageTitle', 'articles', 'searchQuery'));
+        $this->set(compact('pageTitle', 'articles', 'lowStockOnly','searchQuery'));
     }
 }

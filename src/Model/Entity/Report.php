@@ -4,23 +4,21 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * InventoryReceipt Entity
+ * Report Entity
  *
  * @property int $id
- * @property \Cake\I18n\FrozenDate $date
- * @property string $descriptive_name
- * @property int|null $providers_id
+ * @property \Cake\I18n\FrozenDate $date_from
+ * @property \Cake\I18n\FrozenDate $date_to
+ * @property string $type
  * @property int|null $company_id
  * @property \Cake\I18n\FrozenTime|null $created_at
  * @property int|null $created_by
  * @property \Cake\I18n\FrozenTime|null $updated_at
  * @property int|null $updated_by
  *
- * @property \App\Model\Entity\Provider $provider
  * @property \App\Model\Entity\Company $company
- * @property \App\Model\Entity\Article[] $articles
  */
-class InventoryReceipt extends Entity
+class Report extends Entity
 {
 
     /**
@@ -33,18 +31,14 @@ class InventoryReceipt extends Entity
      * @var array
      */
     protected $_accessible = [
-        'date' => true,
-        'descriptive_name' => true,
-        'provider_id' => true,
-        'employee_id' => true,
+        'date_from' => true,
+        'date_to' => true,
+        'type' => true,
         'company_id' => true,
         'created_at' => true,
         'created_by' => true,
         'updated_at' => true,
         'updated_by' => true,
-        'provider' => true,
-        'employee' => true,
-        'company' => true,
-        'articles' => true
+        'company' => true
     ];
 }

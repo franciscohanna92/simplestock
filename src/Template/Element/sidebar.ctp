@@ -27,7 +27,7 @@
                 <!-- END user info-->
 
                 <li class="mt-2">
-                    <a href="/dashboard">
+                    <a href="/stock">
                         <em class="fa fa-cubes"></em>
                         <span>Stock</span>
                     </a>
@@ -47,6 +47,12 @@
                     <a href="/inventory-issues">
                         <em class="fa fa-sign-out"></em>
                         <span>Salidas</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/reports">
+                        <em class="fa fa-file-text-o"></em>
+                        <span>Informes</span>
                     </a>
                 </li>
                 <!--<li class="">
