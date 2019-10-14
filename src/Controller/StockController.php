@@ -5,13 +5,13 @@ namespace App\Controller;
 use App\Controller\AppController;
 
 /**
- * Dashboard Controller
+ * Stock Controller
  *
  * @property \App\Model\Table\ArticlesTable $Articles
  *
- * @method \App\Model\Entity\Dashboard[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+ * @method \App\Model\Entity\Stock[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class DashboardController extends AppController
+class StockController extends AppController
 {
 
     /**
