@@ -103,9 +103,9 @@ class InventoryReceiptsController extends AppController
             }
             $this->Flash->error(__('The inventory receipt could not be saved. Please, try again.'));
         }
-        $providers = $this->InventoryReceipts->Providers->find('list', ['limit' => 200]);
-        $companies = $this->InventoryReceipts->Companies->find('list', ['limit' => 200]);
-        $articles = $this->InventoryReceipts->Articles->find('list', ['limit' => 200]);
+        $providers = $this->InventoryReceipts->Providers->find('list');
+        $companies = $this->InventoryReceipts->Companies->find('list');
+        $articles = $this->InventoryReceipts->Articles->find('list');
         $this->set(compact('inventoryReceipt', 'providers', 'companies', 'articles', 'pageTitle'));
     }
 

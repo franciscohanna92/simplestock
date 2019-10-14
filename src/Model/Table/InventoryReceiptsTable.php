@@ -40,7 +40,7 @@ class InventoryReceiptsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Providers', [
-            'foreignKey' => 'providers_id'
+            'foreignKey' => 'provider_id'
         ]);
         $this->belongsTo('Companies', [
             'foreignKey' => 'company_id'

@@ -35,7 +35,7 @@ class InventoryReceipt extends Entity
     protected $_accessible = [
         'date' => true,
         'descriptive_name' => true,
-        'providers_id' => true,
+        'provider_id' => true,
         'company_id' => true,
         'created_at' => true,
         'created_by' => true,

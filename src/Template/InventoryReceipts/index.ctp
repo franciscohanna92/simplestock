@@ -53,6 +53,7 @@
                 <tr>
                     <th scope="col"><?= $this->Paginator->sort('id', '#') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('descriptive_name', 'Nombre descriptivo') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('provider_id', 'Proveedor') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('date', 'Fecha de entrada') ?></th>
                     <th scope="col" class="actions" width="150px"><?= __('Acciones') ?></th>
                 </tr>
@@ -62,6 +63,13 @@
                     <tr>
                         <td><?= h($inventoryReceipt->id) ?></td>
                         <td><?= h($inventoryReceipt->descriptive_name) ?></td>
+                        <td><?= $inventoryReceipt->has('provider') ?
+                                $this->Html->link($inventoryReceipt
+                                    ->provider->name, ['controller' =>
+                                    'Providers', 'action' => 'view', $inventoryReceipt
+                                    ->provider
+                                    ->id]) : '' ?>
+                        </td>
                         <td><?= h($inventoryReceipt->date) ?></td>
 
                         <td class="actions d-flex justify-content-between">
