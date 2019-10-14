@@ -50,7 +50,7 @@ $cakeDescription = 'SimpleStock · Gestión de tu inventario de manera sencilla'
     <section>
         <div class="container content-wrapper pt-3 pt-md-5">
             <h1 class="font-weight-light mb-2 content-heading d-print-none">
-                <?= $pageTitle ?>
+                <?= isset($pageTitle) ? $pageTitle : ''  ?>
             </h1>
             <?= $this->Flash->render() ?>
             <div class="row">

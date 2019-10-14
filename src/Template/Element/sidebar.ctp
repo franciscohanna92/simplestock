@@ -49,6 +49,12 @@
                         <span>Salidas</span>
                     </a>
                 </li>
+                <li>
+                    <a href="/reports">
+                        <em class="fa fa-file-text-o"></em>
+                        <span>Informes</span>
+                    </a>
+                </li>
                 <!--<li class="">
                     <a class="text-muted">
                         <em class="fa fa-list-ol"></em>
