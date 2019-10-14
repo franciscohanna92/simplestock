@@ -36,12 +36,14 @@ class InventoryReceipt extends Entity
         'date' => true,
         'descriptive_name' => true,
         'provider_id' => true,
+        'employee_id' => true,
         'company_id' => true,
         'created_at' => true,
         'created_by' => true,
         'updated_at' => true,
         'updated_by' => true,
         'provider' => true,
+        'employee' => true,
         'company' => true,
         'articles' => true
     ];

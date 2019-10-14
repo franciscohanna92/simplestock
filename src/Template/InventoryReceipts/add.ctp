@@ -20,6 +20,10 @@
                 <?php echo $this->BootsCakeForm->control('provider_id', ['options' => $providers, 'required' => false, 'label' => 'Proveedor', 'empty' => true]); ?>
             </div>
 
+            <div class="col">
+                <?php echo $this->BootsCakeForm->control('employee_id', ['options' => $employees, 'required' => false, 'label' => 'Recibe', 'empty' => true]); ?>
+            </div>
+
             <div class="col-12 mt-4">
                 <div class="mb-2">
                     <label class="mr-3">Artículos</label>

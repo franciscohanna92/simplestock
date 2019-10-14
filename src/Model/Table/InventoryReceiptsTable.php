@@ -10,6 +10,7 @@ use Cake\Validation\Validator;
  * InventoryReceipts Model
  *
  * @property \App\Model\Table\ProvidersTable|\Cake\ORM\Association\BelongsTo $Providers
+ * @property \App\Model\Table\EmployeesTable|\Cake\ORM\Association\BelongsTo $Employees
  * @property \App\Model\Table\CompaniesTable|\Cake\ORM\Association\BelongsTo $Companies
  * @property \App\Model\Table\ArticlesTable|\Cake\ORM\Association\BelongsToMany $Articles
  *
@@ -41,6 +42,9 @@ class InventoryReceiptsTable extends Table
 
         $this->belongsTo('Providers', [
             'foreignKey' => 'provider_id'
+        ]);
+        $this->belongsTo('Employees', [
+            'foreignKey' => 'employee_id'
         ]);
         $this->belongsTo('Companies', [
             'foreignKey' => 'company_id'
@@ -103,7 +107,8 @@ class InventoryReceiptsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['providers_id'], 'Providers'));
+        $rules->add($rules->existsIn(['provider_id'], 'Providers'));
+        $rules->add($rules->existsIn(['employee_id'], 'Employees'));
         $rules->add($rules->existsIn(['company_id'], 'Companies'));
 
         return $rules;

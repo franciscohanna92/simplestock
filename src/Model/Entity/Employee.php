@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
@@ -57,4 +58,10 @@ class Employee extends Entity
         'building_site' => true,
         'inventory_issues' => true
     ];
+
+    protected function _getFullName()
+    {
+        return
+            $this->_properties['lastname'] . ', ' . $this->_properties['name'];
+    }
 }
