@@ -91,6 +91,12 @@
                     </a>
                 </li>
                 <li class="">
+                    <a href="/clients">
+                        <em class="fa fa-handshake-o"></em>
+                        <span>Clientes</span>
+                    </a>
+                </li>
+                <li class="">
                     <a href="/employees">
                         <em class="fa fa-male"></em>
                         <span>Personal</span>
