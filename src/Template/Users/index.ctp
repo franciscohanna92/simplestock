@@ -15,28 +15,28 @@
     <div class="card card-header m-0">
         <div class="row">
             <div class="col-12 col-md-4 col-lg-3">
-                <!--<form class="m-0" action="/users" method="get">
+                <form class="m-0" action="/users" method="get">
                     <div class="input-group">
                         <div class="border-right-0 input-group-prepend">
                             <span class="input-group-text bg-white border-right-0 input-group-text pr-0 pl-2">
                                 <i class="fa fa-search text-muted"></i>
                             </span>
                         </div>
-                        <input class="form-control border-left-0 <?/*= $searchQuery != '' ? 'border-right-0' : '' */?>"
+                        <input class="form-control border-left-0 <?= $searchQuery != '' ? 'border-right-0' : '' ?>"
                                type="text"
                                name="searchQuery"
                                placeholder="Buscar..."
-                               value="<?/*= $searchQuery; */?>"
+                               value="<?= $searchQuery; ?>"
                                required>
-                        <?php /*if ($searchQuery != ''): */?>
+                        <?php if ($searchQuery != ''): ?>
                             <div class="input-group-append">
                                 <a href="/users" class="bg-white input-group-text px-2 py-0">
                                     <span style="line-height: 33px;" class="text-primary">✕</span>
                                 </a>
                             </div>
-                        <?php /*endif; */?>
+                        <?php endif; ?>
                     </div>
-                </form>-->
+                </form>
             </div>
 
             <div class="col-12 offset-md-4 col-md-4 offset-lg-6 col-lg-3">

@@ -26,7 +26,14 @@ class ClientsController extends AppController
         $this->paginate = [
             'contain' => ['Companies']
         ];
-        $clients = $this->paginate($this->Clients);
+        $clients = $this->paginate($this->Clients->find()->where([
+            'OR' => [
+                'Clients.name LIKE' => '%' . $searchQuery . '%',
+                'Clients.address LIKE' => '%' . $searchQuery . '%',
+                'Clients.phone LIKE' => '%' . $searchQuery . '%',
+                'Clients.cuit LIKE' => '%' . $searchQuery . '%'
+            ]
+        ]));
 
         $this->set(compact('clients', 'pageTitle', 'searchQuery'));
     }

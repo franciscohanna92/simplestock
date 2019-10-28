@@ -26,7 +26,12 @@ class BuildingSitesController extends AppController
         $this->paginate = [
             'contain' => ['Companies']
         ];
-        $buildingSites = $this->paginate($this->BuildingSites);
+        $buildingSites = $this->paginate($this->BuildingSites->find()->where([
+            'OR' => [
+                'BuildingSites.name LIKE' => '%' . $searchQuery . '%',
+                'BuildingSites.address LIKE' => '%' . $searchQuery . '%'
+            ]
+        ]));
 
         $this->set(compact('buildingSites', 'pageTitle', 'searchQuery'));
     }

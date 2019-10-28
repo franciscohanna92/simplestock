@@ -26,7 +26,14 @@ class InventoryReceiptsController extends AppController
         $this->paginate = [
             'contain' => ['Providers', 'Companies', 'Employees']
         ];
-        $inventoryReceipts = $this->paginate($this->InventoryReceipts);
+        $inventoryReceipts = $this->paginate($this->InventoryReceipts->find()->where([
+            'OR' => [
+                'InventoryReceipts.descriptive_name LIKE' => '%' . $searchQuery . '%',
+                'Providers.name LIKE' => '%' . $searchQuery . '%',
+                'Employees.name LIKE' => '%' . $searchQuery . '%',
+                'Employees.lastname LIKE' => '%' . $searchQuery . '%',
+            ]
+        ]));
 
         $this->set(compact('inventoryReceipts', 'pageTitle', 'searchQuery'));
     }

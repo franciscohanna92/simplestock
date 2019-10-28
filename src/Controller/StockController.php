@@ -31,11 +31,14 @@ class StockController extends AppController
             $articles = $this->paginate($this->Articles->find('all', [
                 'contain' => ['Categories', 'Providers', 'Companies', 'Units']
             ])->where([
-                'Articles.stock < Articles.security_stock'
+                'Articles.stock < Articles.security_stock',
+                'Articles.name LIKE' => '%' . $searchQuery . '%'
             ]));
         } else {
             $articles = $this->paginate($this->Articles->find('all', [
                 'contain' => ['Categories', 'Providers', 'Companies', 'Units']
+            ])->where([
+                'Articles.name LIKE' => '%' . $searchQuery . '%'
             ]));
         }
 

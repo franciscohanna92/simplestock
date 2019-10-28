@@ -26,7 +26,14 @@ class InventoryIssuesController extends AppController
         $this->paginate = [
             'contain' => ['Companies', 'BuildingSites', 'Employees']
         ];
-        $inventoryIssues = $this->paginate($this->InventoryIssues);
+        $inventoryIssues = $this->paginate($this->InventoryIssues->find()->where([
+            'OR' => [
+                'InventoryIssues.descriptive_name LIKE' => '%' . $searchQuery . '%',
+                'BuildingSites.name LIKE' => '%' . $searchQuery . '%',
+                'Employees.name LIKE' => '%' . $searchQuery . '%',
+                'Employees.lastname LIKE' => '%' . $searchQuery . '%',
+            ]
+        ]));
         $this->set(compact('inventoryIssues', 'pageTitle', 'searchQuery'));
     }
 
