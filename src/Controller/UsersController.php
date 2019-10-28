@@ -33,7 +33,11 @@ class UsersController extends AppController
         $this->paginate = [
             'contain' => ['Companies']
         ];
-        $users = $this->paginate($this->Users);
+        $users = $this->paginate($this->Users->find()->where([
+            'OR' => [
+                'Users.email LIKE' => '%' . $searchQuery . '%',
+            ]
+        ]));
 
         $this->set(compact('users', 'pageTitle', 'searchQuery'));
     }
@@ -94,7 +98,7 @@ class UsersController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $data = $this->request->getData();
-            if(empty($data['password'])){
+            if (empty($data['password'])) {
                 unset($data['password']);
             }
             $user = $this->Users->patchEntity($user, $data);

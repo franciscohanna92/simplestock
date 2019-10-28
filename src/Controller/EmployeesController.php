@@ -26,7 +26,14 @@ class EmployeesController extends AppController
         $this->paginate = [
             'contain' => ['Companies', 'BuildingSites']
         ];
-        $employees = $this->paginate($this->Employees);
+        $employees = $this->paginate($this->Employees->find()->where([
+            'OR' => [
+                'Employees.name LIKE' => '%' . $searchQuery . '%',
+                'Employees.lastname LIKE' => '%' . $searchQuery . '%',
+                'Employees.dni LIKE' => '%' . $searchQuery . '%',
+                'BuildingSites.name LIKE' => '%' . $searchQuery . '%'
+            ]
+        ]));
 
         $this->set(compact('employees', 'pageTitle', 'searchQuery'));
     }

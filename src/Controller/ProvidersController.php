@@ -26,7 +26,14 @@ class ProvidersController extends AppController
         $this->paginate = [
             'contain' => ['Cities', 'Companies']
         ];
-        $providers = $this->paginate($this->Providers);
+        $providers = $this->paginate($this->Providers->find()->where([
+            'OR' => [
+                'Providers.name LIKE' => '%' . $searchQuery . '%',
+                'Providers.email LIKE' => '%' . $searchQuery . '%',
+                'Providers.phone LIKE' => '%' . $searchQuery . '%',
+                'Providers.cuit LIKE' => '%' . $searchQuery . '%',
+            ]
+        ]));
 
         $this->set(compact('providers', 'pageTitle', 'searchQuery'));
     }

@@ -9,8 +9,8 @@
     <div class="card card-header m-0">
         <div class="row">
             <div class="col">
-                <form class="m-0" action="/stock" method="get">
-                    <div class="input-group">
+                <form class="d-flex m-0" action="/stock" method="get">
+                    <div class="input-group col">
                         <div class="border-right-0 input-group-prepend">
                             <span class="input-group-text bg-white border-right-0 input-group-text pr-0 pl-2">
                                 <i class="fa fa-search text-muted"></i>
@@ -24,28 +24,22 @@
                                required>
                         <?php if ($searchQuery != ''): ?>
                             <div class="input-group-append">
-                                <a href="/articles" class="bg-white input-group-text px-2 py-0">
+                                <a href="/stock" class="bg-white input-group-text px-2 py-0">
                                     <span style="line-height: 33px;" class="text-primary">✕</span>
                                 </a>
                             </div>
                         <?php endif; ?>
                     </div>
-
-                </form>
-            </div>
-
-            <div class="col">
-                <form class="m-0" action="/stock" method="get">
-                        <label for="lowStockOnly" class="m-0 align-middle mt-2">
-                            <input onchange="this.form.submit()"
-                                   type="checkbox"
-                                   name="lowStockOnly"
-                                <?php if($lowStockOnly):?>
-                                    checked
-                                <?php endif; ?>
-                                   id="lowStockOnly">
-                            Mostrar solo stock bajo
-                        </label>
+                    <label for="lowStockOnly" class="m-0 align-middle mt-2">
+                        <input onchange="this.form.submit()"
+                               type="checkbox"
+                               name="lowStockOnly"
+                            <?php if($lowStockOnly):?>
+                                checked
+                            <?php endif; ?>
+                               id="lowStockOnly">
+                        Mostrar solo stock bajo
+                    </label>
                 </form>
             </div>
 
