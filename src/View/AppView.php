@@ -36,6 +36,8 @@ class AppView extends View
      */
     public function initialize()
     {
+        parent::initialize();
+        $this->loadHelper('Roles');
         $this->loadHelper('BootsCake.BootsCakeFlash');
         $this->loadHelper('BootsCake.BootsCakeForm');
         $this->loadHelper('BootsCake.BootsCakeModal');

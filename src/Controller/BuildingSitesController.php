@@ -13,7 +13,6 @@ use App\Controller\AppController;
  */
 class BuildingSitesController extends AppController
 {
-
     /**
      * Index method
      *

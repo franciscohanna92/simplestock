@@ -13,7 +13,6 @@ use App\Controller\AppController;
  */
 class ProvidersController extends AppController
 {
-
     /**
      * Index method
      *

@@ -39,11 +39,13 @@
                 </form>
             </div>
 
-            <div class="col-12 offset-md-4 col-md-4 offset-lg-6 col-lg-3">
-                <a href="/building-sites/add" class="btn btn-primary h-100 float-right">
-                    Agregar nueva obra
-                </a>
-            </div>
+            <?php if ($this->Roles->deny($authUser['role'], ['COMPRAS', 'ADMIN'])): ?>
+                <div class="col-12 offset-md-4 col-md-4 offset-lg-6 col-lg-3">
+                    <a href="/building-sites/add" class="btn btn-primary h-100 float-right">
+                        Agregar nueva obra
+                    </a>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
     <div class="card-body p-0">
@@ -55,7 +57,7 @@
                     <th scope="col"><?= $this->Paginator->sort('name', 'Nombre') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('start_date', 'Fecha de inicio') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('address', 'Dirección') ?></th>
-                    <th scope="col" class="actions"  width="150px"><?= __('Acciones') ?></th>
+                    <th scope="col" class="actions" width="150px"><?= __('Acciones') ?></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -69,13 +71,16 @@
                             <div>
                                 <?= $this->Html->link(__('Ver'), ['action' => 'view', $buildingSite->id]) ?>
                             </div>
-                            <div>
-                                <?= $this->Html->link(__('Editar'), ['action' => 'edit', $buildingSite->id]) ?>
-                            </div>
-                            <div>
-                                <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $buildingSite->id], ['confirm' =>
-                                    __('¿Seguro quieres eliminar esta obra?')]) ?>
-                            </div>
+
+                            <?php if ($this->Roles->deny($authUser['role'], ['COMPRAS', 'ADMIN'])): ?>
+                                <div>
+                                    <?= $this->Html->link(__('Editar'), ['action' => 'edit', $buildingSite->id]) ?>
+                                </div>
+                                <div>
+                                    <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $buildingSite->id], ['confirm' =>
+                                        __('¿Seguro quieres eliminar esta obra?')]) ?>
+                                </div>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>

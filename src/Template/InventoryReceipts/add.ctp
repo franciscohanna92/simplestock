@@ -9,18 +9,18 @@
     <?= $this->BootsCakeForm->create($inventoryReceipt, ['autocomplete' => 'off']) ?>
     <div class="card card-default">
         <div class="card-body row">
-            <div class="col">
+            <div class="col-6">
                 <?php echo $this->BootsCakeForm->control('descriptive_name', ['required' => true, 'label' => 'Nombre descriptivo']); ?>
             </div>
-            <div class="col">
+            <div class="col-6">
                 <?php echo $this->BootsCakeForm->control('date', ['required' => true, 'label' => 'Fecha de entrada']); ?>
             </div>
 
-            <div class="col">
+            <div class="col-6">
                 <?php echo $this->BootsCakeForm->control('provider_id', ['options' => $providers, 'required' => false, 'label' => 'Proveedor', 'empty' => true]); ?>
             </div>
 
-            <div class="col">
+            <div class="col-6">
                 <?php echo $this->BootsCakeForm->control('employee_id', ['options' => $employees, 'required' => false, 'label' => 'Recibe', 'empty' => true]); ?>
             </div>
 

@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4b9e7d9d301529aac69f133e509cc80b",
+    "content-hash": "283ff70ef6d4643b22bdaa6097daf67a",
     "packages": [
         {
             "name": "aura/intl",
@@ -344,16 +344,16 @@
         },
         {
             "name": "kacospro/bootscake",
-            "version": "dev-master",
+            "version": "v0.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KacosPro/bootscake.git",
-                "reference": "a93f2ff0e4ef2a6274a20af31e60c6aa515757b4"
+                "reference": "e7a6e0403fd315ad1f6d10f3642d475ce70038a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KacosPro/bootscake/zipball/a93f2ff0e4ef2a6274a20af31e60c6aa515757b4",
-                "reference": "a93f2ff0e4ef2a6274a20af31e60c6aa515757b4",
+                "url": "https://api.github.com/repos/KacosPro/bootscake/zipball/e7a6e0403fd315ad1f6d10f3642d475ce70038a3",
+                "reference": "e7a6e0403fd315ad1f6d10f3642d475ce70038a3",
                 "shasum": ""
             },
             "require": {
@@ -380,7 +380,7 @@
                 }
             ],
             "description": "Bootstrap 4 helpers for CakePHP 3.4",
-            "time": "2018-04-28T07:17:47+00:00"
+            "time": "2019-09-24T14:57:23+00:00"
         },
         {
             "name": "m1/env",
@@ -2676,13 +2676,13 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "kacospro/bootscake": 20,
         "psy/psysh": 0
     },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.6"
+        "php": ">=5.6",
+        "ext-json": "*"
     },
     "platform-dev": []
 }

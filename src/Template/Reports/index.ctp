@@ -17,11 +17,13 @@
             <div class="col-12 col-md-4 col-lg-3">
             </div>
 
-            <div class="col-12 offset-md-4 col-md-4 offset-lg-6 col-lg-3">
-                <a href="/reports/add" class="btn btn-primary h-100 float-right">
-                    Generar nuevo informe
-                </a>
-            </div>
+            <?php if ($this->Roles->deny($authUser['role'], ['ADMIN'])): ?>
+                <div class="col-12 offset-md-4 col-md-4 offset-lg-6 col-lg-3">
+                    <a href="/reports/add" class="btn btn-primary h-100 float-right">
+                        Generar nuevo informe
+                    </a>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
     <div class="card-body p-0">
@@ -29,7 +31,6 @@
             <table class="table table-hover table-bordered table-striped">
                 <thead>
                 <tr>
-                    <th scope="col"><?= $this->Paginator->sort('id', '#') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('type', 'Tipo') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('date_from', 'Desde') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('date_to', 'Hasta') ?></th>
@@ -39,7 +40,6 @@
                 <tbody>
                 <?php foreach ($reports as $report): ?>
                     <tr>
-                        <td><?= $this->Number->format($report->id) ?></td>
                         <td><?= h($report->type) ?></td>
                         <td><?= h($report->date_from) ?></td>
                         <td><?= h($report->date_to) ?></td>
@@ -47,10 +47,12 @@
                             <div>
                                 <?= $this->Html->link(__('Ver'), ['action' => 'view', $report->id]) ?>
                             </div>
-                            <div>
-                                <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $report->id], ['confirm' =>
-                                    __('¿Seguro quieres eliminar este informe?')]) ?>
-                            </div>
+                            <?php if ($this->Roles->deny($authUser['role'], ['ADMIN'])): ?>
+                                <div>
+                                    <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $report->id], ['confirm' =>
+                                        __('¿Seguro quieres eliminar este informe?')]) ?>
+                                </div>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>

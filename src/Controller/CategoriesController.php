@@ -13,7 +13,6 @@ use App\Controller\AppController;
  */
 class CategoriesController extends AppController
 {
-
     /**
      * Index method
      *
@@ -40,7 +39,7 @@ class CategoriesController extends AppController
      */
     public function view($id = null)
     {
-        $pageTitle = 'View category';
+        $pageTitle = 'Detalle de categoría';
         $category = $this->Categories->get($id, [
             'contain' => ['Companies']
         ]);

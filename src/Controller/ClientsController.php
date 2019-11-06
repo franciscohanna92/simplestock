@@ -13,7 +13,6 @@ use App\Controller\AppController;
  */
 class ClientsController extends AppController
 {
-
     /**
      * Index method
      *

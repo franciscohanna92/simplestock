@@ -9,16 +9,16 @@
     <?= $this->BootsCakeForm->create($inventoryIssue) ?>
     <div class="card card-default">
         <div class="card-body row">
-            <div class="col">
+            <div class="col-6">
                 <?php echo $this->BootsCakeForm->control('descriptive_name', ['required' => true, 'label' => 'Nombre descriptivo']); ?>
             </div>
-            <div class="col">
+            <div class="col-6">
                 <?php echo $this->BootsCakeForm->control('date', ['required' => true, 'label' => 'Fecha de salida']); ?>
             </div>
-            <div class="col">
+            <div class="col-6">
                 <?php echo $this->BootsCakeForm->control('building_site_id', ['options' => $buildingSites, 'required' => false, 'empty' => true, 'label' => 'Obra destino']); ?>
             </div>
-            <div class="col">
+            <div class="col-6">
                 <?php echo $this->BootsCakeForm->control('employee_id', ['options' => $employees, 'required' => false, 'label' => 'Se entrega a', 'empty' => true]); ?>
             </div>
 

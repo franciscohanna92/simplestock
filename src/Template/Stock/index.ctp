@@ -43,11 +43,13 @@
                 </form>
             </div>
 
+            <?php if ($this->Roles->deny($authUser['role'], ['COMPRAS', 'ADMIN'])): ?>
             <div class="col">
                 <a href="/articles/add" class="btn btn-primary h-100 float-right">
                     Agregar nuevo artículo
                 </a>
             </div>
+            <?php endif; ?>
         </div>
     </div>
     <div class="card-body p-0">

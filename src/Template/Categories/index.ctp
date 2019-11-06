@@ -39,11 +39,13 @@
                 </form>
             </div>
 
+            <?php if ($this->Roles->deny($authUser['role'], ['ADMIN'])): ?>
             <div class="col-12 offset-md-4 col-md-4 offset-lg-6 col-lg-3">
                 <a href="/categories/add" class="btn btn-primary h-100 float-right">
                     Agregar nueva categoría
                 </a>
             </div>
+            <?php endif; ?>
         </div>
     </div>
     <div class="card-body p-0">
@@ -51,21 +53,24 @@
             <table class="table table-hover table-bordered table-striped">
                 <thead>
                 <tr>
-                    <th scope="col"><?= $this->Paginator->sort('id', '#') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('name', 'Nombre') ?></th>
-                    <th scope="col" class="actions"><?= __('Actions', 'Acciones') ?></th>
+                    <th scope="col" class="actions" width="150px"><?= __('Actions', 'Acciones') ?></th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($categories as $category): ?>
                     <tr>
-                        <td><?= $this->Number->format($category->id) ?></td>
                         <td><?= h($category->name) ?></td>
-                        <td class="actions">
-                            <?= $this->Html->link(__('View'), ['action' => 'view', $category->id]) ?>
-                            <?= $this->Html->link(__('Edit'), ['action' => 'edit', $category->id]) ?>
-                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $category->id], ['confirm' =>
-                                __('¿Seguro quieres eliminar este category?')]) ?>
+                        <td class="actions d-flex justify-content-between">
+                            <?php if ($this->Roles->deny($authUser['role'], ['COMPRAS', 'TECNICA', 'ADMIN'])): ?>
+                                <div>
+                                    <?= $this->Html->link(__('Editar'), ['action' => 'edit', $category->id]) ?>
+                                </div>
+                                <div>
+                                    <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $category->id], ['confirm' =>
+                                        __('¿Seguro quieres eliminar esta categoría?')]) ?>
+                                </div>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>

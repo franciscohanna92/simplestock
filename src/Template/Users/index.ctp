@@ -39,11 +39,13 @@
                 </form>
             </div>
 
-            <div class="col-12 offset-md-4 col-md-4 offset-lg-6 col-lg-3">
-                <a href="/users/add" class="btn btn-primary h-100 float-right">
-                    Agregar nuevo usuario
-                </a>
-            </div>
+            <?php if ($this->Roles->deny($authUser['role'], ['ADMIN'])): ?>
+                <div class="col-12 offset-md-4 col-md-4 offset-lg-6 col-lg-3">
+                    <a href="/users/add" class="btn btn-primary h-100 float-right">
+                        Agregar nuevo usuario
+                    </a>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
     <div class="card-body p-0">
@@ -52,17 +54,25 @@
                 <thead>
                 <tr>
                     <th scope="col"><?= $this->Paginator->sort('email') ?></th>
+                    <th scope="col">Rol</th>
                     <th scope="col" style="width: 150px;" class="actions"><?= __('Acciones') ?></th>
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($users as $user): ?>
+                <?php foreach ($users as $u): ?>
                     <tr>
-                        <td><?= h($user->email) ?></td>
+                        <td><?= h($u->email) ?></td>
+                        <td><?= h($roles[$u->role]) ?></td>
                         <td class="actions d-flex justify-content-between">
-                            <?= $this->Html->link(__('Editar'), ['action' => 'edit', $user->id]) ?>
-                            <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $user->id], ['confirm' =>
-                                __('¿Seguro quieres eliminar este usuario?')]) ?>
+                            <?php if ($this->Roles->deny($authUser['role'], ['ADMIN'])): ?>
+                                <div>
+                                    <?= $this->Html->link(__('Editar'), ['action' => 'edit', $u->id]) ?>
+                                </div>
+                                <div>
+                                    <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $u->id], ['confirm' =>
+                                        __('¿Seguro quieres eliminar este usuario?')]) ?>
+                                </div>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
