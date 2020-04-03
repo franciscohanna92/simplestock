@@ -72,7 +72,7 @@ class BuildingSitesController extends AppController
             }
             $this->Flash->error(__('La obra no pudo ser guardad. Intentá nuevamente.'));
         }
-        $companies = $this->BuildingSites->Companies->find('list', ['limit' => 200]);
+        $companies = $this->BuildingSites->Companies->find('list');
         $this->set(compact('buildingSite', 'companies', 'pageTitle'));
     }
 
@@ -98,7 +98,7 @@ class BuildingSitesController extends AppController
             }
             $this->Flash->error(__('La obra no pudo ser guardad. Intentá nuevamente.'));
         }
-        $companies = $this->BuildingSites->Companies->find('list', ['limit' => 200]);
+        $companies = $this->BuildingSites->Companies->find('list');
         $this->set(compact('buildingSite', 'companies', 'pageTitle'));
     }
 

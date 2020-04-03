@@ -49,7 +49,12 @@ class InventoryReceiptsController extends AppController
     {
         $pageTitle = 'Detalle de entrada';
         $inventoryReceipt = $this->InventoryReceipts->get($id, [
-            'contain' => ['Providers', 'Companies', 'Articles', 'Employees']
+            'contain' => [
+                'Providers',
+                'Companies',
+                'Articles' => ['Categories'],
+                'Employees'
+            ]
         ]);
 
 
@@ -85,7 +90,7 @@ class InventoryReceiptsController extends AppController
         $providers = $this->InventoryReceipts->Providers->find('list');
         $employees = $this->InventoryReceipts->Employees->find('list');
         $companies = $this->InventoryReceipts->Companies->find('list');
-        $articles = $this->InventoryReceipts->Articles->find('all')->contain(['Units'])->toArray();
+        $articles = $this->InventoryReceipts->Articles->find('all')->contain(['Units', 'Categories'])->toArray();
         $this->set(compact('inventoryReceipt', 'providers', 'employees', 'companies', 'articles', 'pageTitle'));
     }
 

@@ -67,10 +67,10 @@ $pageTitle = 'Add purchaseOrder';
             }
             $this->Flash->error(__('The purchase order could not be saved. Please, try again.'));
         }
-        $providers = $this->PurchaseOrders->Providers->find('list', ['limit' => 200]);
-        $purchaseOrdersStatuses = $this->PurchaseOrders->PurchaseOrdersStatuses->find('list', ['limit' => 200]);
-        $companies = $this->PurchaseOrders->Companies->find('list', ['limit' => 200]);
-        $articles = $this->PurchaseOrders->Articles->find('list', ['limit' => 200]);
+        $providers = $this->PurchaseOrders->Providers->find('list');
+        $purchaseOrdersStatuses = $this->PurchaseOrders->PurchaseOrdersStatuses->find('list');
+        $companies = $this->PurchaseOrders->Companies->find('list');
+        $articles = $this->PurchaseOrders->Articles->find('list');
         $this->set(compact('purchaseOrder', 'providers', 'purchaseOrdersStatuses', 'companies', 'articles', 'pageTitle'));
     }
 
@@ -96,10 +96,10 @@ $pageTitle = 'Edit purchaseOrder';
             }
             $this->Flash->error(__('The purchase order could not be saved. Please, try again.'));
         }
-        $providers = $this->PurchaseOrders->Providers->find('list', ['limit' => 200]);
-        $purchaseOrdersStatuses = $this->PurchaseOrders->PurchaseOrdersStatuses->find('list', ['limit' => 200]);
-        $companies = $this->PurchaseOrders->Companies->find('list', ['limit' => 200]);
-        $articles = $this->PurchaseOrders->Articles->find('list', ['limit' => 200]);
+        $providers = $this->PurchaseOrders->Providers->find('list');
+        $purchaseOrdersStatuses = $this->PurchaseOrders->PurchaseOrdersStatuses->find('list');
+        $companies = $this->PurchaseOrders->Companies->find('list');
+        $articles = $this->PurchaseOrders->Articles->find('list');
         $this->set(compact('purchaseOrder', 'providers', 'purchaseOrdersStatuses', 'companies', 'articles', 'pageTitle'));
     }
 

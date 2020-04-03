@@ -44,7 +44,7 @@
                     <select class="form-control flex-grow-1 mr-3"
                             ng-change="vm.selectArticle()"
                             name="articles[{{$index}}][id]"
-                            ng-options="article as article.name for article in vm.articles track by article.id"
+                            ng-options="article as (article.name + ' (' + article.category.name + ')') for article in vm.articles track by article.id"
                             ng-model="vm.selectedArticles[$index]"
                             required>
                     </select>

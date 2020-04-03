@@ -67,7 +67,7 @@ class CategoriesController extends AppController
             }
             $this->Flash->error(__('The category could not be saved. Please, try again.'));
         }
-        $companies = $this->Categories->Companies->find('list', ['limit' => 200]);
+        $companies = $this->Categories->Companies->find('list');
         $this->set(compact('category', 'companies', 'pageTitle'));
     }
 
@@ -93,7 +93,7 @@ class CategoriesController extends AppController
             }
             $this->Flash->error(__('The category could not be saved. Please, try again.'));
         }
-        $companies = $this->Categories->Companies->find('list', ['limit' => 200]);
+        $companies = $this->Categories->Companies->find('list');
         $this->set(compact('category', 'companies', 'pageTitle'));
     }
 

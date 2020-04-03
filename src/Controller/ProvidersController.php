@@ -75,7 +75,7 @@ class ProvidersController extends AppController
             }
             $this->Flash->error(__('The provider could not be saved. Please, try again.'));
         }
-        $cities = $this->Providers->Cities->find('list', ['limit' => 200]);
+        $cities = $this->Providers->Cities->find('list');
         $this->set(compact('provider', 'cities', 'companies', 'provinces', 'pageTitle'));
     }
 
@@ -101,7 +101,7 @@ class ProvidersController extends AppController
             }
             $this->Flash->error(__('The provider could not be saved. Please, try again.'));
         }
-        $cities = $this->Providers->Cities->find('list', ['limit' => 200]);
+        $cities = $this->Providers->Cities->find('list');
         $this->set(compact('provider', 'cities', 'companies', 'provinces', 'pageTitle'));
     }
 

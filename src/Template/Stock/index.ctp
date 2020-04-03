@@ -67,7 +67,7 @@
                 <?php foreach ($articles as $article): ?>
                     <tr class="<?= $article->stock < $article->security_stock ? 'table-danger' : '' ?>">
                         <td><?= $this->Number->format($article->id) ?></td>
-                        <td><?= h($article->name) ?></td>
+                        <td><?= h($article->name) ?> (<?= $article['category']['name'] ?>)</td>
                         <td><?= $this->Number->format($article->stock) ?> <?= $article->has('unit') ? $article->unit['abbreviation'] : ''?></td>
                         <td><?= $this->Number->format($article->security_stock) ?> <?= $article->has('unit') ? $article->unit['abbreviation'] : ''?></td>
                     </tr>
