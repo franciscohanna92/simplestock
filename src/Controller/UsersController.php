@@ -15,6 +15,14 @@ use Cake\Auth\DefaultPasswordHasher;
 class UsersController extends AppController
 {
 
+    public $roles = [
+        "DEPOSITO" => "Encargado de depósito",
+        "COMPRAS" => "Encargado de compras",
+        "TECNICA" => "Encargado de área técnica",
+        "ARTICULOS" => "Venta de artículos",
+        "ADMIN" => "Administrador",
+    ];
+
     public function initialize()
     {
         parent::initialize();
@@ -38,8 +46,8 @@ class UsersController extends AppController
                 'Users.email LIKE' => '%' . $searchQuery . '%',
             ]
         ]));
-
-        $this->set(compact('users', 'pageTitle', 'searchQuery'));
+        $roles = $this->roles;
+        $this->set(compact('users', 'roles', 'pageTitle', 'searchQuery'));
     }
 
     /**
@@ -55,8 +63,8 @@ class UsersController extends AppController
         $user = $this->Users->get($id, [
             'contain' => ['Companies']
         ]);
-
-        $this->set(compact('user', 'pageTitle'));
+        $roles = $this->roles;
+        $this->set(compact('user', 'roles', 'pageTitle'));
     }
 
     /**
@@ -79,8 +87,8 @@ class UsersController extends AppController
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
-        $companies = $this->Users->Companies->find('list', ['limit' => 200]);
-        $this->set(compact('user', 'companies', 'pageTitle'));
+        $roles = $this->roles;
+        $this->set(compact('user', 'roles', 'pageTitle'));
     }
 
     /**
@@ -103,12 +111,19 @@ class UsersController extends AppController
             }
             $user = $this->Users->patchEntity($user, $data);
             if ($this->Users->save($user)) {
+
+                if ($user['id'] == $this->Auth->user('id')) {
+                    $this->Auth->setUser($user);
+                }
+
                 $this->Flash->success(__('El usuario ha sido guardado.'));
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('El usuario no pudo ser guardado. Intentá de nuevo.'));
         }
-        $this->set(compact('user', 'pageTitle'));
+        $roles = $this->roles;
+
+        $this->set(compact('user', 'roles', 'pageTitle'));
     }
 
     /**
@@ -143,7 +158,11 @@ class UsersController extends AppController
             $user = $this->Auth->identify();
             if ($user) {
                 $this->Auth->setUser($user);
-                return $this->redirect($this->Auth->redirectUrl());
+
+                if (in_array($user['role'], ['ADMIN', 'DEPOSITO', 'COMPRAS', 'ARTICULOS'])) {
+                    return $this->redirect('/');
+                }
+                return $this->redirect('/reports');
             }
             $this->Flash->error('Your username or password is incorrect.');
         }

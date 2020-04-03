@@ -9,16 +9,16 @@
     <?= $this->BootsCakeForm->create($inventoryIssue) ?>
     <div class="card card-default">
         <div class="card-body row">
-            <div class="col">
+            <div class="col-6">
                 <?php echo $this->BootsCakeForm->control('descriptive_name', ['required' => true, 'label' => 'Nombre descriptivo']); ?>
             </div>
-            <div class="col">
+            <div class="col-6">
                 <?php echo $this->BootsCakeForm->control('date', ['required' => true, 'label' => 'Fecha de salida']); ?>
             </div>
-            <div class="col">
+            <div class="col-6">
                 <?php echo $this->BootsCakeForm->control('building_site_id', ['options' => $buildingSites, 'required' => false, 'empty' => true, 'label' => 'Obra destino']); ?>
             </div>
-            <div class="col">
+            <div class="col-6">
                 <?php echo $this->BootsCakeForm->control('employee_id', ['options' => $employees, 'required' => false, 'label' => 'Se entrega a', 'empty' => true]); ?>
             </div>
 
@@ -42,7 +42,7 @@
                     <select class="form-control flex-grow-1 mr-3"
                             ng-change="vm.selectArticle()"
                             name="articles[{{$index}}][id]"
-                            ng-options="article as article.name for article in vm.articles track by article.id"
+                            ng-options="article as (article.name + ' (' + article.category.name + ')') for article in vm.articles track by article.id"
                             ng-model="vm.selectedArticles[$index]"
                             required>
                     </select>

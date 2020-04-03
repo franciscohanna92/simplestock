@@ -13,7 +13,6 @@ use App\Controller\AppController;
  */
 class StockController extends AppController
 {
-
     /**
      * Index method
      *

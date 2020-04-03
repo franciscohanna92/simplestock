@@ -39,11 +39,13 @@
                 </form>
             </div>
 
-            <div class="col-12 offset-md-4 col-md-4 offset-lg-6 col-lg-3">
-                <a href="/clients/add" class="btn btn-primary h-100 float-right">
-                    Agregar cliente
-                </a>
-            </div>
+            <?php if ($this->Roles->deny($authUser['role'], ['ADMIN'])): ?>
+                <div class="col-12 offset-md-4 col-md-4 offset-lg-6 col-lg-3">
+                    <a href="/clients/add" class="btn btn-primary h-100 float-right">
+                        Agregar cliente
+                    </a>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
     <div class="card-body p-0">
@@ -69,13 +71,15 @@
                             <div>
                                 <?= $this->Html->link(__('Ver'), ['action' => 'view', $client->id]) ?>
                             </div>
-                            <div>
-                                <?= $this->Html->link(__('Editar'), ['action' => 'edit', $client->id]) ?>
-                            </div>
-                            <div>
-                                <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $client->id], ['confirm' =>
-                                    __('¿Seguro quieres eliminar este cliente?')]) ?>
-                            </div>
+                            <?php if ($this->Roles->deny($authUser['role'], ['ADMIN'])): ?>
+                                <div>
+                                    <?= $this->Html->link(__('Editar'), ['action' => 'edit', $client->id]) ?>
+                                </div>
+                                <div>
+                                    <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $client->id], ['confirm' =>
+                                        __('¿Seguro quieres eliminar este cliente?')]) ?>
+                                </div>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>

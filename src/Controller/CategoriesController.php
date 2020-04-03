@@ -13,7 +13,6 @@ use App\Controller\AppController;
  */
 class CategoriesController extends AppController
 {
-
     /**
      * Index method
      *
@@ -40,7 +39,7 @@ class CategoriesController extends AppController
      */
     public function view($id = null)
     {
-        $pageTitle = 'View category';
+        $pageTitle = 'Detalle de categoría';
         $category = $this->Categories->get($id, [
             'contain' => ['Companies']
         ]);
@@ -68,7 +67,7 @@ class CategoriesController extends AppController
             }
             $this->Flash->error(__('The category could not be saved. Please, try again.'));
         }
-        $companies = $this->Categories->Companies->find('list', ['limit' => 200]);
+        $companies = $this->Categories->Companies->find('list');
         $this->set(compact('category', 'companies', 'pageTitle'));
     }
 
@@ -94,7 +93,7 @@ class CategoriesController extends AppController
             }
             $this->Flash->error(__('The category could not be saved. Please, try again.'));
         }
-        $companies = $this->Categories->Companies->find('list', ['limit' => 200]);
+        $companies = $this->Categories->Companies->find('list');
         $this->set(compact('category', 'companies', 'pageTitle'));
     }
 

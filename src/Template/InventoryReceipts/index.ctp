@@ -39,11 +39,13 @@
                 </form>
             </div>
 
-            <div class="col-12 offset-md-4 col-md-4 offset-lg-6 col-lg-3">
-                <a href="/inventoryReceipts/add" class="btn btn-primary h-100 float-right">
-                    Registrar nueva entrada
-                </a>
-            </div>
+            <?php if ($this->Roles->deny($authUser['role'], ['COMPRAS', 'ADMIN'])): ?>
+                <div class="col-12 offset-md-4 col-md-4 offset-lg-6 col-lg-3">
+                    <a href="/inventoryReceipts/add" class="btn btn-primary h-100 float-right">
+                        Registrar nueva entrada
+                    </a>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
     <div class="card-body p-0">
@@ -86,10 +88,12 @@
                             <div>
                                 <?= $this->Html->link(__('Ver'), ['action' => 'view', $inventoryReceipt->id]) ?>
                             </div>
-                            <div>
-                                <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $inventoryReceipt->id], ['confirm' =>
-                                    __('¿Seguro quieres eliminar este inventoryReceipt?')]) ?>
-                            </div>
+                            <?php if ($this->Roles->deny($authUser['role'], ['COMPRAS', 'ADMIN'])): ?>
+                                <div>
+                                    <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $inventoryReceipt->id], ['confirm' =>
+                                        __('¿Seguro quieres eliminar este inventoryReceipt?')]) ?>
+                                </div>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>

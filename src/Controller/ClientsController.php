@@ -13,7 +13,6 @@ use App\Controller\AppController;
  */
 class ClientsController extends AppController
 {
-
     /**
      * Index method
      *
@@ -75,7 +74,7 @@ class ClientsController extends AppController
             }
             $this->Flash->error(__('The client could not be saved. Please, try again.'));
         }
-        $companies = $this->Clients->Companies->find('list', ['limit' => 200]);
+        $companies = $this->Clients->Companies->find('list');
         $this->set(compact('client', 'companies', 'pageTitle'));
     }
 
@@ -101,7 +100,7 @@ class ClientsController extends AppController
             }
             $this->Flash->error(__('The client could not be saved. Please, try again.'));
         }
-        $companies = $this->Clients->Companies->find('list', ['limit' => 200]);
+        $companies = $this->Clients->Companies->find('list');
         $this->set(compact('client', 'companies', 'pageTitle'));
     }
 

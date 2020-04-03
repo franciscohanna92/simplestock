@@ -38,8 +38,7 @@ class UsersTable extends Table
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Companies', [
-            'foreignKey' => 'company_id',
-            'joinType' => 'INNER'
+            'foreignKey' => 'company_id'
         ]);
     }
 
@@ -57,12 +56,20 @@ class UsersTable extends Table
 
         $validator
             ->email('email')
-            ->allowEmpty('email');
+            ->requirePresence('email', 'create')
+            ->notEmpty('email');
 
         $validator
             ->scalar('password')
             ->maxLength('password', 255)
-            ->allowEmpty('password');
+            ->requirePresence('password', 'create')
+            ->notEmpty('password');
+
+        $validator
+            ->scalar('role')
+            ->maxLength('role', 255)
+            ->requirePresence('role', 'create')
+            ->notEmpty('role');
 
         $validator
             ->dateTime('created_at')

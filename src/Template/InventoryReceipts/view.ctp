@@ -29,7 +29,7 @@
                 </thead>
                 <?php foreach ($inventoryReceipt->articles as $article): ?>
                 <tr>
-                    <td><?= $article['name'] ?></td>
+                    <td><?= $article['name'] ?> (<?= $article['category']['name'] ?>)</td>
                     <td><?= $article['_joinData']['quantity'] ?></td>
                 </tr>
                 <?php endforeach ?>

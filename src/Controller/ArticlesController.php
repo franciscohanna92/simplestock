@@ -13,7 +13,6 @@ use App\Controller\AppController;
  */
 class ArticlesController extends AppController
 {
-
     /**
      * Index method
      *
@@ -46,7 +45,7 @@ class ArticlesController extends AppController
      */
     public function view($id = null)
     {
-        $pageTitle = 'View article';
+        $pageTitle = 'Detalle de artículo';
         $article = $this->Articles->get($id, [
             'contain' => ['Categories', 'Providers', 'Companies', 'InventoryIssues', 'InventoryReceipts', 'PurchaseOrders']
         ]);

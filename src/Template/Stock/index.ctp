@@ -43,11 +43,13 @@
                 </form>
             </div>
 
+            <?php if ($this->Roles->deny($authUser['role'], ['COMPRAS', 'ADMIN'])): ?>
             <div class="col">
                 <a href="/articles/add" class="btn btn-primary h-100 float-right">
                     Agregar nuevo artículo
                 </a>
             </div>
+            <?php endif; ?>
         </div>
     </div>
     <div class="card-body p-0">
@@ -65,7 +67,7 @@
                 <?php foreach ($articles as $article): ?>
                     <tr class="<?= $article->stock < $article->security_stock ? 'table-danger' : '' ?>">
                         <td><?= $this->Number->format($article->id) ?></td>
-                        <td><?= h($article->name) ?></td>
+                        <td><?= h($article->name) ?> (<?= $article['category']['name'] ?>)</td>
                         <td><?= $this->Number->format($article->stock) ?> <?= $article->has('unit') ? $article->unit['abbreviation'] : ''?></td>
                         <td><?= $this->Number->format($article->security_stock) ?> <?= $article->has('unit') ? $article->unit['abbreviation'] : ''?></td>
                     </tr>

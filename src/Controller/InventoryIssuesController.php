@@ -48,7 +48,12 @@ class InventoryIssuesController extends AppController
     {
         $pageTitle = 'Detalle de salida';
         $inventoryIssue = $this->InventoryIssues->get($id, [
-            'contain' => ['Companies', 'Articles', 'BuildingSites', 'Employees']
+            'contain' => [
+                'Companies',
+                'Articles' => ['Categories'],
+                'BuildingSites',
+                'Employees'
+            ]
         ]);
 
 
@@ -81,7 +86,7 @@ class InventoryIssuesController extends AppController
             }
             $this->Flash->error(__('The inventory receipt could not be saved. Please, try again.'));
         }
-        $articles = $this->InventoryIssues->Articles->find('all')->contain(['Units'])->toArray();
+        $articles = $this->InventoryIssues->Articles->find('all')->contain(['Units', 'Categories'])->toArray();
         $employees = $this->InventoryIssues->Employees->find('list');
         $buildingSites = $this->InventoryIssues->BuildingSites->find('list');
         $this->set(compact('inventoryIssue', 'companies', 'employees', 'buildingSites', 'articles', 'pageTitle'));

@@ -101,7 +101,7 @@ class ReportsController extends AppController
             }
             $this->Flash->error(__('El informe no pudo ser generador. Intente nuevamente.'));
         }
-        $companies = $this->Reports->Companies->find('list', ['limit' => 200]);
+        $companies = $this->Reports->Companies->find('list');
         $this->set(compact('report', 'companies', 'pageTitle'));
     }
 

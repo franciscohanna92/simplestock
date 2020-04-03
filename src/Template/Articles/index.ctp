@@ -39,11 +39,13 @@
                 </form>
             </div>
 
-            <div class="col-12 offset-md-4 col-md-4 offset-lg-6 col-lg-3">
-                <a href="/articles/add" class="btn btn-primary h-100 float-right">
-                    Agregar nuevo artículo
-                </a>
-            </div>
+            <?php if ($this->Roles->deny($authUser['role'], ['COMPRAS', 'TECNICA', 'ADMIN'])): ?>
+                <div class="col-12 offset-md-4 col-md-4 offset-lg-6 col-lg-3">
+                    <a href="/articles/add" class="btn btn-primary h-100 float-right">
+                        Agregar nuevo artículo
+                    </a>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
     <div class="card-body p-0">
@@ -51,25 +53,19 @@
             <table class="table table-hover table-bordered table-striped">
                 <thead>
                 <tr>
-                    <th scope="col"><?= $this->Paginator->sort('id', '#') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('name', 'Nombre') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('security_stock', 'Stock de seguridad') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('internal_code', 'Cód. interno') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('provider_code', 'Cód. proveedor') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('unit_id', 'Uniddad de medida') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('cateogry_id', 'Categoría') ?></th>
-                    <th scope="col" class="actions"><?= __('Acciones') ?></th>
+                    <th scope="col" class="actions" width="150px"><?= __('Acciones') ?></th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($articles as $article): ?>
                     <tr>
-                        <td><?= $this->Number->format($article->id) ?></td>
                         <td><?= h($article->name) ?></td>
                         <td><?= $this->Number->format($article->security_stock) ?></td>
-                        <td><?= h($article->internal_code) ?></td>
-                        <td><?= h($article->provider_code) ?></td>
-                        <td><?= $article->has('category') ? $article->unit['name'] : ''?>
+                        <td><?= $article->has('category') ? $article->unit['name'] : '' ?>
                         </td>
                         <td><?= $article->has('category') ?
                                 $this->Html->link($article
@@ -79,10 +75,20 @@
                                     ->id]) : '' ?>
                         </td>
 
-                        <td class="actions">
-                            <?= $this->Html->link(__('Editar'), ['action' => 'edit', $article->id]) ?>
-                            <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $article->id], ['confirm' =>
-                                __('¿Seguro quieres eliminar este article?')]) ?>
+                        <td class="actions d-flex justify-content-between">
+                            <div>
+                                <?= $this->Html->link(__('Ver'), ['action' => 'view', $article->id]) ?>
+                            </div>
+
+                            <?php if ($this->Roles->deny($authUser['role'], ['COMPRAS', 'TECNICA', 'ADMIN'])): ?>
+                                <div>
+                                    <?= $this->Html->link(__('Editar'), ['action' => 'edit', $article->id]) ?>
+                                </div>
+                                <div>
+                                    <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $article->id], ['confirm' =>
+                                        __('¿Seguro quieres eliminar esta artículo?')]) ?>
+                                </div>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
